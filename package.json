@@ -4,7 +4,10 @@
   "description": "Greenfield project for Operation Spark",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js",
+    "build:client-dev": "webpack --config webpack.config.js --mode development --watch",
+    "build:client-prod": "webpack --config webpack.config.js --mode production"
   },
   "repository": {
     "type": "git",
@@ -33,9 +36,16 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.5",
     "babel": "^6.23.0",
+    "babel-loader": "^8.0.5",
+    "chai": "^4.2.0",
+    "eslint": "^6.3.0",
     "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "mocha": "^6.2.0",
+    "sinon": "^7.4.2",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7"
   }
