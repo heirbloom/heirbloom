@@ -30,9 +30,17 @@ class NavBar extends React.Component {
   }
 
   render() {
+    let styles = {
+      top: '0px',
+      left: '0px',
+      width: '100%',
+      height: '133px',
+      background: '#F7882F 0% 0 % no - repeat padding- box'
+    }
+
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar style={styles} className="nav-bar" light expand="md">
           <NavbarBrand href="/">reactstrap</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
