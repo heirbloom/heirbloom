@@ -8,6 +8,13 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
+      "program": "${workspaceFolder}/server/index.js"
+    },
+
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "React Files",
       "program": "${workspaceFolder}/react-client/src/index.jsx"
     }
   ]
