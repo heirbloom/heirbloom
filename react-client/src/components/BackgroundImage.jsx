@@ -4,7 +4,7 @@ import '../App.css';
 
 const BackgroundImagePage = () => {
   return (
-    <div className="bg">Test</div>
+    <div className="bg"></div>
   );
 }
 
