@@ -23,6 +23,7 @@ const Login = () => {
                 <FormGroup>
                   <Input type="password" name="password" id="examplePassword" placeholder="password" />
                 </FormGroup>
+                  <Button id="login-button" className="float-right">SIGN IN</Button>
               </Form>
             </div>
           </div>
