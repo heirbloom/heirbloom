@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
+import NavBar from './components/NavBar';
+import BackgroundImage from './components/BackgroundImage';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { };
+    this.state = {  }
   }
-
-  render() {
+  render() { 
     return (<div className="App">
-      <h1>Hi there.</h1>
+      <NavBar />
+      <BackgroundImage />
     </div>);
   }
 }
 
 export default App;
+
+

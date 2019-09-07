@@ -1,0 +1,60 @@
+body,
+html {
+  height: 100%;
+}
+
+.bg {
+  background-image: url("./images/AdobeStock_80804574.jpeg");
+  height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.navbar {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 75px;
+  background: #F7882F 0% 0% no-repeat padding-box;
+
+  color: white
+}
+
+#bloom {
+  color: #dcc6aa
+}
+
+#logo {
+  font-family: 'Berkshire Swash',
+  cursive;
+  font-size: 36px;
+  color: white;
+}
