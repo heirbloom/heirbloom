@@ -1,4 +1,4 @@
-// require('dotenv').config();
+require('dotenv').config();
 
 const express = require('express');
 const path = require('path');
@@ -9,13 +9,12 @@ const userRoutes = require('../routes/Users');
 const PORT = process.env.PORT || 3000;
 
 const app = express();
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // serve the signup/login routes
 app.use(userRoutes);
-// serve the static files
+// serve the static index.html file in React-client folder
 app.use(express.static(path.join(__dirname, '../react-client/dist')));
 
 console.log('Hello World!');
