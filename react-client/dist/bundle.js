@@ -86,59 +86,14 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/react-dom/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/react-dom/index.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("throw new Error(\"Module build failed: Error: ENOENT: no such file or directory, open '/Users/dan/Documents/immersion/seniorImmersion/heirbloom/node_modules/react-dom/index.js'\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL25vZGVfbW9kdWxlcy9yZWFjdC1kb20vaW5kZXguanMuanMiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./node_modules/react-dom/index.js\n");
-
-/***/ }),
-
-/***/ "./node_modules/react/index.js":
-/*!*************************************!*\
-  !*** ./node_modules/react/index.js ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("throw new Error(\"Module build failed: Error: ENOENT: no such file or directory, open '/Users/dan/Documents/immersion/seniorImmersion/heirbloom/node_modules/react/index.js'\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL25vZGVfbW9kdWxlcy9yZWFjdC9pbmRleC5qcy5qcyIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./node_modules/react/index.js\n");
-
-/***/ }),
-
-/***/ "./react-client/src/App.js":
-/*!*********************************!*\
-  !*** ./react-client/src/App.js ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("throw new Error(\"Module build failed: Error: ENOENT: no such file or directory, open '/Users/dan/Documents/immersion/seniorImmersion/heirbloom/react-client/src/App.js'\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL3JlYWN0LWNsaWVudC9zcmMvQXBwLmpzLmpzIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./react-client/src/App.js\n");
-
-/***/ }),
-
-/***/ "./react-client/src/index.css":
-/*!************************************!*\
-  !*** ./react-client/src/index.css ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("throw new Error(\"Module parse failed: Unexpected token (1:5)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n> body {\\n|   margin: 0;\\n|   font-family: -apple-system, BlinkMacSystemFont, \\\"Segoe UI\\\", \\\"Roboto\\\", \\\"Oxygen\\\",\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL3JlYWN0LWNsaWVudC9zcmMvaW5kZXguY3NzLmpzIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./react-client/src/index.css\n");
-
-/***/ }),
-
 /***/ "./react-client/src/index.jsx":
 /*!************************************!*\
   !*** ./react-client/src/index.jsx ***!
   \************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.css */ \"./react-client/src/index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App */ \"./react-client/src/App.js\");\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_App__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\nreact_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_3___default.a, null), document.getElementById('root'));//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZWFjdC1jbGllbnQvc3JjL2luZGV4LmpzeD9kMmE2Il0sIm5hbWVzIjpbIlJlYWN0RE9NIiwicmVuZGVyIiwiZG9jdW1lbnQiLCJnZXRFbGVtZW50QnlJZCJdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFFQUEsZ0RBQVEsQ0FBQ0MsTUFBVCxDQUFnQiwyREFBQywyQ0FBRCxPQUFoQixFQUF5QkMsUUFBUSxDQUFDQyxjQUFULENBQXdCLE1BQXhCLENBQXpCIiwiZmlsZSI6Ii4vcmVhY3QtY2xpZW50L3NyYy9pbmRleC5qc3guanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFJlYWN0RE9NIGZyb20gJ3JlYWN0LWRvbSc7XG5pbXBvcnQgJy4vaW5kZXguY3NzJztcbmltcG9ydCBBcHAgZnJvbSAnLi9BcHAnO1xuXG5SZWFjdERPTS5yZW5kZXIoPEFwcCAvPiwgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Jvb3QnKSk7XG5cbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./react-client/src/index.jsx\n");
+eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nSyntaxError: /mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/react-client/src/index.jsx: Unexpected token (6:16)\\n\\n\\u001b[0m \\u001b[90m 4 | \\u001b[39m\\u001b[36mimport\\u001b[39m \\u001b[33mApp\\u001b[39m from \\u001b[32m'./App'\\u001b[39m\\u001b[33m;\\u001b[39m\\u001b[0m\\n\\u001b[0m \\u001b[90m 5 | \\u001b[39m\\u001b[0m\\n\\u001b[0m\\u001b[31m\\u001b[1m>\\u001b[22m\\u001b[39m\\u001b[90m 6 | \\u001b[39m\\u001b[33mReactDOM\\u001b[39m\\u001b[33m.\\u001b[39mrender(\\u001b[33m<\\u001b[39m\\u001b[33mApp\\u001b[39m \\u001b[33m/\\u001b[39m\\u001b[33m>\\u001b[39m\\u001b[33m,\\u001b[39m document\\u001b[33m.\\u001b[39mgetElementById(\\u001b[32m'root'\\u001b[39m))\\u001b[33m;\\u001b[39m\\u001b[0m\\n\\u001b[0m \\u001b[90m   | \\u001b[39m                \\u001b[31m\\u001b[1m^\\u001b[22m\\u001b[39m\\u001b[0m\\n\\u001b[0m \\u001b[90m 7 | \\u001b[39m\\u001b[0m\\n\\u001b[0m \\u001b[90m 8 | \\u001b[39m\\u001b[0m\\n\\u001b[0m \\u001b[90m 9 | \\u001b[39m\\u001b[0m\\n    at Parser.raise (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:6325:17)\\n    at Parser.unexpected (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:7642:16)\\n    at Parser.parseExprAtom (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8841:20)\\n    at Parser.parseExprSubscripts (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8412:23)\\n    at Parser.parseMaybeUnary (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8392:21)\\n    at Parser.parseExprOps (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8267:23)\\n    at Parser.parseMaybeConditional (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8240:23)\\n    at Parser.parseMaybeAssign (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8187:21)\\n    at Parser.parseExprListItem (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:9491:18)\\n    at Parser.parseCallExpressionArguments (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8621:22)\\n    at Parser.parseSubscript (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8514:29)\\n    at Parser.parseSubscripts (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8433:19)\\n    at Parser.parseExprSubscripts (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8422:17)\\n    at Parser.parseMaybeUnary (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8392:21)\\n    at Parser.parseExprOps (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8267:23)\\n    at Parser.parseMaybeConditional (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8240:23)\\n    at Parser.parseMaybeAssign (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8187:21)\\n    at Parser.parseExpression (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:8135:23)\\n    at Parser.parseStatementContent (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:9958:23)\\n    at Parser.parseStatement (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:9829:17)\\n    at Parser.parseBlockOrModuleBlockBody (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:10405:25)\\n    at Parser.parseBlockBody (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:10392:10)\\n    at Parser.parseTopLevel (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:9758:10)\\n    at Parser.parse (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:11270:17)\\n    at parse (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/parser/lib/index.js:11306:38)\\n    at parser (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/core/lib/transformation/normalize-file.js:170:34)\\n    at normalizeFile (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/core/lib/transformation/normalize-file.js:138:11)\\n    at runSync (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/core/lib/transformation/index.js:44:43)\\n    at runAsync (/mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/core/lib/transformation/index.js:35:14)\\n    at /mnt/c/Users/rapha/Documents/Immersion Senior/heirbloom/node_modules/@babel/core/lib/transform.js:34:34\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL3JlYWN0LWNsaWVudC9zcmMvaW5kZXguanN4LmpzIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./react-client/src/index.jsx\n");
 
 /***/ })
 
