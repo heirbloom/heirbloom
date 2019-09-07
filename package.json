@@ -2,10 +2,10 @@
   "name": "heirbloom",
   "version": "1.0.0",
   "description": "Greenfield project for Operation Spark",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "node start": "nodemon server/index.js",
+    "start": "nodemon server/index.js",
     "build:client-dev": "webpack --config webpack.config.js --mode development --watch",
     "build:client-prod": "webpack --config webpack.config.js --mode production"
   },
@@ -24,6 +24,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
+    "cors": "^2.8.5",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
@@ -50,8 +51,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "mocha": "^6.2.0",
-    "sinon": "^7.4.2",
-    "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "sinon": "^7.4.2"
   }
 }
