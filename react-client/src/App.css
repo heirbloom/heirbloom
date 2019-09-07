@@ -4,9 +4,6 @@ html {
 }
 
 .login-head {
-  top: 200px;
-  left: 300px;
-  width: 400px;
   height: 45px;
   background: #F7882F 0% 0% no-repeat padding-box;
   border-radius: 20px 20px 0px 0px;
@@ -24,10 +21,6 @@ html {
 }
 
 .login-body {
-  padding-top: 24px;
-  left: 600;
-  width: 415px;
-  height: 200px;
   background: #6B7A8F 0% 0% no-repeat padding-box;
   opacity: 0.9;
   border-radius: 0px 0px 20px 20px;
@@ -35,8 +28,6 @@ html {
 
 #login-button {
   background-color: #F7882F;
-  margin-right: 14px;
-  margin-top: 8px;
 }
 
 .bg {
@@ -69,17 +60,7 @@ html {
 
 #logo {
   font-family: 'Berkshire Swash',
-  cursive;
+    cursive;
   font-size: 36px;
   color: white;
-}
-
-#exampleEmail {
-  margin-left: 14px;
-  width: 385px;
-}
-
-#examplePassword {
-  margin-left: 14px;
-  width: 385px;
 }
