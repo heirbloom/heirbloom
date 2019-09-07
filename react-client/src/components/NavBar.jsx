@@ -40,7 +40,7 @@ class NavBar extends Component {
             <Nav className="ml-auto" navbar>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  <i class="fas fa-user fa-2x"></i>
+                  <i className="fas fa-user fa-2x"></i>
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
