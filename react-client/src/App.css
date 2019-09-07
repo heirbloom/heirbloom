@@ -44,7 +44,7 @@ html {
   width: 100%;
   height: 75px;
   background: #F7882F 0% 0% no-repeat padding-box;
-
+  position: fixed;
   color: white
 }
 
