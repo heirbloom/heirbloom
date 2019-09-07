@@ -94,3 +94,6 @@ router.post('/login', (req, res) => {
 /*  if user is authenticated with authenticate middleware, req.user (object containing user's info)
     will be available to the next callback */
 router.get('/user', authenticate, (req, res) => res.status(200).json(req.user));
+
+
+module.exports = authenticate;
