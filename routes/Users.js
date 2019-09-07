@@ -96,4 +96,4 @@ router.post('/login', (req, res) => {
 router.get('/user', authenticate, (req, res) => res.status(200).json(req.user));
 
 
-module.exports = authenticate;
+module.exports = router;
