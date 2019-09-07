@@ -6,16 +6,16 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const userRoutes = require('../routes/Users');
 
-const PORT = process.env.PORT || 3000;
-
 const app = express();
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const PORT = process.env.PORT || 3000;
+
 // serve the signup/login routes
-// app.use(userRoutes);
+app.use(userRoutes);
 // serve the static index.html file in React-client folder
-app.use(express.static(path.join(__dirname, '../react-client/dist')));
+app.use(express.static(path.join(__dirname, '../react-client/public')));
 
 console.log('Hello World!');
 
