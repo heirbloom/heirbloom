@@ -3,17 +3,19 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const axios = require('axios');
+const cors = require('cors');
 const userRoutes = require('../routes/Users');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+// use cors to allow server and client to run on different ports
+app.use(cors());
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 // serve the signup/login routes
-app.use(userRoutes);
+app.use('/api', userRoutes);
 // serve the static index.html file in React-client folder
 app.use(express.static(path.join(__dirname, '../react-client/public')));
 
