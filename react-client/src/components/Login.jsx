@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../App.css';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 
 const Login = () => {
@@ -14,7 +15,16 @@ const Login = () => {
       <div className="row">
         <div className="col">
           <div className="login-body">
-            
+            <div className="login-form">
+              <Form>
+                <FormGroup>
+                  <Input type="email" name="email" id="exampleEmail" placeholder="email" />
+                </FormGroup>
+                <FormGroup>
+                  <Input type="password" name="password" id="examplePassword" placeholder="password" />
+                </FormGroup>
+              </Form>
+            </div>
           </div>
         </div>
       </div>
