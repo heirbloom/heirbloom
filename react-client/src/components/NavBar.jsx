@@ -32,7 +32,7 @@ class NavBar extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="fixed-top">
         <Navbar color="#F7882F" light expand="md">
           <NavbarBrand href="/" id="logo">Heir<span id="bloom">bloom</span></NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
