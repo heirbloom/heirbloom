@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
+import BackgroundImage from './components/BackgroundImage';
 
 class App extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class App extends Component {
   render() { 
     return (<div className="App">
       <NavBar />
+      <BackgroundImage />
     </div>);
   }
 }
