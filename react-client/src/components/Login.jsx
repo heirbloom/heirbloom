@@ -1,36 +1,60 @@
-import React from 'react';
-import '../App.css';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-
+import React from "react";
+import "../App.css";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Container,
+  Row,
+  Col
+} from "reactstrap";
 
 const Login = () => {
   return (
-    <div className="container-fluid login-head position-relative">
-      <div className="row" >
-        <div className="col" >
+    <div class="bg">
+      <Row className="mt-5">
+        <Col xs={{ size: 7, offset: 4 }} className="mt-5">
           <div className="login-head">
-          <h3>LOGIN</h3>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <div className="login-body">
+            <h3 className="ml-3">LOGIN</h3>
+          </div>
+          <div className="login-body pt-3">
             <div className="login-form">
               <Form>
                 <FormGroup>
-                  <Input type="email" name="email" id="exampleEmail" placeholder="email" />
+                  <Input
+                    type="email"
+                    name="email"
+                    id="exampleEmail"
+                    placeholder="email"
+                    className="ml-3 col-11"
+                  />
                 </FormGroup>
                 <FormGroup>
-                  <Input type="password" name="password" id="examplePassword" placeholder="password" />
+                  <Input
+                    type="password"
+                    name="password"
+                    id="examplePassword"
+                    placeholder="password"
+                    className="ml-3 col-11"
+                  />
                 </FormGroup>
-                  <Button id="login-button" className="float-right">SIGN IN</Button>
+                <Row>
+                  <Col className="col-12">
+                    <Button id="login-button" className="float-right mr-4 mb-3">
+                      SIGN IN
+                    </Button>
+                  </Col>
+                </Row>
               </Form>
             </div>
           </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </div>
-  </div>  );
-}
- 
+  );
+};
+
 export default Login;
