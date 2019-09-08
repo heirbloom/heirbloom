@@ -20,8 +20,8 @@ router.post('/signup', (req, res) => {
   if (!username || !email || !password || !zipcode) {
     return res.status(400).json('All fields are required (username, email, passwprd, zipcode)');
   }
-  // if all fields are input, check the database to see if input username or email already exists
-  // destructure Operators (Op) from Sequelize to use 'or' when checking for duplicates
+  /*  if all fields are input, check the database to see if input username or email already exists;
+      destructure Operators (Op) from Sequelize to use 'or' when checking for duplicates */
   const { Op } = Sequelize;
   models.Users.findOne({
     where: {
@@ -39,21 +39,20 @@ router.post('/signup', (req, res) => {
       if (user) {
         return res.status(400).json('Username and/or e-mail are already taken. Please select another.');
       }
-
-      // else, if no input fields are duplicates:
-
-      // Encrypt password
+      // else, if no input fields are duplicates: Encrypt password
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(password, salt);
-
       // re-assign the input password to the encrypted password
       req.body.password = hash;
-
       // create a new User: input the user-info in the Users model of the database
       models.Users.create(req.body, { fields: ['username', 'email', 'password', 'zipcode', 'regionId'] })
         .then((createdUser) => {
           if (createdUser) {
-            return res.status(201).json(createdUser);
+            /*  if user is created, generate jwt token and send it to the client:
+                first parameter is the user's associated info with the encrypted token
+                second param is the secret used to verify the token later on when the user sends it back */
+            const token = jwt.sign({ email: createdUser.email }, 'JWT_SECRET');
+            return res.status(200).json({ token });
           }
           return res.status(500).json('Something Went wrong');
         })
@@ -81,9 +80,9 @@ router.post('/login', (req, res) => {
         // if the passwords don't match, send a 409: Unauthorized error
         return res.status(409).json('Password incorrect!');
       }
-      // if email and password are correct, generate jwt token and send it to the client
-      // first parameter is the user's associated info with the encrypted token
-      // second param is the secret used to verify the token later on when the user sends it back
+      /*  if email and password are correct, generate jwt token and send it to the client;
+          first parameter is the user's associated info with the encrypted token
+          second param is the secret used to verify the token later on when the user sends it back */
       const token = jwt.sign({ email: foundUser.email }, 'JWT_SECRET');
       return res.status(200).json({ token });
     })
