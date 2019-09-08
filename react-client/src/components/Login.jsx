@@ -13,34 +13,50 @@ import {
   Col
 } from 'reactstrap';
 import { baseUrl } from '../constants';
-import Signup from './Signup';
 
 
 class Login extends React.Component {
-  state = {
-    userCredentials: {
-      email: '',
-      password: ''
+  constructor(props) {
+    super(props);
+    this.state = {
+      userCredentials: {
+        email: '',
+        password: ''
+      }
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSignupClick = this.handleSignupClick.bind(this);
   }
 
-  handleSubmit = (event) => {
+  handleChange(event) {
+    // take the name ('email' and 'password') and input value for each from the form
+    const { value, name } = event.target;
+    const userCredentials = this.state.userCredentials;
+    // assign the email and password to their input value
+    userCredentials[name] = value;
+    // set the state to those input values
+    this.setState({userCredentials});
+  }
+    
+  handleSubmit(event) {
     event.preventDefault();
+    // extract the input email and password from this.state
     const { email, password } = this.state.userCredentials;
     // if either email or password fields are blank, alert the user
     if(!email || !password) {
       return alert('Email and Password are required!')
     }
-    // else, send a post request to the login route with the input credentials to handle authentication
+    // else, send a post request to the server with the input credentials to handle authentication
     axios.post(`${baseUrl}/api/login`, this.state.userCredentials)
       .then((response) => {
-        // on successful login, response is an object with data property containing the token
-        // console.log(response);
-        // save the token in browser sessionStorage
+        // console.log('LOGIN RESPONSE', response);
+        // on successful login, response is an object with data property containing the user's token
+        // save the token in the browser's sessionStorage
         sessionStorage.setItem('token', response.data.token);
-        // console.log('=====', this.props);
-        // if user successfully logs in, redirect them to their profile page (NOTE: change to landing!!!)
-        this.props.history.push('/profile');
+        // if user successfully logs in, redirect them to the landing page 
+        // (NOTE: Might not need isLoggedIn argument for other pages (except for recipes and profile?)
+        this.props.history.push('/landing', {isLoggedIn: true});
       })
       .catch((err) => {
         console.log(err);
@@ -48,23 +64,14 @@ class Login extends React.Component {
       })
   }
 
-  handleChange = (event) => {
-    // take the name ('email' and 'password') and input value for each from the form)
-    const { value, name } = event.target;
-    const userCredentials = this.state.userCredentials;
-    // assign the email and password to their input value
-    userCredentials[name] = value;
-    // set the state to thos input values
-    this.setState({userCredentials});
-  }
-
-  handleSignupClick = (event) => {
-    return <Signup />
+  handleSignupClick() {
+    // redirect to signup component when signup button is clicked
+    this.props.history.push('/signup');
   }
 
   render() {
     return (
-      <div class="bg pt-5">
+      <div className="bg pt-5">
         <Row className="mt-5">
           <Col
             xl={{ size: 4, offset: 7 }}
@@ -86,16 +93,16 @@ class Login extends React.Component {
                   </FormGroup>
                   <Row>
                     <Col className="col-12">
-                      {/* First-time visitor? Please Sign-Up: 
-                      <Button onClick={this.handleSignupClick} id="login-button" className="float-right mr-4 mb-1">
+                      {/* GOTTA MAKE SIGN-UP BUTTON PRETTY!!! */}
+                      First-time visitor? Please Sign-Up: 
+                      <Button type="button" onClick={this.handleSignupClick} id="login-button" className="float-right mr-4 mb-1">
                         SIGN-UP
-                      </Button> */}
+                      </Button>
                       <Button type="submit" id="login-button" className="float-right mr-4 mb-3">
                         LOGIN
                       </Button>
                     </Col>
                   </Row>
-                  {/* <button type="submit">Login</button> */}
                 </Form>
               </div>
             </div>
@@ -107,37 +114,3 @@ class Login extends React.Component {
 }
 
 export default Login;
-
-
-// render() {
-//     return (
-//       <div className="container-fluid login-head position-relative">
-//         <div className="row" >
-//           <div className="col" >
-//             <div className="login-head">
-//               <h3>LOGIN</h3>
-//             </div>
-//           </div>
-//           <div className="row">
-//             <div className="col">
-//               <div className="login-body">
-//                 <div className="login-form">
-//                   <Form onSubmit={this.handleSubmit}>
-//                     <FormGroup>
-//                       <Input onChange={this.handleChange} type="email" name="email" id="exampleEmail" placeholder="email" />
-//                     </FormGroup>
-//                     <FormGroup>
-//                       <Input onChange={this.handleChange} type="password" name="password" id="examplePassword" placeholder="password" />
-//                     </FormGroup>
-//                     <button type="submit">Login</button>
-//                   </Form>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>);
-//   }
-// }
-
-// export default Login;
