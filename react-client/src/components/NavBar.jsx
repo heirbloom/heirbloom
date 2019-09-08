@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import '../App.css';
+import React, { Component } from "react";
+import "../App.css";
 import {
   Collapse,
   Navbar,
@@ -12,9 +12,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem
-} from 'reactstrap';
-
-
+} from "reactstrap";
 
 class NavBar extends Component {
   constructor(props) {
@@ -34,7 +32,9 @@ class NavBar extends Component {
     return (
       <div className="fixed-top">
         <Navbar color="#F7882F" light expand="md">
-          <NavbarBrand href="/" id="logo">Heir<span id="bloom">bloom</span></NavbarBrand>
+          <NavbarBrand href="/" id="logo">
+            Heir<span id="bloom">bloom</span>
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -43,16 +43,10 @@ class NavBar extends Component {
                   <i className="fas fa-user fa-2x"></i>
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Edit Profile
-                  </DropdownItem>
-                  <DropdownItem>
-                    View Favorites
-                  </DropdownItem>
+                  <DropdownItem>Edit Profile</DropdownItem>
+                  <DropdownItem>View Favorites</DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>
-                    Logout
-                  </DropdownItem>
+                  <DropdownItem>Logout</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
@@ -62,5 +56,5 @@ class NavBar extends Component {
     );
   }
 }
- 
+
 export default NavBar;
