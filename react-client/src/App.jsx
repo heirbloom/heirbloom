@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import './App.css';
@@ -7,7 +7,8 @@ import NavBar from './components/NavBar';
 import BackgroundImage from './components/BackgroundImage';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import Profile from './components/Profile';
+import Landing from './components/Landing';
+import PrivateRoute from './components/PrivateRoute';
 import { baseUrl } from './constants';
 
 class App extends Component {
@@ -17,48 +18,72 @@ class App extends Component {
       ingredients: [],
       view: 'login',
       loading: true,
-      isAuthenticated: false
+      isAuthenticated: false,
+      user: null,
     }
+    this.getUserDetails = this.getUserDetails.bind(this);
+    this.setAuthentication = this.setAuthentication.bind(this);
   }
 
   componentDidMount() {
-    // when app has mounted, get the user's token from sessionStorage
+    this.getUserDetails();
+  }
+
+  getUserDetails() {
+    // get the user's token from sessionStorage
     const token = sessionStorage.getItem('token');
     // if they don't have a token:
-    if(!token) {
-      // set loading to false (this should re-render login) and the user to unAuthenticated 
-      this.setState({loading: false, isAuthenticated: false });
+    if (!token) {
+      // set loading to false (this should re-render the page) and the user to unAuthenticated 
+      this.setState({ loading: false, isAuthenticated: false });
       return;
     }
-    // if the user has a token, send a get request to their private route (see line 96 in routes/Users.js)
-    // this should provide the user with their login credentials/token to allow access to private routes
-    axios.get(`${baseUrl}/api/user`, {headers: { 'X-TOKEN': token }})
-      .then((user) => {
-        this.setState({loading: false, isAuthenticated: true})
-        console.log('=====', user)
+    /*  if the user has a token, send the token to the server (see line 96 in routes/Users.js).
+        Response should have req.body which contains the user's credentials, allowing them
+        access to their user-specific private routes */
+    axios.get(`${baseUrl}/api/user`, { headers: { 'X-TOKEN': token } })
+      .then((response) => {
+        // add req.body to the user's state, re-render the page, and set them to Authenticated
+        this.setState({ user: response.data, loading: false, isAuthenticated: true })
       })
-      // if err, re-render the login but keep the user un-Authenticated
+      // if err, re-render the page but keep the user un-Authenticated
       .catch((err) => {
         this.setState({ loading: false, isAuthenticated: false })
       })
   }
+
+  setAuthentication(isLoggedIn) {
+    // this should persist the user's authentication until they log-out
+    if (isLoggedIn && !!sessionStorage.getItem('token') && !this.state.isAuthenticated) {
+      this.getUserDetails();
+    }
+  }
   
   render() {
-    const { loading, isAuthenticated } = this.state;
+    const { loading, isAuthenticated, user } = this.state;
     if (loading) {
       return <div>Loading...</div>
     } 
     return (<div className="App container-fluid m-0 p-0">
       <NavBar />
-      {/* switch between login, signup, and profile views with login component displated on home page */}
-      {/* NOTE: Add landing page here when that is made!!! */}
+      {/* switch between login, signup, and landing views with login component displayed on home page */}
+      {/* NOTE: Add profile and recipe routes (using PrivateRoute component) here when they're made! */}
       <Switch>
-        <Route exact path="/signup" component={Signup} />
-        {/* if user is authnticated, render Profile page, else, redirect to home which has the Login component */}
-        <Route exact path="/profile" render={(routeProps) => {
-          return isAuthenticated ? <Profile {...routeProps} /> : <Redirect to="/" />
+        {/* the following six lines prevent a logged-in user from seeing the login/signup pages */}
+        <Route exact path="/signup" render={(routeProps) => {
+          return !isAuthenticated ? <Signup {...routeProps}/> : <Redirect to="/landing" />
         }} />
-        <Route exact path="/" component={Login} />
+        <Route exact path="/" render={(routeProps) => {
+          return !isAuthenticated ? <Login {...routeProps} /> : <Redirect to="/landing" />
+        }} />
+        {/* pass down the following props to PrivateRoute which should conditionally render the landing page*/}
+        <PrivateRoute
+        path="/landing"
+        isAuthenticated={isAuthenticated}
+        user={user}
+        component={Landing}
+        setAuth={this.setAuthentication}
+        />
       </Switch>
       <BackgroundImage />
     </div>);
