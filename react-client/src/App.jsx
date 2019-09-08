@@ -13,7 +13,7 @@ import { baseUrl } from './constants';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       ingredients: [],
       view: 'login',
       loading: true,
@@ -48,7 +48,7 @@ class App extends Component {
     if (loading) {
       return <div>Loading...</div>
     } 
-    return (<div className="App">
+    return (<div className="App container-fluid m-0 p-0">
       <NavBar />
       {/* switch between login, signup, and profile views with login component displated on home page */}
       {/* NOTE: Add landing page here when that is made!!! */}
@@ -66,5 +66,3 @@ class App extends Component {
 }
 
 export default App;
-
-
