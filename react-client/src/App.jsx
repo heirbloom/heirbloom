@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
-import BackgroundImage from "./components/BackgroundImage";
 import Login from "./components/Login";
 
 class App extends Component {
