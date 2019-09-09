@@ -1,12 +1,10 @@
 const Sequelize = require('sequelize');
 
 // set up the database connection
-const {
-  dbName, dbUser, dbPass, dbHost, PORT
-} = process.env;
-const sequelize = new Sequelize(dbName, dbUser, dbPass, {
-  host: dbHost,
-  port: PORT,
+
+const sequelize = new Sequelize('heirbloom', 'root', '', {
+  host: 'localhost',
+  port: process.env.PORT,
   dialect: 'mysql',
 });
 
@@ -29,14 +27,22 @@ const Users = sequelize.define('users', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   zipcode: {
     type: Sequelize.INTEGER(11),
     allowNull: false,
   },
   regionId: {
     type: Sequelize.STRING,
-    allowNull: false,
-  }
+    allowNull: true,
+  },
 }, {
   freezeTableName: true,
   timeStamps: false,
@@ -137,7 +143,7 @@ const Seasons = sequelize.define('seasons', {
   timeStamps: false,
 });
 
-// make a joint Regions/Seasons table
+// make a join Regions/Seasons table
 const RegionsSeasons = sequelize.define('reasons_seasons', {
   id: {
     type: Sequelize.INTEGER(11),
