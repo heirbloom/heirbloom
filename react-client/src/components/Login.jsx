@@ -23,7 +23,7 @@ const Login = () => {
           className="mt-5"
         >
           <div className="login-head">
-            <h3 className="ml-3">LOGIN</h3>
+            <h3 className="ml-3">SIGN IN</h3>
           </div>
           <div className="login-body pt-3">
             <div className="login-form">
