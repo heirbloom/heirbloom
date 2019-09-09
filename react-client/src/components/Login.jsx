@@ -108,21 +108,20 @@ class Login extends React.Component {
                   <Row>
                     <Col className="col-12">
                       {/* GOTTA MAKE SIGN-UP BUTTON PRETTY!!! */}
-                      First-time visitor? Please Sign-Up:
+                      <Button
+                        type="submit"
+                        id="login-button"
+                        className="float-right mr-3 mb-3 sm-12"
+                      >
+                        log in
+                      </Button>
                       <Button
                         type="button"
                         onClick={this.handleSignupClick}
                         id="login-button"
-                        className="float-right mr-4 mb-1"
+                        className="float-left ml-3 mb-4"
                       >
-                        SIGN-UP
-                      </Button>
-                      <Button
-                        type="submit"
-                        id="login-button"
-                        className="float-right mr-4 mb-3"
-                      >
-                        LOGIN
+                        Sign up for a free account
                       </Button>
                     </Col>
                   </Row>
