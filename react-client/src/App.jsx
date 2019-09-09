@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-import NavBar from "./components/NavBar";
-import BackgroundImage from "./components/BackgroundImage";
-import Login from "./components/Login";
+import NavBar from "./components/NavBar.jsx";
+import BackgroundImage from "./components/BackgroundImage.jsx";
+import Login from "./components/Login.jsx";
+
 
 class App extends Component {
   constructor(props) {
