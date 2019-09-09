@@ -1,3 +1,5 @@
 // put const variables and paths here for less repetition
 
-export const baseUrl = 'http://localhost:5000';
+const PORT = process.env.PORT || 3000
+
+export const baseUrl = `http://localhost:${PORT}`;
