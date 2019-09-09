@@ -4,8 +4,11 @@ import { Container, Row } from "reactstrap";
 
 const IngredientList = props => {
   return (
-    <Container>
+    <Container fluid>
       <Row>
+        <Ingredient />
+        <Ingredient />
+        <Ingredient />
         <Ingredient />
       </Row>
     </Container>

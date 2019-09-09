@@ -13,7 +13,7 @@ import {
 const Ingredient = props => {
   return (
     <Col
-      xl={{ size: 4, offset: 1 }}
+      xl={{ size: 3, offset: 1 }}
       md={{ size: 4, offset: 0 }}
       xs={{ size: 10, offset: 1 }}
       className="mt-5"
