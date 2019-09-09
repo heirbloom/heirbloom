@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import './App.css';
 import NavBar from './components/NavBar.jsx';
-import BackgroundImage from './components/BackgroundImage.jsx';
 import Login from './components/Login.jsx';
 import Signup from './components/Signup.jsx';
 import Landing from './components/Landing.jsx';
@@ -85,7 +84,6 @@ class App extends Component {
         setAuth={this.setAuthentication}
         />
       </Switch>
-      <BackgroundImage />
     </div>);
   }
 }
