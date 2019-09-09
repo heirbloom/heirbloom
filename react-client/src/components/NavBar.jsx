@@ -14,7 +14,6 @@ import {
   DropdownItem
 } from "reactstrap";
 
-
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +43,9 @@ class NavBar extends Component {
     return (
       <div className="fixed-top">
         <Navbar color="#F7882F" light expand="md">
-          <NavbarBrand href="/" id="logo">Heir<span id="bloom">bloom</span></NavbarBrand>
+          <NavbarBrand href="/" id="logo">
+            Heir<span id="bloom">bloom</span>
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -53,12 +54,8 @@ class NavBar extends Component {
                   <i className="fas fa-user fa-2x"></i>
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Edit Profile
-                  </DropdownItem>
-                  <DropdownItem>
-                    View Favorites
-                  </DropdownItem>
+                  <DropdownItem>Edit Profile</DropdownItem>
+                  <DropdownItem>View Favorites</DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem onClick={this.handleLogout}>
                     Logout
