@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar.jsx";
-import BackgroundImage from "./components/BackgroundImage.jsx";
 import Login from "./components/Login.jsx";
 
 
