@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar.jsx";
-import BackgroundImage from "./components/BackgroundImage.jsx";
 import Login from "./components/Login.jsx";
-
+import IngredientList from "./components/IngredientList.jsx";
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +16,8 @@ class App extends Component {
     return (
       <div className="App container-fluid m-0 p-0">
         <NavBar />
-        <Login />
+        {/* <Login /> */}
+        <IngredientList />
       </div>
     );
   }
