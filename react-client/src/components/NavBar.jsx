@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import '../App.css';
+import React, { Component } from "react";
+import "../App.css";
 import {
   Collapse,
   Navbar,
@@ -12,7 +12,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem
-} from 'reactstrap';
+} from "reactstrap";
 
 
 class NavBar extends Component {

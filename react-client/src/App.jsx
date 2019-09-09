@@ -3,13 +3,13 @@ import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import './App.css';
-import NavBar from './components/NavBar';
-import BackgroundImage from './components/BackgroundImage';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Landing from './components/Landing';
-import PrivateRoute from './components/PrivateRoute';
-import { baseUrl } from './constants';
+import NavBar from './components/NavBar.jsx';
+import BackgroundImage from './components/BackgroundImage.jsx';
+import Login from './components/Login.jsx';
+import Signup from './components/Signup.jsx';
+import Landing from './components/Landing.jsx';
+import PrivateRoute from './components/PrivateRoute.jsx';
+import { baseUrl } from './constants.js';
 
 class App extends Component {
   constructor(props) {
