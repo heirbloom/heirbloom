@@ -19,6 +19,8 @@ class NavBar extends Component {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+
     this.state = {
       isOpen: false
     };
@@ -28,6 +30,15 @@ class NavBar extends Component {
       isOpen: !this.state.isOpen
     });
   }
+
+  handleLogout() {
+    // When logout button is clicked: 
+    // remove the user's token
+    sessionStorage.removeItem('token');
+    // Redirect them to the home page
+    window.location.href = '/';
+  }
+  
   render() {
     return (
       <div className="fixed-top">
@@ -46,7 +57,9 @@ class NavBar extends Component {
                   <DropdownItem>Edit Profile</DropdownItem>
                   <DropdownItem>View Favorites</DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>Logout</DropdownItem>
+                  <DropdownItem onClick={this.handleLogout}>
+                    Logout
+                  </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
