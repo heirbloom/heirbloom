@@ -13,12 +13,12 @@ import {
 const Ingredient = props => {
   return (
     <Col
-      xl={{ size: 3, offset: 1 }}
+      xl={{ size: 3, offset: 0 }}
       md={{ size: 4, offset: 0 }}
       xs={{ size: 10, offset: 1 }}
       className="mt-5"
     >
-      <Card inverse color="primary">
+      <Card id="ingredient-card">
         <CardImg
           top
           width="100%"
@@ -26,14 +26,18 @@ const Ingredient = props => {
           alt="Card image cap"
         />
         <CardBody>
-          <CardTitle>Strawberries</CardTitle>
-          <CardSubtitle>Strawberries are in season</CardSubtitle>
+          <CardTitle className="card-title">Strawberries</CardTitle>
+          <CardSubtitle className="card-subtitle">
+            Strawberries are in season
+          </CardSubtitle>
+          <hr></hr>
           <CardText>
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </CardText>
-          <Button>Where to find them</Button>
-          <Button>How to eat them</Button>
+          <Button className="card-button col-12">Where to find them</Button>
+          <Button className="card-button col-12">How to eat them</Button>
+          <Button className="card-button col-12">Save for Later</Button>
         </CardBody>
       </Card>
     </Col>
