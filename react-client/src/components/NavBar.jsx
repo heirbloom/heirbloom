@@ -32,13 +32,13 @@ class NavBar extends Component {
   }
 
   handleLogout() {
-    // When logout button is clicked: 
+    // When logout button is clicked:
     // remove the user's token
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem("token");
     // Redirect them to the home page
-    window.location.href = '/';
+    window.location.href = "/";
   }
-  
+
   render() {
     return (
       <div className="fixed-top">
@@ -49,6 +49,16 @@ class NavBar extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="https://github.com/reactstrap/reactstrap">
+                  <i className="fas fa-map-marker-alt fa-2x" id="map-icon"></i>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/reactstrap/reactstrap">
+                  <i className="far fa-heart fa-2x" id="fav-icon"></i>
+                </NavLink>
+              </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   <i className="fas fa-user fa-2x"></i>

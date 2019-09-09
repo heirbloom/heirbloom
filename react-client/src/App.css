@@ -39,6 +39,14 @@ html {
   background-size: cover;
 }
 
+.signup-bg {
+  background-image: url("./images/AdobeStock_50213958.jpeg");
+  height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .App-link {
   color: #61dafb;
@@ -63,4 +71,38 @@ html {
     cursive;
   font-size: 36px;
   color: white;
+}
+
+#ingredient-card {
+  background-color: #dcc6aa
+}
+
+.card-title {
+  font: Bold 24px/14px Poppins;
+  letter-spacing: 0;
+}
+
+.card-subtitle {
+  font: italic 14px Poppins;
+  margin-top: 3px;
+}
+
+.card-body {
+  font-family: Poppins;
+}
+
+.card-button {
+  background-color: #F7882F;
+  font: Bold 14px Poppins;
+  margin-bottom: 6px;
+  border: none;
+  text-align: left
+}
+
+#map-icon {
+  margin-right: 6px
+}
+
+#fav-icon {
+  margin-right: 6px
 }
