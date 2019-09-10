@@ -10,6 +10,7 @@ import Landing from "./components/Landing.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import { baseUrl } from "./constants.js";
 import IngredientList from "./components/IngredientList.jsx";
+import MarketMap from "./components/MarketMap.jsx";
 
 class App extends Component {
   constructor(props) {
@@ -76,6 +77,7 @@ class App extends Component {
     return (
       <div className="App container-fluid m-0 p-0">
         <NavBar />
+        <MarketMap />
         {/* <IngredientList ingredients={this.state.ingredients} /> */}
         {/* switch between login, signup, and landing views with login component displayed on home page */}
         {/* NOTE: Add profile and recipe routes (using PrivateRoute component) here when they're made! */}
