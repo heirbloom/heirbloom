@@ -106,3 +106,16 @@ html {
 #fav-icon {
   margin-right: 6px
 }
+
+.mt-10 {
+  margin-top: 90px
+}
+
+.headline {
+  font-family: 'Playfair',
+    'Times New Roman',
+    Times,
+    serif;
+  font-weight: 900;
+  font-size: 60px
+}
