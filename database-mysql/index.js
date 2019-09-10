@@ -295,7 +295,7 @@ const Ingredients = sequelize.define('ingredients', {
 //   timeStamps: false,
 // });
 
-// // AvailableIngredients regionSeasonId column references the join table RegionsSeason's primary key
+// // AvailableIngredients regionSeasonId column references the joined RegionsSeason's primary key
 // AvailableIngredients.belongsTo(RegionsSeasons, {
 //   foreignKey: 'regionSeasonId',
 // });
