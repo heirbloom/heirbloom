@@ -35,9 +35,10 @@ const Ingredient = props => {
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </CardText>
+          <hr></hr>
           <Button className="card-button col-12">Where to find them</Button>
-          <Button className="card-button col-12">How to eat them</Button>
-          <Button className="card-button col-12">Save for Later</Button>
+          <Button className="card-button col-12">How to prepare them</Button>
+          <Button className="card-button col-12">Add to recipe</Button>
         </CardBody>
       </Card>
     </Col>
