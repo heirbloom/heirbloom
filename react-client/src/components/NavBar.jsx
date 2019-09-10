@@ -51,12 +51,24 @@ class NavBar extends Component {
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink href="https://github.com/reactstrap/reactstrap">
-                  <i className="fas fa-map-marker-alt fa-2x" id="map-icon"></i>
+                  <i
+                    className="fas fa-map-marker-alt fa-2x"
+                    id="map-icon"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Find a market near you."
+                  ></i>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="https://github.com/reactstrap/reactstrap">
-                  <i className="far fa-heart fa-2x" id="fav-icon"></i>
+                  <i
+                    className="far fa-heart fa-2x"
+                    id="fav-icon"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Favorites"
+                  ></i>
                 </NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
