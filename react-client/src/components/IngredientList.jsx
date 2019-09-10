@@ -5,7 +5,7 @@ import { Container, Row } from "reactstrap";
 const IngredientList = props => {
   return (
     <Container fluid>
-      <Row>
+      <Row className="mt-5">
         <Ingredient />
         <Ingredient />
         <Ingredient />
