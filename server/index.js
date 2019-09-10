@@ -24,11 +24,11 @@ app.use(express.static(path.join(__dirname, '/../react-client/dist')));
 app.use('/api', userRoutes);
 
 app.post('/api/usdaResponse', (req, res) => {
-  // const { email } = req.body;
+  const { email } = req.body;
   // req.body is a JSON object nested in a regular object
-  let keys = Object.keys(req.body);
-  console.log('KEYSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS', keys);
-  const { email } = JSON.parse(keys[0]);
+  // const keys = Object.keys(req.body);
+  // console.log('KEYSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS', keys);
+  // const { email } = JSON.parse(keys[0]);
   // query the database for the user with the input email
   models.Users.findOne({ where: { email } })
     .then((foundUser) => {
@@ -40,6 +40,7 @@ app.post('/api/usdaResponse', (req, res) => {
       // foundUser is an object with the user info from the db; pass the zipcode to getMarketsInfo
       getMarketsInfo(foundUser.zipcode)
         .then((marketInfo) => {
+          console.log(marketInfo);
           res.send(marketInfo.map((marketObj) => marketObj.data));
         })
         .catch((err) => console.log(err));
