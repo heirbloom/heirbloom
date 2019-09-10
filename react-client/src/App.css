@@ -112,7 +112,7 @@ html {
 }
 
 .headline {
-  font-family: 'Playfair',
+  font-family: 'Playfair Display',
     'Times New Roman',
     Times,
     serif;
@@ -121,5 +121,17 @@ html {
 }
 
 #market-map {
-  background-color: #6B7A8F
+  background-color: #6B7A8F;
+}
+
+.market-list-item {
+  background-color: #dcc6aa;
+  margin-top: 12px;
+  margin-right: 12px;
+  padding: 12px
+}
+
+.market-title {
+  font: Bold 24px/14px Poppins;
+  line-height: 1.2;
 }

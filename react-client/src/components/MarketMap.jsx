@@ -3,7 +3,7 @@ import { Col, Row, Container } from "reactstrap";
 
 const MarketMap = () => {
   return (
-    <Col id="market-map" className="mt-10" sm={{ size: 9, offset: 3 }}>
+    <Col id="market-map" sm={{ size: 6, offset: 5 }}>
       <h1>Tom Tom Map is gonna go here</h1>
     </Col>
   );
