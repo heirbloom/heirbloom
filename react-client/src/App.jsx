@@ -69,13 +69,6 @@ class App extends Component {
   }
 
   render() {
-    // return (
-    //   <div className="App container-fluid m-0 p-0">
-    //     <NavBar />
-    //     {/* <Login /> */}
-    //     <IngredientList />
-    //   </div>
-    // );
     const { loading, isAuthenticated, user } = this.state;
     if (loading) {
       return <div>Loading...</div>;
@@ -83,7 +76,7 @@ class App extends Component {
     return (
       <div className="App container-fluid m-0 p-0">
         <NavBar />
-        <IngredientList ingredients={this.state.ingredients} />
+        {/* <IngredientList ingredients={this.state.ingredients} /> */}
         {/* switch between login, signup, and landing views with login component displayed on home page */}
         {/* NOTE: Add profile and recipe routes (using PrivateRoute component) here when they're made! */}
         <Switch>
