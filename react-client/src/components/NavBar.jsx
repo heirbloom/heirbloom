@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../App.css";
 import {
+  Container,
   Collapse,
   Navbar,
   NavbarToggler,
@@ -41,9 +42,9 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div className="fixed-top">
-        <Navbar color="#F7882F" light expand="md">
-          <NavbarBrand href="/" id="logo">
+      <div className="fixed-top container" color="#F7882F">
+        <Navbar light expand="md">
+          <NavbarBrand href="/" id="logo" className="pl-5">
             Heir<span id="bloom">bloom</span>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -72,7 +73,7 @@ class NavBar extends Component {
                 </NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
+                <DropdownToggle className="pr-5" nav caret>
                   <i className="fas fa-user fa-2x"></i>
                 </DropdownToggle>
                 <DropdownMenu right>

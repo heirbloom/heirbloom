@@ -6,9 +6,12 @@ import MarketMap from "./MarketMap.jsx";
 const MarketList = () => {
   return (
     <Container>
-      <Row className="mt-10">
+      <Row className="mt-10 mb-2 w-100">
+        <h1 className="headline ml-3">Find a market.</h1>
+      </Row>
+      <Row>
         <MarketMap />
-        <Col xs={{ size: 4, offest: 0 }}>
+        <Col md={{ size: 4, offest: 0 }}>
           <MarketListItem />
           <MarketListItem />
           <MarketListItem />
