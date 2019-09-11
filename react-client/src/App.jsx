@@ -3,15 +3,17 @@ import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import axios from "axios";
 
 import "./App.css";
-import NavBar from "./components/NavBar.jsx";
 import Login from "./components/Login.jsx";
 import Signup from "./components/Signup.jsx";
 import Landing from "./components/Landing.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
-import { baseUrl } from "./constants.js";
 import IngredientList from "./components/IngredientList.jsx";
 import MarketMap from "./components/MarketMap.jsx";
 import MarketList from "./components/MarketList.jsx";
+import FavRecipes from "./components/FavRecipes.jsx";
+import Profile from "./components/Profile.jsx";
+import { baseUrl } from "./constants.js";
+// import { favRecipes } from "../../database-mysql";
 
 class App extends Component {
   constructor(props) {
@@ -72,23 +74,21 @@ class App extends Component {
 
   render() {
     const { loading, isAuthenticated, user } = this.state;
+
     if (loading) {
       return <div>Loading...</div>;
     }
     return (
       <div className="App container-fluid m-0 p-0">
-        <NavBar />
-        <MarketList />
         {/* <IngredientList ingredients={this.state.ingredients} /> */}
         {/* switch between login, signup, and landing views with login component displayed on home page */}
-        {/* NOTE: Add profile and recipe routes (using PrivateRoute component) here when they're made! */}
         <Switch>
           {/* the following six lines prevent a logged-in user from seeing the login/signup pages */}
           <Route
             exact
             path="/signup"
             render={routeProps => {
-              return !isAuthenticated ? (
+              return !isAuthenticated || !sessionStorage.getItem('token') ? (
                 <Signup {...routeProps} />
               ) : (
                 <Redirect to="/landing" />
@@ -99,7 +99,7 @@ class App extends Component {
             exact
             path="/"
             render={routeProps => {
-              return !isAuthenticated ? (
+              return !isAuthenticated || !sessionStorage.getItem('token') ? (
                 <Login {...routeProps} />
               ) : (
                 <Redirect to="/landing" />
@@ -112,6 +112,27 @@ class App extends Component {
             isAuthenticated={isAuthenticated}
             user={user}
             component={Landing}
+            setAuth={this.setAuthentication}
+          />
+          <PrivateRoute
+            path="/market-list"
+            isAuthenticated={isAuthenticated}
+            user={user}
+            component={MarketList}
+            setAuth={this.setAuthentication}
+          />
+          <PrivateRoute
+            path="/profile"
+            isAuthenticated={isAuthenticated}
+            user={user}
+            component={Profile}
+            setAuth={this.setAuthentication}
+          />
+          <PrivateRoute
+            path="/fav-recipes"
+            isAuthenticated={isAuthenticated}
+            user={user}
+            component={FavRecipes}
             setAuth={this.setAuthentication}
           />
         </Switch>
