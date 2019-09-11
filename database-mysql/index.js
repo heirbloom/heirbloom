@@ -2,9 +2,12 @@ const Sequelize = require('sequelize');
 
 // set up the database connection
 
-const sequelize = new Sequelize('heirbloom', 'root', '', {
-  host: 'localhost',
-  port: process.env.DB_PORT,
+const {
+  DATABASE, USER_NAME, USER_PASSWORD, HOST, PORT,
+} = process.env;
+const sequelize = new Sequelize(DATABASE, USER_NAME, USER_PASSWORD, {
+  host: HOST,
+  port: PORT,
   dialect: 'mysql',
 });
 
