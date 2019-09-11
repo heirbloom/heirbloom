@@ -2,12 +2,10 @@ const Sequelize = require('sequelize');
 
 // set up the database connection
 
-const sequelize = new Sequelize({
+const sequelize = new Sequelize('heirbloom', 'admin', '', {
   host: process.env.HOST,
-  username: process.env.USER_NAME,
   port: process.env.DB_PORT,
   password: process.env.USER_PASSWORD,
-  database: process.env.DATABASE,
   dialect: 'mysql',
 });
 
