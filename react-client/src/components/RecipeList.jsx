@@ -24,11 +24,10 @@ class RecipeList extends Component {
             <RecipeListItem />
           </Col>
           <Col md={{ size: 3, offset: 1 }}>
-            {" "}
-            <img
-              src="/Users/dan/Documents/immersion/seniorImmersion/heirbloom/react-client/src/images/farm-market-shopper.jpg"
-              alt=""
-            />{" "}
+            test text Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Architecto quo itaque eveniet dolorum nisi repellendus, quia sit
+            nostrum, distinctio delectus dolorem nulla, deleniti labore illum
+            doloremque numquam harum magni tempore?
           </Col>
         </Row>
       </Container>
