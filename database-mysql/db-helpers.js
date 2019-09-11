@@ -30,7 +30,7 @@
 // };
 
 
-// // get all of a user's favorited recipes 
+// // get all of a user's favorited recipes
 // const getAllUserRecipes = (req, res) => {
 //   // need to reference usersRecipes to find the user
 // };

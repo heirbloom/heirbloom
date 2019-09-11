@@ -2,10 +2,12 @@ const Sequelize = require('sequelize');
 
 // set up the database connection
 
-const sequelize = new Sequelize('heirbloom', 'admin', '', {
-  host: process.env.HOST,
-  port: process.env.DB_PORT,
-  password: process.env.USER_PASSWORD,
+const {
+  DATABASE, USER_NAME, USER_PASSWORD, HOST, DB_PORT,
+} = process.env;
+const sequelize = new Sequelize(DATABASE, USER_NAME, USER_PASSWORD, {
+  host: HOST,
+  port: DB_PORT,
   dialect: 'mysql',
 });
 
@@ -296,7 +298,7 @@ const Ingredients = sequelize.define('ingredients', {
 //   timeStamps: false,
 // });
 
-// // AvailableIngredients regionSeasonId column references the join table RegionsSeason's primary key
+// // AvailableIngredients regionSeasonId column references the joined RegionsSeason's primary key
 // AvailableIngredients.belongsTo(RegionsSeasons, {
 //   foreignKey: 'regionSeasonId',
 // });
