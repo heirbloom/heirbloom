@@ -1,15 +1,21 @@
 // not much here for the time being... just a header... need it to test authentication
 // logged-in user's should re-direct here
 
-import React from 'react';
+import React, { Fragment } from 'react';
+import NavBar from "./NavBar.jsx";
 import '../App.css';
 import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
 
 
-const Landing = () => {
+const Landing = (props) => {
+  const { username, email, zipcode } = props.user;
+  console.log('LANDING', [username, email, zipcode]);
+
   return (
-  <div className="bg pt-5">
-    <Row className="mt-5">
+    <Fragment>
+      <NavBar user={props.user}/>
+      <div className="bg pt-5">
+      <Row className="mt-5">
       <Col
         xl={{ size: 4, offset: 7 }}
         md={{ size: 5, offset: 6 }}
@@ -22,6 +28,7 @@ const Landing = () => {
       </Col>
     </Row>
   </div>
+  </Fragment>
   );
 }
 
