@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize('heirbloom', 'root', '', {
   host: 'localhost',
-  port: process.env.PORT,
+  port: process.env.DB_PORT,
   dialect: 'mysql',
 });
 
