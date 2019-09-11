@@ -1,16 +1,31 @@
 import React from "react";
-import { Col } from "reactstrap";
+import {
+  Col,
+  Card,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button
+} from "reactstrap";
 
 const MarketListItem = () => {
   return (
-    <div className="market-list-item">
-      <h3 className="market-title">Farmer's Market USA</h3>
-      <p>
-        <b>Hours:</b> 11:00 a.m. - 2:00 p.m.<br></br>
-        <b>Location:</b> 123 Main St., Anytown USA 12345<br></br>
-        <b>Website</b>
-      </p>
-    </div>
+    <Col className="mb-3">
+      <Card id="market-card">
+        <CardBody>
+          <CardTitle className="card-title">Farmers Market USA</CardTitle>
+          <CardSubtitle className="card-subtitle">Hours here</CardSubtitle>
+          <hr></hr>
+          <CardText>
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </CardText>
+          <hr></hr>
+          <Button className="card-button col-12">Show it on the map</Button>
+        </CardBody>
+      </Card>
+    </Col>
   );
 };
 
