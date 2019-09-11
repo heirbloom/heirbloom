@@ -2,7 +2,6 @@ import React from "react";
 import {
   Col,
   Card,
-  CardImg,
   CardText,
   CardBody,
   CardTitle,
