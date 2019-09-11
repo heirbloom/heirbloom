@@ -3,11 +3,11 @@ const Sequelize = require('sequelize');
 // set up the database connection
 
 const {
-  DATABASE, USER_NAME, USER_PASSWORD, HOST, PORT,
+  DATABASE, USER_NAME, USER_PASSWORD, HOST, DB_PORT,
 } = process.env;
 const sequelize = new Sequelize(DATABASE, USER_NAME, USER_PASSWORD, {
   host: HOST,
-  port: PORT,
+  port: DB_PORT,
   dialect: 'mysql',
 });
 
