@@ -8,7 +8,7 @@ const MarketList = () => {
     <Container>
       <Row className="mt-10">
         <MarketMap />
-        <Col xs={{ size: 4, offest: 0 }}>
+        <Col md={{ size: 4, offest: 0 }}>
           <MarketListItem />
           <MarketListItem />
           <MarketListItem />
