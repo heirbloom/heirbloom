@@ -5,7 +5,7 @@ const PrivateRoute = (props) => {
   // extract the properties passed down from App component
   const { 
     path, isAuthenticated, component: Component, setAuth, user,
-    recipes, ingredients, userCoodinates, marketNames, localMarkets, marketCoordinates } = props;
+    recipes, ingredients, userCoodinates, localMarkets, marketCoordinates } = props;
   return (
   // render the private route dynamically
   <Route exact path={path} render={(routeProps) => {
@@ -19,7 +19,7 @@ const PrivateRoute = (props) => {
     // otherwise (menaing they aren't authenticated), redirect them to home
     return isAuthenticated ?
       <Component user={user} localMarkets={localMarkets} recipes={recipes} ingredients={ingredients}
-        userCoodinates={userCoodinates} marketNames={marketNames} marketCoordinates={marketCoordinates}
+        userCoodinates={userCoodinates} marketCoordinates={marketCoordinates}
       {...routeProps} /> : <Redirect to="/" />
     }} />
   );
