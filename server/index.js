@@ -31,10 +31,10 @@ app.post('/api/usdaResponse', (req, res) => {
   } = req.body;
   // query the database for the user with the input email
   return models.Users.findOne({
-      where: {
-        email
-      }
-    })
+    where: {
+      email
+    }
+  })
     .then((foundUser) => {
       if (!foundUser) {
         return res.status(404).json('User not found');
@@ -67,7 +67,26 @@ app.post('/api/usercoords', (req, res) => {
           }
           // region is the state's region [CONTINUE HERE!!!!!!!!!!!!!!!!!!!!!]
           const { region } = stateObj[0];
-          res.send(userLocation);
+          function getMonthWord() {
+            const dt = new Date();
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            return months[dt.getMonth()];
+          }
+          const month = getMonthWord();
+          return models.Ingredients.findAll({
+            where: {
+              [month]: 1,
+              region,
+            }
+          })
+            .then((ingredients) => {
+              console.log(ingredients);
+              res.send(ingredients);
+
+
+
+            });
+          // res.send(userLocation);
         })
         .catch((err) => console.error(err));
     });
