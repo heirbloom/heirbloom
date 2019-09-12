@@ -38,19 +38,12 @@ app.post('/api/usdaResponse', (req, res) => {
       return getMarketsInfo(foundUser.zipcode)
         .then((marketInfo) => {
           console.log('MARKETINFO==========', marketInfo);
-          // marketInfo is an array of {} containing local market's address, description and hours
-          const data = marketInfo.map((marketObj) => marketObj.data.marketdetails);
-          // send the info to the client
-          return res.send(data);
+          return res.send(marketInfo);
         })
         .catch((err) => console.error(err));
     });
 });
 
-// app.post('/api/usdaResponse', (req, res) => {
-//   console.log(req.body);
-//   getMarketsInfo(req.body.zipcode);
-// });
 
 // app.get('/', () => {
 
