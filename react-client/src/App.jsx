@@ -8,7 +8,6 @@ import Signup from "./components/Signup.jsx";
 import Landing from "./components/Landing.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import IngredientList from "./components/IngredientList.jsx";
-import MarketMap from "./components/MarketMap.jsx";
 import MarketList from "./components/MarketList.jsx";
 import FavRecipes from "./components/FavRecipes.jsx";
 import Profile from "./components/Profile.jsx";
@@ -19,9 +18,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      recipes: [],
       ingredients: [],
+      userCoordinates: [],
+      marketNames: [],
       localMarkets: [],
-      view: "login",
+      marketCoordinates: [],
       loading: true,
       isAuthenticated: false,
       user: null
@@ -88,7 +90,8 @@ class App extends Component {
   }
 
   render() {
-    const { loading, isAuthenticated, user, localMarkets } = this.state;
+    const { loading, isAuthenticated, user, ingredients, marketNames, localMarkets, marketCoordinates,
+            userCoordinates, recipes  } = this.state;
 
     if (loading) {
       return <div>Loading...</div>;
@@ -99,7 +102,7 @@ class App extends Component {
         {/* <IngredientList ingredients={this.state.ingredients} /> */}
         {/* switch between login, signup, and landing views with login component displayed on home page */}
         <Switch>
-          {/* the following six lines prevent a logged-in user from seeing the login/signup pages */}
+          {/* the following two Routes prevent a logged-in user from seeing the login/signup pages */}
           <Route
             exact
             path="/signup"
@@ -107,7 +110,7 @@ class App extends Component {
               return !isAuthenticated || !sessionStorage.getItem("token") ? (
                 <Signup {...routeProps} />
               ) : (
-                <Redirect to="/recipe-list" />
+                <Redirect to="/ingredient-list" />
               );
             }}
           />
@@ -118,7 +121,7 @@ class App extends Component {
               return !isAuthenticated || !sessionStorage.getItem("token") ? (
                 <Login {...routeProps} />
               ) : (
-                <Redirect to="/recipe-list" />
+                <Redirect to="/ingredient-list" />
               );
             }}
           />
@@ -131,8 +134,19 @@ class App extends Component {
             setAuth={this.setAuthentication}
           />
           <PrivateRoute
+            path="/ingredient-list"
+            ingredients={ingredients}
+            isAuthenticated={isAuthenticated}
+            user={user}
+            component={IngredientList}
+            setAuth={this.setAuthentication}
+          />
+          <PrivateRoute
             path="/market-list"
             localMarkets={localMarkets}
+            marketNames={marketNames}
+            userCoordinates={userCoordinates}
+            marketCoordinates={marketCoordinates}
             isAuthenticated={isAuthenticated}
             user={user}
             component={MarketList}
@@ -156,7 +170,7 @@ class App extends Component {
           />
           <PrivateRoute
             path="/recipe-list"
-            localMarkets={localMarkets}
+            recipes={recipes}
             isAuthenticated={isAuthenticated}
             user={user}
             component={RecipeList}
