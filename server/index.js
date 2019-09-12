@@ -9,6 +9,8 @@ const models = require('../database-mysql');
 
 const {
   getMarketsInfo,
+  getUserCoordinates,
+  getRecipes,
 } = require('./apiHelpers');
 
 const app = express();
@@ -54,9 +56,14 @@ app.post('/api/usdaResponse', (req, res) => {
 
 // })
 
-// app.post('/', () => {
+// these are not actual endpoints - use them with postman to see how the helper functions work
+app.post('/api/usercoords', (req, res) => {
+  getUserCoordinates(70118);
+});
 
-// })
+app.post('/api/recipes', (req, res) => {
+  getRecipes(['broccoli', 'onion', 'garlic']);
+});
 
 // app.post('/', () => {
 
