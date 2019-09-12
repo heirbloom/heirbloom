@@ -115,6 +115,48 @@ UsersRecipes.belongsTo(favRecipes, {
   foreignKey: 'recipeId',
 });
 
+const States = sequelize.define('states', {
+  id: {
+    type: Sequelize.INTEGER(11),
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  state: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  abbreviation: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  region: {
+    type: Sequelize.INTEGER(11),
+    allowNull: false,
+  },
+}, {
+  freezeTableName: true,
+  timeStamps: false,
+});
+
+const Regions = sequelize.define('regions', {
+  id: {
+    type: Sequelize.INTEGER(11),
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  region: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  regionid: {
+    type: Sequelize.INTEGER(11),
+    allowNull: false,
+  },
+}, {
+  freezeTableName: true,
+  timestamps: false,
+});
+
 // // make a Regions table
 // const Regions = sequelize.define('regions', {
 //   id: {
@@ -337,8 +379,8 @@ Ingredients.sync();
 module.exports.Users = Users;
 module.exports.favRecipes = favRecipes;
 module.exports.UsersRecipes = UsersRecipes;
-// module.exports.Regions = Regions;
-// module.exports.Seasons = Seasons;
+module.exports.Regions = Regions;
+module.exports.States = States;
 // module.exports.RegionsSeasons = RegionsSeasons;
 module.exports.Ingredients = Ingredients;
 // module.exports.AvailableIngredients = AvailableIngredients;
