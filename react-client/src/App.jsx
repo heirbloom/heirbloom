@@ -88,7 +88,7 @@ class App extends Component {
             exact
             path="/signup"
             render={routeProps => {
-              return !isAuthenticated || !sessionStorage.getItem('token') ? (
+              return !isAuthenticated || !sessionStorage.getItem("token") ? (
                 <Signup {...routeProps} />
               ) : (
                 <Redirect to="/landing" />
@@ -99,7 +99,7 @@ class App extends Component {
             exact
             path="/"
             render={routeProps => {
-              return !isAuthenticated || !sessionStorage.getItem('token') ? (
+              return !isAuthenticated || !sessionStorage.getItem("token") ? (
                 <Login {...routeProps} />
               ) : (
                 <Redirect to="/landing" />

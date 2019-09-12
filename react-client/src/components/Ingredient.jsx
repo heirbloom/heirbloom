@@ -16,7 +16,7 @@ const Ingredient = props => {
       xl={{ size: 3, offset: 0 }}
       md={{ size: 4, offset: 0 }}
       xs={{ size: 10, offset: 1 }}
-      className="mt-5"
+      // className="mt-5"
     >
       <Card id="ingredient-card">
         <CardImg
@@ -25,7 +25,7 @@ const Ingredient = props => {
           src="https://media.daysoftheyear.com/20171223115009/strawberry-day1.jpg"
           alt="Card image cap"
         />
-        <CardBody>
+        <CardBody className="bg-light">
           <CardTitle className="card-title">Strawberries</CardTitle>
           <CardSubtitle className="card-subtitle">
             Strawberries are in season
