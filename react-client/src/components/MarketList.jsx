@@ -5,8 +5,9 @@ import MarketMap from "./MarketMap.jsx";
 import NavBar from './NavBar.jsx';
 
 const MarketList = (props) => {
-  const { username, email, zipcode } = props.user;
-  console.log('MarketList', [ username, email, zipcode ]);
+  console.log('MarketList props', props.localMarkets);
+  const { localMarkets } = props;
+  const { zipcode } = props.user;
 
   return (
     <Fragment>
