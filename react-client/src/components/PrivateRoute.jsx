@@ -3,7 +3,9 @@ import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = (props) => {
   // extract the properties passed down from App component
-  const { path, isAuthenticated, component: Component, setAuth, user } = props;
+  const { 
+    path, isAuthenticated, component: Component, setAuth, user,
+    recipes, ingredients, userCoodinates, marketNames, localMarkets, marketCoordinates } = props;
   return (
   // render the private route dynamically
   <Route exact path={path} render={(routeProps) => {
@@ -16,8 +18,10 @@ const PrivateRoute = (props) => {
     // else, if they are authenticated, pass down the user info to whatever component they visit
     // otherwise (menaing they aren't authenticated), redirect them to home
     return isAuthenticated ?
-      <Component user={user} {...routeProps} /> : <Redirect to="/" />
-  }} />
+      <Component user={user} localMarkets={localMarkets} recipes={recipes} ingredients={ingredients}
+        userCoodinates={userCoodinates} marketNames={marketNames} marketCoordinates={marketCoordinates}
+      {...routeProps} /> : <Redirect to="/" />
+    }} />
   );
 }
 

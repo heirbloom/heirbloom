@@ -25,6 +25,7 @@ const authenticate = (req, res, next) => {
         req.user = {
           email: foundUser.email,
           zipcode: foundUser.zipcode,
+          username: foundUser.username,
         };
         // move on to the next controller/middleware/function in line
         return next();

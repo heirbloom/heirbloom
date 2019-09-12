@@ -39,6 +39,14 @@ html {
   background-size: cover;
 }
 
+.signup-bg {
+  background-image: url("./images/AdobeStock_50213958.jpeg");
+  height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .App-link {
   color: #61dafb;
@@ -63,4 +71,67 @@ html {
     cursive;
   font-size: 36px;
   color: white;
+}
+
+#ingredient-card {
+  background-color: #f0f0f0
+}
+
+.card-title {
+  font: Bold 24px/14px Poppins;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.card-subtitle {
+  font: italic 14px Poppins;
+  margin-top: 3px;
+}
+
+.card-body {
+  font-family: Poppins;
+}
+
+.card-button {
+  background-color: #F7882F;
+  font: Bold 14px Poppins;
+  margin-bottom: 6px;
+  border: none;
+  text-align: left
+}
+
+#map-icon {
+  margin-right: 6px
+}
+
+#fav-icon {
+  margin-right: 6px
+}
+
+.mt-10 {
+  margin-top: 90px
+}
+
+.headline {
+  font-family: 'Abril Fatface',
+    serif;
+  ;
+  font-weight: 900;
+  font-size: 64px
+}
+
+#market-map {
+  height: 400px
+}
+
+.market-list-item {
+  background-color: #dcc6aa;
+  margin-bottom: 12px;
+  margin-right: 12px;
+  padding: 12px
+}
+
+.market-title {
+  font: Bold 24px/14px Poppins;
+  line-height: 1.2;
 }

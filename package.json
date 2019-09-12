@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
     "build:client-dev": "webpack --config webpack.config.js --mode development --watch",
     "build:client-prod": "webpack --config webpack.config.js --mode production"
   },
@@ -25,6 +25,7 @@
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
     "cors": "^2.8.5",
+    "csv-parse": "^4.4.5",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
@@ -36,7 +37,8 @@
     "react-dom": "^16.9.0",
     "reactstrap": "^8.0.1",
     "redux": "^4.0.4",
-    "sequelize": "^5.18.1"
+    "sequelize": "^5.18.1",
+    "webpack": "4.39.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -55,7 +57,6 @@
     "mocha": "^6.2.0",
     "sinon": "^7.4.2",
     "style-loader": "^1.0.0",
-    "webpack": "^4.39.1",
     "webpack-cli": "^3.3.7"
   }
 }

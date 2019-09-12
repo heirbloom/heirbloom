@@ -1,6 +1,7 @@
-import React from 'react';
-import axios from 'axios';
-import '../App.css';
+import React, { Fragment } from "react";
+import NavBar from './NavBar.jsx';
+import axios from "axios";
+import "../App.css";
 import {
   Button,
   Form,
@@ -11,46 +12,52 @@ import {
   Container,
   Row,
   Col
-} from 'reactstrap';
-import { baseUrl } from '../constants';
-
+} from "reactstrap";
+import { baseUrl } from "../constants";
 
 class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       userCredentials: {
-        username: '',
-        email: '',
-        password: '',
-        zipcode: '',
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        zipcode: ""
       }
-    }
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const { username, email, password, zipcode } = this.state.userCredentials;
+    const { username, email, password, zipcode, confirmPassword } = this.state.userCredentials;
     // if any field is blank, alert the user
-    if (!username || !email || !password || !zipcode) {
-      return alert('All fields are required!')
+    if (!username || !email || !password || !zipcode || !confirmPassword) {
+      return alert("All fields are required.");
+    }
+    if (password !== confirmPassword) {
+      return alert("Passwords do not match.");
     }
     // else, send a post request to the server to save login info in the database
-    axios.post(`${baseUrl}/api/signup`, this.state.userCredentials)
-      .then((response) => {
+    axios
+      .post(`${baseUrl}/api/signup`, this.state.userCredentials)
+      .then(response => {
         // console.log('RESPONSE', response.data)
         // reposnse is an object with a data property which is an object containing the signup info
         // if user successfully signs up, give them a user token and redirect to the landing page
-        sessionStorage.setItem('token', response.data.token);
-        this.props.history.push('/landing', { isLoggedIn: true });
-        return alert('Thank you for signing up. Welcome to Heirbloom!');
+        sessionStorage.setItem("token", response.data.token);
+        this.props.history.push("/landing", { isLoggedIn: true });
+        return alert("Thank you for signing up. Welcome to Heirbloom!");
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
-        alert('The username and/or e-mail are already taken. Please try again.');
-      })
+        alert(
+          "The username and/or e-mail are already taken. Please try again."
+        );
+      });
   }
 
   handleChange(event) {
@@ -62,10 +69,12 @@ class Signup extends React.Component {
     // set the state to those input values
     this.setState({ userCredentials });
   }
-  
+
   render() {
     return (
-      <div className="bg pt-5">
+      <Fragment>
+        <NavBar />
+      <div className="signup-bg pt-5">
         <Row className="mt-5">
           <Col
             xl={{ size: 4, offset: 7 }}
@@ -80,21 +89,63 @@ class Signup extends React.Component {
               <div className="login-form">
                 <Form onSubmit={this.handleSubmit}>
                   <FormGroup>
-                    <Input onChange={this.handleChange} type="text" name="username" id="exampleUsername" placeholder="username" className="ml-3 col-11" />
+                    <Input
+                      onChange={this.handleChange}
+                      type="text"
+                      name="username"
+                      id="exampleUsername"
+                      placeholder="username"
+                      className="ml-3 col-11"
+                    />
                   </FormGroup>
                   <FormGroup>
-                    <Input onChange={this.handleChange} type="email" name="email" id="exampleEmail" placeholder="email" className="ml-3 col-11" />
+                    <Input
+                      onChange={this.handleChange}
+                      type="text"
+                      name="zipcode"
+                      id="exampleZipcode"
+                      placeholder="zipcode"
+                      className="ml-3 col-11"
+                    />
                   </FormGroup>
                   <FormGroup>
-                    <Input onChange={this.handleChange} type="password" name="password" id="examplePassword" placeholder="password" className="ml-3 col-11" />
+                    <Input
+                      onChange={this.handleChange}
+                      type="email"
+                      name="email"
+                      id="exampleEmail"
+                      placeholder="email"
+                      className="ml-3 col-11"
+                    />
                   </FormGroup>
                   <FormGroup>
-                    <Input onChange={this.handleChange} type="text" name="zipcode" id="exampleZipcode" placeholder="zipcode" className="ml-3 col-11" />
+                    <Input
+                      onChange={this.handleChange}
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder="password"
+                      className="ml-3 col-11"
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <Input
+                      onChange={this.handleChange}
+                      type="password"
+                      name="confirmPassword"
+                      id="confirmPassword"
+                      placeholder="confirm password"
+                      className="ml-3 col-11"
+                    />
                   </FormGroup>
                   <Row>
                     <Col className="col-12">
-                      <Button type="submit" id="login-button" className="float-right mr-4 mb-3">
-                        SIGN-UP
+                      <Button
+                        type="submit"
+                        id="login-button"
+                        className="float-right mr-4 mb-3"
+                      >
+                        sign me up!
                       </Button>
                     </Col>
                   </Row>
@@ -105,6 +156,7 @@ class Signup extends React.Component {
           </Col>
         </Row>
       </div>
+      </Fragment>
     );
   }
 }
