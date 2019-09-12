@@ -19,38 +19,36 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 const PORT = 3000;
 
-
 // serve the signup/login routes
 app.use('/api', userRoutes);
 
+
 app.post('/api/usdaResponse', (req, res) => {
-  // const { email } = req.body;
-  // req.body is a JSON object nested in a regular object
-  const keys = Object.keys(req.body);
-  // console.log('KEYSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS', keys);
-  const { email } = JSON.parse(keys[0]);
+  const { email } = req.body;
   // query the database for the user with the input email
-  models.Users.findOne({ where: { email } })
+  return models.Users.findOne({ where: { email } })
     .then((foundUser) => {
       if (!foundUser) {
         return res.status(404).json('User not found');
       }
       // if the user exists:
-      // console.log(foundUser);
       // foundUser is an object with the user info from the db; pass the zipcode to getMarketsInfo
-      getMarketsInfo(foundUser.zipcode)
+      return getMarketsInfo(foundUser.zipcode)
         .then((marketInfo) => {
-          console.log(marketInfo);
-          res.send(marketInfo.map((marketObj) => marketObj.data));
+          console.log('MARKETINFO==========', marketInfo);
+          // marketInfo is an array of {} containing local market's address, description and hours
+          const data = marketInfo.map((marketObj) => marketObj.data.marketdetails);
+          // send the info to the client
+          return res.send(data);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     });
 });
 
-app.post('/api/usdaResponse', (req, res) => {
-  console.log(req.body);
-  getMarketsInfo(req.body.zipcode);
-});
+// app.post('/api/usdaResponse', (req, res) => {
+//   console.log(req.body);
+//   getMarketsInfo(req.body.zipcode);
+// });
 
 // app.get('/', () => {
 
