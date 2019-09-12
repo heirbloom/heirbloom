@@ -52,6 +52,7 @@ app.post('/api/usdaResponse', (req, res) => {
 
 // })
 
+// these are not actual endpoints - use them with postman to see how the helper functions work 
 app.post('/api/usercoords', (req, res) => {
   getUserCoordinates(70118);
 });
