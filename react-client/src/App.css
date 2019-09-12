@@ -79,7 +79,7 @@ html {
 
 .card-title {
   font: Bold 24px/14px Poppins;
-  line-height: 1;
+  line-height: 1.2;
   letter-spacing: 0;
 }
 
@@ -94,6 +94,7 @@ html {
 
 .card-button {
   background-color: #F7882F;
+  color: white;
   font: Bold 14px Poppins;
   margin-bottom: 6px;
   border: none;
