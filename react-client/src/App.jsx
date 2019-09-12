@@ -12,14 +12,15 @@ import MarketMap from "./components/MarketMap.jsx";
 import MarketList from "./components/MarketList.jsx";
 import FavRecipes from "./components/FavRecipes.jsx";
 import Profile from "./components/Profile.jsx";
+import RecipeList from "./components/RecipeList.jsx";
 import { baseUrl } from "./constants.js";
-// import { favRecipes } from "../../database-mysql";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       ingredients: [],
+      localMarkets: [],
       view: "login",
       loading: true,
       isAuthenticated: false,
@@ -106,7 +107,7 @@ class App extends Component {
               return !isAuthenticated || !sessionStorage.getItem("token") ? (
                 <Signup {...routeProps} />
               ) : (
-                <Redirect to="/landing" />
+                <Redirect to="/recipe-list" />
               );
             }}
           />
@@ -117,7 +118,7 @@ class App extends Component {
               return !isAuthenticated || !sessionStorage.getItem("token") ? (
                 <Login {...routeProps} />
               ) : (
-                <Redirect to="/landing" />
+                <Redirect to="/recipe-list" />
               );
             }}
           />
@@ -131,6 +132,7 @@ class App extends Component {
           />
           <PrivateRoute
             path="/market-list"
+            localMarkets={localMarkets}
             isAuthenticated={isAuthenticated}
             user={user}
             component={MarketList}
@@ -138,6 +140,7 @@ class App extends Component {
           />
           <PrivateRoute
             path="/profile"
+            localMarkets={localMarkets}
             isAuthenticated={isAuthenticated}
             user={user}
             component={Profile}
@@ -145,9 +148,18 @@ class App extends Component {
           />
           <PrivateRoute
             path="/fav-recipes"
+            localMarkets={localMarkets}
             isAuthenticated={isAuthenticated}
             user={user}
             component={FavRecipes}
+            setAuth={this.setAuthentication}
+          />
+          <PrivateRoute
+            path="/recipe-list"
+            localMarkets={localMarkets}
+            isAuthenticated={isAuthenticated}
+            user={user}
+            component={RecipeList}
             setAuth={this.setAuthentication}
           />
         </Switch>
