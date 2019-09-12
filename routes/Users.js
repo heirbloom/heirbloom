@@ -50,7 +50,8 @@ router.post('/signup', (req, res) => {
           if (createdUser) {
             /*  if user is created, generate jwt token and send it to the client:
                 first parameter is the user's associated info with the encrypted token
-                second param is the secret used to verify the token later on when the user sends it back */
+                second parameter is the secret used to verify the token later on when the user
+                sends it back */
             const token = jwt.sign({ email: createdUser.email }, 'JWT_SECRET');
             return res.status(200).json({ token });
           }
@@ -82,7 +83,7 @@ router.post('/login', (req, res) => {
       }
       /*  if email and password are correct, generate jwt token and send it to the client;
           first parameter is the user's associated info with the encrypted token
-          second param is the secret used to verify the token later on when the user sends it back */
+          second param is the secret use to verify the token later on when the user sends it back */
       const token = jwt.sign({ email: foundUser.email }, 'JWT_SECRET');
       return res.status(200).json({ token });
     })

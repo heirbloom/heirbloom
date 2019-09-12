@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Fragment } from "react";
+import NavBar from './NavBar.jsx';
 import axios from "axios";
 import "../App.css";
 import {
@@ -22,6 +23,7 @@ class Signup extends React.Component {
         username: "",
         email: "",
         password: "",
+        confirmPassword: "",
         zipcode: ""
       }
     };
@@ -31,10 +33,13 @@ class Signup extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { username, email, password, zipcode } = this.state.userCredentials;
+    const { username, email, password, zipcode, confirmPassword } = this.state.userCredentials;
     // if any field is blank, alert the user
-    if (!username || !email || !password || !zipcode) {
-      return alert("All fields are required!");
+    if (!username || !email || !password || !zipcode || !confirmPassword) {
+      return alert("All fields are required.");
+    }
+    if (password !== confirmPassword) {
+      return alert("Passwords do not match.");
     }
     // else, send a post request to the server to save login info in the database
     axios
@@ -67,6 +72,8 @@ class Signup extends React.Component {
 
   render() {
     return (
+      <Fragment>
+        <NavBar />
       <div className="signup-bg pt-5">
         <Row className="mt-5">
           <Col
@@ -116,17 +123,17 @@ class Signup extends React.Component {
                       onChange={this.handleChange}
                       type="password"
                       name="password"
-                      id="examplePassword"
+                      id="password"
                       placeholder="password"
                       className="ml-3 col-11"
                     />
                   </FormGroup>
                   <FormGroup>
                     <Input
-                      // onChange={this.handleChange}
+                      onChange={this.handleChange}
                       type="password"
-                      name="password"
-                      id="examplePassword"
+                      name="confirmPassword"
+                      id="confirmPassword"
                       placeholder="confirm password"
                       className="ml-3 col-11"
                     />
@@ -149,6 +156,7 @@ class Signup extends React.Component {
           </Col>
         </Row>
       </div>
+      </Fragment>
     );
   }
 }
