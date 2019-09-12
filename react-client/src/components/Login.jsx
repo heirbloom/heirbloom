@@ -54,8 +54,9 @@ class Login extends React.Component {
         // on successful login, response is an object with data property containing the user's token
         // save the token in the browser's sessionStorage
         sessionStorage.setItem("token", response.data.token);
-        // if user successfully logs in, redirect them to the landing page
-        this.props.history.push("/landing", { isLoggedIn: true }); 
+        this.props.getUserDetails();
+        // if user successfully logs in, redirect them to the ingredient's page displaying their local produce
+        this.props.history.push("/ingredient-list", { isLoggedIn: true }); 
         })
         .catch(err => {
           console.log(err);
