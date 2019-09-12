@@ -39,12 +39,11 @@ app.post('/api/usdaResponse', (req, res) => {
       if (!foundUser) {
         return res.status(404).json('User not found');
       }
+      console.log(foundUser);
       // if the user exists:
       // foundUser is an object with the user info from the db; pass the zipcode to getMarketsInfo
       return getMarketsInfo(foundUser.zipcode)
-        .then((marketInfo) => {
-          return res.send(marketInfo);
-        })
+        .then((marketInfo) => res.send(marketInfo))
         .catch((err) => console.error(err));
     });
 });
@@ -54,11 +53,28 @@ app.post('/api/usdaResponse', (req, res) => {
 
 // })
 
-// these are not actual endpoints - use them with postman to see how the helper functions work
 app.post('/api/usercoords', (req, res) => {
-  getUserCoordinates(70118);
+  console.log(req.body);
+  const { zipcode } = req.body;
+  return getUserCoordinates(zipcode)
+    .then((userLocation) => {
+      // userLocation in an object with the user's city, abbrv state and coordinates (an array)
+      const { city, state, geopoint } = userLocation;
+      return models.States.findAll({ where: { ABBREVIATION: state } })
+        .then((stateObj) => {
+          if (!stateObj) {
+            return res.status(404).json('State not found');
+          }
+          // region is the state's region [CONTINUE HERE!!!!!!!!!!!!!!!!!!!!!]
+          const { region } = stateObj[0];
+          res.send(userLocation);
+        })
+        .catch((err) => console.error(err));
+    });
 });
 
+
+// these are not actual endpoints - use them with postman to see how the helper functions work
 app.post('/api/recipes', (req, res) => {
   getRecipes(['broccoli', 'onion', 'garlic']);
 });
