@@ -26,9 +26,15 @@ app.use('/api', userRoutes);
 
 
 app.post('/api/usdaResponse', (req, res) => {
-  const { email } = req.body;
+  const {
+    email
+  } = req.body;
   // query the database for the user with the input email
-  return models.Users.findOne({ where: { email } })
+  return models.Users.findOne({
+      where: {
+        email
+      }
+    })
     .then((foundUser) => {
       if (!foundUser) {
         return res.status(404).json('User not found');
@@ -37,7 +43,6 @@ app.post('/api/usdaResponse', (req, res) => {
       // foundUser is an object with the user info from the db; pass the zipcode to getMarketsInfo
       return getMarketsInfo(foundUser.zipcode)
         .then((marketInfo) => {
-          console.log('MARKETINFO==========', marketInfo);
           return res.send(marketInfo);
         })
         .catch((err) => console.error(err));
