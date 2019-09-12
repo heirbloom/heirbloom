@@ -1,9 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Ingredient from "./Ingredient.jsx";
 import { Container, Row, Col } from "reactstrap";
+import NavBar from './NavBar.jsx';
 
 const IngredientList = props => {
+  const { user } = props;
   return (
+    <Fragment>
+      <NavBar user={user} />
     <Container fluid>
       <Row className="mt-10 ml-1">
         <Col xs={{ size: 9 }}>
@@ -19,6 +23,7 @@ const IngredientList = props => {
         <Ingredient />
       </Row>
     </Container>
+    </Fragment>
   );
 };
 
