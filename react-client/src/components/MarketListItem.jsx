@@ -7,23 +7,32 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Button,
+  Button
 } from "reactstrap";
 
-const MarketListItem = (props) => {
-  console.log('marketListItem Props!!!', props);
-  const { Address, GoogleLink, Products, Schedule, marketname } = props.marketInfo;
+const MarketListItem = props => {
+  const {
+    Address,
+    GoogleLink,
+    Products,
+    Schedule,
+    marketname
+  } = props.marketInfo;
   return (
     <Col className="mb-3">
       <Card id="market-card">
-        <CardBody>
-          <CardTitle className="card-title">{marketname}</CardTitle>
-          <CardSubtitle className="card-subtitle">Schedule: {Schedule}</CardSubtitle>
+        <CardBody className="bg-light">
+          <CardTitle className="card-title">
+            {marketname.slice(marketname.indexOf(" "))}
+          </CardTitle>
+          <CardSubtitle className="card-subtitle">
+            Schedule: {Schedule.slice(0, -16)}
+          </CardSubtitle>
           <hr></hr>
           <CardText>
             Address: {Address}
-            <br/>
-            <br/>
+            <br />
+            <br />
             Available Produce: {Products}
           </CardText>
           <hr></hr>
