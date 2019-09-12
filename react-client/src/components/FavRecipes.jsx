@@ -31,13 +31,6 @@ const FavRecipes = props => {
         <Row>
           <Col>
             <Table>
-              <thead>
-                <tr>
-                  <th>Recipe</th>
-                  <th>Link</th>
-                  <th></th>
-                </tr>
-              </thead>
               <tbody>
                 <tr>
                   <td>Strawberry Shortcake</td>
