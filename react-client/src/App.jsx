@@ -21,7 +21,6 @@ class App extends Component {
       recipes: [],
       ingredients: [],
       userCoordinates: [],
-      marketNames: [],
       localMarkets: [],
       marketCoordinates: [],
       loading: true,
@@ -30,7 +29,7 @@ class App extends Component {
     };
     this.getUserDetails = this.getUserDetails.bind(this);
     this.setAuthentication = this.setAuthentication.bind(this);
-    this.fetchMarketData = this.fetchMarketData.bind(this);
+    this.getMarketData = this.getMarketData.bind(this);
   }
 
   componentDidMount() {
@@ -42,7 +41,7 @@ class App extends Component {
     const token = sessionStorage.getItem("token");
     // if they don't have a token:
     if (!token) {
-      // set loading to false (this should re-render the page) and the user to unAuthenticated
+      // set loading to false (this should re-render the login page) and set the user to unAuthenticated
       this.setState({ loading: false, isAuthenticated: false });
       return;
     }
@@ -53,7 +52,7 @@ class App extends Component {
     .get(`${baseUrl}/api/user`, { headers: { "X-TOKEN": token } })
     .then(response => {
       // add the fetched data from post request to usdaMarket api to the user's state
-      this.fetchMarketData(response.data)
+      this.getMarketData(response.data);
     })
     // if err, re-render the page but keep the user un-Authenticated
     .catch(err => {
@@ -61,7 +60,7 @@ class App extends Component {
     });
     }
     
-    fetchMarketData(user) {
+    getMarketData(user) {
       // send a POST request to usdaMarket api and add the market data to the user's state (App.jsx)
       axios
         .post(`${baseUrl}/api/usdaResponse`, user)
@@ -90,7 +89,7 @@ class App extends Component {
   }
 
   render() {
-    const { loading, isAuthenticated, user, ingredients, marketNames, localMarkets, marketCoordinates,
+    const { loading, isAuthenticated, user, ingredients, localMarkets, marketCoordinates,
             userCoordinates, recipes  } = this.state;
 
     if (loading) {
@@ -119,13 +118,13 @@ class App extends Component {
             path="/"
             render={routeProps => {
               return !isAuthenticated || !sessionStorage.getItem("token") ? (
-                <Login {...routeProps} />
+                <Login {...routeProps} getUserDetails={this.getUserDetails} />
               ) : (
                 <Redirect to="/ingredient-list" />
               );
             }}
           />
-          {/* pass down the following props to PrivateRoute which should conditionally render the landing page*/}
+          {/* pass down the following props to PrivateRoutes*/}
           <PrivateRoute
             path="/landing"
             isAuthenticated={isAuthenticated}
@@ -144,7 +143,6 @@ class App extends Component {
           <PrivateRoute
             path="/market-list"
             localMarkets={localMarkets}
-            marketNames={marketNames}
             userCoordinates={userCoordinates}
             marketCoordinates={marketCoordinates}
             isAuthenticated={isAuthenticated}
