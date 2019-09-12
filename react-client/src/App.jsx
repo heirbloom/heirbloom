@@ -30,6 +30,7 @@ class App extends Component {
     this.getUserDetails = this.getUserDetails.bind(this);
     this.setAuthentication = this.setAuthentication.bind(this);
     this.getMarketData = this.getMarketData.bind(this);
+    this.getUserLocation = this.getUserLocation.bind(this);
   }
 
   componentDidMount() {
@@ -49,16 +50,35 @@ class App extends Component {
     Response should have req.body which contains the user's credentials, allowing them
     access to their user-specific private routes */
     axios
-    .get(`${baseUrl}/api/user`, { headers: { "X-TOKEN": token } })
-    .then(response => {
-      // add the fetched data from post request to usdaMarket api to the user's state
-      this.getMarketData(response.data);
-    })
-    // if err, re-render the page but keep the user un-Authenticated
-    .catch(err => {
-      this.setState({ loading: false, isAuthenticated: false });
-    });
+      .get(`${baseUrl}/api/user`, { headers: { "X-TOKEN": token } })
+      .then(response => {
+        // add the fetched data from post request to usdaMarket api to the user's state
+        this.getMarketData(response.data);
+        this.getUserLocation(response.data);
+      })
+      // if err, re-render the page but keep the user un-Authenticated
+      .catch(err => {
+        this.setState({ loading: false, isAuthenticated: false });
+        console.error(err);
+      });
     }
+
+    getUserLocation(user) {
+      // send a POST request to usdaMarket api and add the market data to the user's state (App.jsx)
+      axios
+        .post(`${baseUrl}/api/usercoords`, user)
+        .then(res => {
+          this.setState({
+            user,
+            loading: false,
+            isAuthenticated: true,
+            userCoordinates: res.data
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      }
     
     getMarketData(user) {
       // send a POST request to usdaMarket api and add the market data to the user's state (App.jsx)
@@ -66,9 +86,6 @@ class App extends Component {
         .post(`${baseUrl}/api/usdaResponse`, user)
         .then(res => {
           this.setState({
-            user,
-            loading: false,
-            isAuthenticated: true,
             localMarkets: res.data
           });
         })
@@ -152,6 +169,7 @@ class App extends Component {
           />
           <PrivateRoute
             path="/profile"
+            userCoordinates={userCoordinates}
             localMarkets={localMarkets}
             isAuthenticated={isAuthenticated}
             user={user}
@@ -169,6 +187,7 @@ class App extends Component {
           <PrivateRoute
             path="/recipe-list"
             recipes={recipes}
+            userCoordinates={userCoordinates}
             isAuthenticated={isAuthenticated}
             user={user}
             component={RecipeList}
