@@ -3,9 +3,18 @@ const axios = require('axios');
 const { FOOD2FORKKEY } = process.env;
 
 const getMarketsInfo = (zip) => axios.get(`http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=${zip}`)
-  .then((res) => res.data.results.map((market) => axios.get(`http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=${market.id}`)))
-  .then((promArray) => axios.all(promArray))
+  .then((res) => {
+    return res.data.results.map(async (market) => {
+      const details = await axios.get(`http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=${market.id}`);
+      // spread operator allows you to combine objects... ES6 is cool
+      // combine return of first API call (has marketName) with second API call
+      const updatedMarketInfo = { ...market, ...details.data.marketdetails };
+      return updatedMarketInfo;
+    });
+  })
+  .then((promArray) => Promise.all(promArray))
   .catch((err) => console.log(err));
+
 
 const getUserCoordinates = (zip) => axios.get(`https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=${zip}`)
   .then((res) => console.log(res.data.records[0].geometry.coordinates))

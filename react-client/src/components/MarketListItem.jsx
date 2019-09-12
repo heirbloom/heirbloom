@@ -1,4 +1,5 @@
 import React from "react";
+import { Route } from "react-router-dom";
 import {
   Col,
   Card,
@@ -6,20 +7,24 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Button
+  Button,
 } from "reactstrap";
 
-const MarketListItem = () => {
+const MarketListItem = (props) => {
+  console.log('marketListItem Props!!!', props);
+  const { Address, GoogleLink, Products, Schedule, marketname } = props.marketInfo;
   return (
     <Col className="mb-3">
       <Card id="market-card">
         <CardBody>
-          <CardTitle className="card-title">Farmers Market USA</CardTitle>
-          <CardSubtitle className="card-subtitle">Hours here</CardSubtitle>
+          <CardTitle className="card-title">{marketname}</CardTitle>
+          <CardSubtitle className="card-subtitle">Schedule: {Schedule}</CardSubtitle>
           <hr></hr>
           <CardText>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            Address: {Address}
+            <br/>
+            <br/>
+            Available Produce: {Products}
           </CardText>
           <hr></hr>
           <Button className="card-button col-12">Show it on the map</Button>

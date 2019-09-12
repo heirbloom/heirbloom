@@ -41,7 +41,6 @@ class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // extract the input email and password from this.state
     const { email, password } = this.state.userCredentials;
     // if either email or password fields are blank, alert the user
     if (!email || !password) {
@@ -51,22 +50,15 @@ class Login extends React.Component {
     axios
       .post(`${baseUrl}/api/login`, this.state.userCredentials)
       .then(response => {
-        console.log('LOGIN RESPONSE===========================', response);
+        // console.log('LOGIN RESPONSE===========================', response);
         // on successful login, response is an object with data property containing the user's token
         // save the token in the browser's sessionStorage
         sessionStorage.setItem("token", response.data.token);
-        /*  Response also has a config object that has a data property which contains the input login info.
-            Send an axios request with the login info to usdaResponse route which should take the user's 
-            email, query the database to find the user with that email, get their zipcode and then send a 
-            get request to usda's farmersmarket api to get the famers markets around that user's zipcode */
-        axios
-          .post(`${baseUrl}/api/usdaResponse`, response.config.data)
-          .then(success => {
-            // if user successfully logs in, redirect them to the landing page
-            this.props.history.push("/landing", { isLoggedIn: true });
-            })
-          })
-          .catch(err => {
+        this.props.getUserDetails();
+        // if user successfully logs in, redirect them to the ingredient's page displaying their local produce
+        this.props.history.push("/ingredient-list", { isLoggedIn: true }); 
+        })
+        .catch(err => {
           console.log(err);
           alert("Problem logging in, check your credentials and try again.");
         })
@@ -78,6 +70,7 @@ class Login extends React.Component {
   }
 
   render() {
+    // console.log('LOGIN PROPS', this.props);
     return (
       <Fragment>
         <NavBar />

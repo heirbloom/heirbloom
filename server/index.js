@@ -21,38 +21,35 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 const PORT = 3000;
 
-
 // serve the signup/login routes
 app.use('/api', userRoutes);
 
+
 app.post('/api/usdaResponse', (req, res) => {
-  const keys = Object.keys(req.body);
-  const { email } = JSON.parse(keys[0]);
-  models.Users.findOne({ where: { email } })
+  const { email } = req.body;
+  // query the database for the user with the input email
+  return models.Users.findOne({ where: { email } })
     .then((foundUser) => {
       if (!foundUser) {
         return res.status(404).json('User not found');
       }
-      getMarketsInfo(foundUser.zipcode)
+      // if the user exists:
+      // foundUser is an object with the user info from the db; pass the zipcode to getMarketsInfo
+      return getMarketsInfo(foundUser.zipcode)
         .then((marketInfo) => {
-          console.log(marketInfo);
-          res.send(marketInfo.map((marketObj) => marketObj.data));
-          res.sendStatus(200);
+          console.log('MARKETINFO==========', marketInfo);
+          return res.send(marketInfo);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     });
 });
 
-// app.post('/api/usdaResponse', (req, res) => {
-//   console.log(req.body);
-//   getMarketsInfo(req.body.zipcode);
-// });
 
 // app.get('/', () => {
 
 // })
 
-// these are not actual endpoints - use them with postman to see how the helper functions work 
+// these are not actual endpoints - use them with postman to see how the helper functions work
 app.post('/api/usercoords', (req, res) => {
   getUserCoordinates(70118);
 });

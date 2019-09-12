@@ -6,8 +6,8 @@ import '../App.css';
 import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
 
 const Profile = (props) => {
-  const { username, email, zipcode } = props.user;
-  console.log('PROFILE', [username, email, zipcode]);
+  console.log('Profile PROPS', props);
+  const { username } = props.user;
 
   return (
     <Fragment>
@@ -21,7 +21,7 @@ const Profile = (props) => {
             className="mt-5"
           >
             <div className="login-head">
-              <h3 className="ml-3">{`${username}'s`} Profile Page</h3>
+              <h3 className="ml-3">{`${username}`.toUpperCase() + "'s"} Profile Page</h3>
             </div>
           </Col>
         </Row>

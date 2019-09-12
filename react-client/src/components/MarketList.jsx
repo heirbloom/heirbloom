@@ -5,12 +5,13 @@ import MarketMap from "./MarketMap.jsx";
 import NavBar from './NavBar.jsx';
 
 const MarketList = (props) => {
-  const { username, email, zipcode } = props.user;
-  console.log('MarketList', [ username, email, zipcode ]);
+  // console.log('MarketList props', props.localMarkets);
+  const { localMarkets, user } = props;
+  const { zipcode } = props.user;
 
   return (
     <Fragment>
-      <NavBar user={props.user} />
+      <NavBar user={user} />
       <Container>
         <Row className="mt-10 mb-2 w-100">
           <h1 className="headline ml-3">Find a market.</h1>
@@ -19,11 +20,7 @@ const MarketList = (props) => {
         <Row>
           <MarketMap />
           <Col md={{ size: 4, offest: 0 }}>
-            <MarketListItem />
-            <MarketListItem />
-            <MarketListItem />
-            <MarketListItem />
-            <MarketListItem />
+            {localMarkets.map((marketInfo, index) => <MarketListItem marketInfo={marketInfo} key={index} />)}
           </Col>
         </Row>
       </Container>
