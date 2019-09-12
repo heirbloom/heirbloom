@@ -6,8 +6,8 @@ import '../App.css';
 import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
 
 const Profile = (props) => {
-  const { username, email, zipcode } = props.user;
-  console.log('PROFILE', [username, email, zipcode]);
+  console.log('Profile PROPS', props);
+  const { username } = props.user;
 
   return (
     <Fragment>
