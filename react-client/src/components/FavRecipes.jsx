@@ -1,33 +1,86 @@
 // not much here for the time being... just a header... need it to set up routes
 
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 import NavBar from "./NavBar.jsx";
-import '../App.css';
-import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
+import "../App.css";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Row,
+  Col,
+  Table,
+  Container
+} from "reactstrap";
 
-const FavRecipes = (props) => {
-  console.log('FavRecipes PROPS', props);
+const FavRecipes = props => {
   const { username } = props.user;
 
   return (
     <Fragment>
       <NavBar user={props.user} />
-      <div className="bg pt-5">
-        <Row className="mt-5">
-          <Col
-            xl={{ size: 4, offset: 7 }}
-            md={{ size: 5, offset: 6 }}
-            xs={{ size: 10, offset: 1 }}
-            className="mt-5"
-          >
-            <div className="login-head">
-              <h3 className="ml-3">{`${username}`.toUpperCase()+"'s"} Favorite Recipes</h3>
-            </div>
+      <Container>
+        <Row className="mt-10 position-relative">
+          <Col>
+            <h5>{`${username}'s favorite recipes`}</h5>
           </Col>
         </Row>
-      </div>
+        <Row>
+          <Col>
+            <Table>
+              <tbody>
+                <tr>
+                  <td>Strawberry Shortcake</td>
+                  <td>
+                    <Button size="sm" color="success">
+                      Click to view
+                    </Button>
+                  </td>
+                  <td>
+                    <Button
+                      color="white"
+                      className="far fa-heart float-right"
+                    ></Button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Strawberry Ice Cream</td>
+                  <td>
+                    <Button size="sm" color="success">
+                      Click to view
+                    </Button>
+                  </td>{" "}
+                  <td>
+                    <Button
+                      color="white"
+                      className="far fa-heart float-right"
+                    ></Button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Strawberry Rhubarb Pie</td>
+                  <td>
+                    <Button size="sm" color="success">
+                      Click to view
+                    </Button>
+                  </td>
+                  <td>
+                    <Button
+                      color="white"
+                      className="far fa-heart float-right"
+                    ></Button>
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+      </Container>
     </Fragment>
   );
-}
+};
 
 export default FavRecipes;
