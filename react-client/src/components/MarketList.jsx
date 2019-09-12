@@ -5,7 +5,7 @@ import MarketMap from "./MarketMap.jsx";
 import NavBar from './NavBar.jsx';
 
 const MarketList = (props) => {
-  console.log('MarketList props', props.localMarkets);
+  // console.log('MarketList props', props.localMarkets);
   const { localMarkets, user } = props;
   const { zipcode } = props.user;
 
@@ -20,11 +20,7 @@ const MarketList = (props) => {
         <Row>
           <MarketMap />
           <Col md={{ size: 4, offest: 0 }}>
-            <MarketListItem />
-            <MarketListItem />
-            <MarketListItem />
-            <MarketListItem />
-            <MarketListItem />
+            {localMarkets.map((marketInfo, index) => <MarketListItem marketInfo={marketInfo} key={index} />)}
           </Col>
         </Row>
       </Container>
