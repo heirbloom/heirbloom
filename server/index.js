@@ -9,6 +9,8 @@ const models = require('../database-mysql');
 
 const {
   getMarketsInfo,
+  getUserCoordinates,
+  getRecipes,
 } = require('./apiHelpers');
 
 const app = express();
@@ -24,39 +26,58 @@ app.use('/api', userRoutes);
 
 
 app.post('/api/usdaResponse', (req, res) => {
-  const { email } = req.body;
+  const {
+    email
+  } = req.body;
   // query the database for the user with the input email
-  return models.Users.findOne({ where: { email } })
+  return models.Users.findOne({
+      where: {
+        email
+      }
+    })
     .then((foundUser) => {
       if (!foundUser) {
         return res.status(404).json('User not found');
       }
+      console.log(foundUser);
       // if the user exists:
       // foundUser is an object with the user info from the db; pass the zipcode to getMarketsInfo
       return getMarketsInfo(foundUser.zipcode)
-        .then((marketInfo) => {
-          console.log('MARKETINFO==========', marketInfo);
-          // marketInfo is an array of {} containing local market's address, description and hours
-          const data = marketInfo.map((marketObj) => marketObj.data.marketdetails);
-          // send the info to the client
-          return res.send(data);
-        })
+        .then((marketInfo) => res.send(marketInfo))
         .catch((err) => console.error(err));
     });
 });
 
-// app.post('/api/usdaResponse', (req, res) => {
-//   console.log(req.body);
-//   getMarketsInfo(req.body.zipcode);
-// });
 
 // app.get('/', () => {
 
 // })
 
-// app.post('/', () => {
+app.post('/api/usercoords', (req, res) => {
+  console.log(req.body);
+  const { zipcode } = req.body;
+  return getUserCoordinates(zipcode)
+    .then((userLocation) => {
+      // userLocation in an object with the user's city, abbrv state and coordinates (an array)
+      const { city, state, geopoint } = userLocation;
+      return models.States.findAll({ where: { ABBREVIATION: state } })
+        .then((stateObj) => {
+          if (!stateObj) {
+            return res.status(404).json('State not found');
+          }
+          // region is the state's region [CONTINUE HERE!!!!!!!!!!!!!!!!!!!!!]
+          const { region } = stateObj[0];
+          res.send(userLocation);
+        })
+        .catch((err) => console.error(err));
+    });
+});
 
-// })
+
+// these are not actual endpoints - use them with postman to see how the helper functions work
+app.post('/api/recipes', (req, res) => {
+  getRecipes(['broccoli', 'onion', 'garlic']);
+});
 
 // app.post('/', () => {
 
