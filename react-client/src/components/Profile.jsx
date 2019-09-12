@@ -21,7 +21,7 @@ const Profile = (props) => {
             className="mt-5"
           >
             <div className="login-head">
-              <h3 className="ml-3">{`${username}'s`} Profile Page</h3>
+              <h3 className="ml-3">{`${username}`.toUpperCase() + "'s"} Profile Page</h3>
             </div>
           </Col>
         </Row>
