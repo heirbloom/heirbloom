@@ -27,6 +27,7 @@ class App extends Component {
     };
     this.getUserDetails = this.getUserDetails.bind(this);
     this.setAuthentication = this.setAuthentication.bind(this);
+    this.fetchMarketData = this.fetchMarketData.bind(this);
   }
 
   componentDidMount() {
@@ -43,24 +44,37 @@ class App extends Component {
       return;
     }
     /*  if the user has a token, send the token to the server (see line 96 in routes/Users.js).
-        Response should have req.body which contains the user's credentials, allowing them
-        access to their user-specific private routes */
+    Response should have req.body which contains the user's credentials, allowing them
+    access to their user-specific private routes */
     axios
-      .get(`${baseUrl}/api/user`, { headers: { "X-TOKEN": token } })
-      .then(response => {
-        // add req.body to the user's state, re-render the page, and set them to Authenticated
-        this.setState({
-          user: response.data,
-          loading: false,
-          isAuthenticated: true
-        });
-      })
-      // if err, re-render the page but keep the user un-Authenticated
-      .catch(err => {
-        this.setState({ loading: false, isAuthenticated: false });
-      });
-  }
-
+    .get(`${baseUrl}/api/user`, { headers: { "X-TOKEN": token } })
+    .then(response => {
+      // add the fetched data from post request to usdaMarket api to the user's state
+      this.fetchMarketData(response.data)
+    })
+    // if err, re-render the page but keep the user un-Authenticated
+    .catch(err => {
+      this.setState({ loading: false, isAuthenticated: false });
+    });
+    }
+    
+    fetchMarketData(user) {
+      // send a POST request to usdaMarket api and add the market data to the user's state (App.jsx)
+      axios
+        .post(`${baseUrl}/api/usdaResponse`, user)
+        .then(res => {
+          this.setState({
+            user,
+            loading: false,
+            isAuthenticated: true,
+            localMarkets: res.data
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+    
   setAuthentication(isLoggedIn) {
     // this should persist the user's authentication until they log-out
     if (
@@ -73,11 +87,12 @@ class App extends Component {
   }
 
   render() {
-    const { loading, isAuthenticated, user } = this.state;
+    const { loading, isAuthenticated, user, localMarkets } = this.state;
 
     if (loading) {
       return <div>Loading...</div>;
     }
+    console.log("=======state", this.state);
     return (
       <div className="App container-fluid m-0 p-0">
         {/* <IngredientList ingredients={this.state.ingredients} /> */}
