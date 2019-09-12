@@ -11,7 +11,6 @@ import {
 } from "reactstrap";
 
 const MarketListItem = (props) => {
-  // small change
   console.log('marketListItem Props!!!', props);
   const { Address, GoogleLink, Products, Schedule, marketname } = props.marketInfo;
   return (
