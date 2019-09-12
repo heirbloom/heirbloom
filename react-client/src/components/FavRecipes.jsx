@@ -6,8 +6,8 @@ import '../App.css';
 import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
 
 const FavRecipes = (props) => {
-  const { username, email, zipcode } = props.user;
-  console.log('FavRecipes', [username, email, zipcode]);
+  console.log('FavRecipes PROPS', props);
+  const { username } = props.user;
 
   return (
     <Fragment>
