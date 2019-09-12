@@ -26,9 +26,15 @@ app.use('/api', userRoutes);
 
 
 app.post('/api/usdaResponse', (req, res) => {
-  const { email } = req.body;
+  const {
+    email
+  } = req.body;
   // query the database for the user with the input email
-  return models.Users.findOne({ where: { email } })
+  return models.Users.findOne({
+      where: {
+        email
+      }
+    })
     .then((foundUser) => {
       if (!foundUser) {
         return res.status(404).json('User not found');
