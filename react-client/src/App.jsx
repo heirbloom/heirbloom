@@ -61,39 +61,39 @@ class App extends Component {
         this.setState({ loading: false, isAuthenticated: false });
         console.error(err);
       });
-    }
+  }
 
-    getUserLocation(user) {
-      // send a POST request to usdaMarket api and add the market data to the user's state (App.jsx)
-      axios
-        .post(`${baseUrl}/api/usercoords`, user)
-        .then(res => {
-          this.setState({
-            user,
-            loading: false,
-            isAuthenticated: true,
-            userCoordinates: res.data
-          });
-        })
-        .catch(err => {
-          console.log(err);
-        })
-      }
-    
-    getMarketData(user) {
-      // send a POST request to usdaMarket api and add the market data to the user's state (App.jsx)
-      axios
-        .post(`${baseUrl}/api/usdaResponse`, user)
-        .then(res => {
-          this.setState({
-            localMarkets: res.data
-          });
-        })
-        .catch(err => {
-          console.log(err);
-        })
-    }
-    
+  getUserLocation(user) {
+    // send a POST request to usdaMarket api and add the market data to the user's state (App.jsx)
+    axios
+      .post(`${baseUrl}/api/usercoords`, user)
+      .then(res => {
+        this.setState({
+          user,
+          loading: false,
+          isAuthenticated: true,
+          ingredients: res.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  getMarketData(user) {
+    // send a POST request to usdaMarket api and add the market data to the user's state (App.jsx)
+    axios
+      .post(`${baseUrl}/api/usdaResponse`, user)
+      .then(res => {
+        this.setState({
+          localMarkets: res.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   setAuthentication(isLoggedIn) {
     // this should persist the user's authentication until they log-out
     if (
@@ -106,8 +106,16 @@ class App extends Component {
   }
 
   render() {
-    const { loading, isAuthenticated, user, ingredients, localMarkets, marketCoordinates,
-            userCoordinates, recipes  } = this.state;
+    const {
+      loading,
+      isAuthenticated,
+      user,
+      ingredients,
+      localMarkets,
+      marketCoordinates,
+      userCoordinates,
+      recipes
+    } = this.state;
 
     if (loading) {
       return <div>Loading...</div>;
