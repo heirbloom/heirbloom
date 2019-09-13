@@ -4,7 +4,8 @@ import { Container, Row, Col } from "reactstrap";
 import NavBar from "./NavBar.jsx";
 
 const IngredientList = props => {
-  const { user, ingredients } = props;
+  const { user, ingredients, userLocation } = props;
+  const { city } = userLocation;
   return (
     <Fragment>
       <NavBar user={user} />
@@ -12,10 +13,10 @@ const IngredientList = props => {
         <Row className="mt-10 ml-1">
           <Col xs={{ size: 9 }}>
             <h1 className="headline">
-              Here&rsquo;s what&rsquo;s fresh in New Orleans.
+              Here&rsquo;s what&rsquo;s fresh in {city}.
             </h1>
             <p>
-              Not in New Orleans? Click <a>Here.</a>
+              Not in {city}? Click <a>Here.</a>
             </p>
           </Col>
         </Row>

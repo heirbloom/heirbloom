@@ -11,8 +11,6 @@ class RecipeList extends Component {
   render() {
     console.log('recipes!!!!!!!!!!!', this.props);
     const { user } = this.props;
-    // const { username, email, zipcode } = this.props.user;
-    // console.log('LANDING', [username, email, zipcode]);
     return (
       <Fragment>
         <NavBar user={user} />

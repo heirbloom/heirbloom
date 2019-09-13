@@ -27,13 +27,13 @@ app.use('/api', userRoutes);
 
 app.post('/api/usdaResponse', (req, res) => {
   const {
-    email
+    email,
   } = req.body;
   // query the database for the user with the input email
   return models.Users.findOne({
     where: {
-      email
-    }
+      email,
+    },
   })
     .then((foundUser) => {
       if (!foundUser) {
@@ -49,11 +49,21 @@ app.post('/api/usdaResponse', (req, res) => {
 });
 
 
+app.post('/api/usercoords', (req, res) => {
+  console.log(req.body);
+  const { zipcode } = req.body;
+  return getUserCoordinates(zipcode)
+    .then((userLocation) => {
+      res.send(userLocation);
+    })
+    .catch((err) => console.error(err));
+});
+
 // app.get('/', () => {
 
 // })
 
-app.post('/api/usercoords', (req, res) => {
+app.post('/api/localIngredients', (req, res) => {
   console.log(req.body);
   const { zipcode } = req.body;
   return getUserCoordinates(zipcode)
@@ -77,16 +87,12 @@ app.post('/api/usercoords', (req, res) => {
             where: {
               [month]: 1,
               region,
-            }
+            },
           })
             .then((ingredients) => {
               console.log(ingredients);
               res.send(ingredients);
-
-
-
             });
-          // res.send(userLocation);
         })
         .catch((err) => console.error(err));
     });

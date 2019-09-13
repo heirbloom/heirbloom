@@ -49,7 +49,7 @@ class Signup extends React.Component {
         // reposnse is an object with a data property which is an object containing the signup info
         // if user successfully signs up, give them a user token and redirect to the landing page
         sessionStorage.setItem("token", response.data.token);
-        this.props.history.push("/landing", { isLoggedIn: true });
+        this.props.history.push("/ingredient-list", { isLoggedIn: true });
         return alert("Thank you for signing up. Welcome to Heirbloom!");
       })
       .catch(err => {
