@@ -137,8 +137,8 @@ html {
   font-size: 64px
 }
 
-#market-map {
-  height: 400px
+#mapid {
+  height: 180px;
 }
 
 .market-list-item {

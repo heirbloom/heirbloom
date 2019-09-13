@@ -10,6 +10,8 @@ const MarketList = props => {
   const { localMarkets, user, userLocation } = props;
   const { zipcode } = props.user;
 
+  let mymap = L.map("mapid").setView([51.505, -0.09], 13);
+
   return (
     <Fragment>
       <NavBar user={user} />
@@ -18,9 +20,7 @@ const MarketList = props => {
           <h1 className="headline ml-3">Find a market.</h1>
         </Row>
         <Row>
-          <Col id="market-map" md={{ size: 6 }}>
-            <MarketMap />
-          </Col>
+          <div id="mapid col-6">{mymap}</div>
           <Col md={{ size: 6 }}>
             <div className="ml-3 mr-3">
               Home Zip Code: <b>{`${zipcode}`}</b>
