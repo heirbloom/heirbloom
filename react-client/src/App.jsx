@@ -85,7 +85,7 @@ class App extends Component {
   }
 
   getLocalIngredients(user) {
-    // send a POST request to usdaMarket api and add the market data to the user's state (App.jsx)
+    // send a POST request to server to query the database for local veggies
     axios
       .post(`${baseUrl}/api/localIngredients`, user)
       .then(res => {
