@@ -8,7 +8,7 @@ fs.createReadStream('./Ingredients.csv')
   // feed the contents of the file to the parser and seperating each field by comma
   .pipe(parse({ delimiter: ',' }))
   .on('data', (csvrow) => {
-    console.log('crrow!!!!!!!!!!!!!!!!!!!!!!!!', csvrow);
+    // console.log('crrow!!!!!!!!!!!!!!!!!!!!!!!!', csvrow);
     // push each row/column into the storage array
     csvData.push(csvrow);
   })
