@@ -142,7 +142,6 @@ class App extends Component {
     if (loading) {
       return <div>Loading...</div>;
     }
-    console.log("=======state", this.state);
     return (
       <div className="App container-fluid m-0 p-0">
         {/* <IngredientList ingredients={this.state.ingredients} /> */}
