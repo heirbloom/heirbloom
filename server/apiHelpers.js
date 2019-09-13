@@ -15,7 +15,6 @@ const getMarketsInfo = (zip) => axios.get(`http://search.ams.usda.gov/farmersmar
   .then((promArray) => Promise.all(promArray))
   .catch((err) => console.log(err));
 
-
 const getUserCoordinates = (zip) => axios.get(`https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=${zip}`)
   .then((res) => {
     const cityData = res.data.records[0].fields;
@@ -29,6 +28,7 @@ const getUserCoordinates = (zip) => axios.get(`https://public.opendatasoft.com/a
     return cityObj;
   })
   .catch((err) => console.log(err));
+
 
 const getRecipes = (ingredientsArray) => {
   if (ingredientsArray.length === 1) {
