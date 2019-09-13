@@ -39,7 +39,7 @@ app.post('/api/usdaResponse', (req, res) => {
       if (!foundUser) {
         return res.status(404).json('User not found');
       }
-      console.log(foundUser);
+      // console.log(foundUser);
       // if the user exists:
       // foundUser is an object with the user info from the db; pass the zipcode to getMarketsInfo
       return getMarketsInfo(foundUser.zipcode)
@@ -50,7 +50,7 @@ app.post('/api/usdaResponse', (req, res) => {
 
 
 app.post('/api/usercoords', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { zipcode } = req.body;
   return getUserCoordinates(zipcode)
     .then((userLocation) => {
@@ -64,7 +64,7 @@ app.post('/api/usercoords', (req, res) => {
 // })
 
 app.post('/api/localIngredients', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { zipcode } = req.body;
   return getUserCoordinates(zipcode)
     .then((userLocation) => {
@@ -90,7 +90,7 @@ app.post('/api/localIngredients', (req, res) => {
             },
           })
             .then((ingredients) => {
-              console.log(ingredients);
+              // console.log(ingredients);
               res.send(ingredients);
             });
         })
@@ -101,7 +101,16 @@ app.post('/api/localIngredients', (req, res) => {
 
 // these are not actual endpoints - use them with postman to see how the helper functions work
 app.post('/api/recipes', (req, res) => {
-  getRecipes(['broccoli', 'onion', 'garlic']);
+  console.log('Recipe endpoint req', (req.body));
+  const recipeIngredient = Object.keys(req.body);
+  console.log(recipeIngredient);
+  return getRecipes(recipeIngredient)
+    .then((recipesArr) => {
+      console.log(recipesArr.data);
+      res.send(recipesArr.data);
+    })
+    .catch((err) => console.error(err));
+  // getRecipes(['broccoli', 'onion', 'garlic']);
 });
 
 // app.post('/', () => {
