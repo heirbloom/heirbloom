@@ -5,7 +5,6 @@ import axios from "axios";
 import "./App.css";
 import Login from "./components/Login.jsx";
 import Signup from "./components/Signup.jsx";
-import Landing from "./components/Landing.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import IngredientList from "./components/IngredientList.jsx";
 import MarketList from "./components/MarketList.jsx";
@@ -33,6 +32,7 @@ class App extends Component {
     this.setAuthentication = this.setAuthentication.bind(this);
     this.getMarketData = this.getMarketData.bind(this);
     this.getUserLocation = this.getUserLocation.bind(this);
+    this.handleRecipes = this.handleRecipes.bind(this);
   }
 
   componentDidMount() {
@@ -80,7 +80,7 @@ class App extends Component {
         });
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       });
   }
 
@@ -97,7 +97,7 @@ class App extends Component {
         });
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       });
   }
 
@@ -111,8 +111,21 @@ class App extends Component {
         });
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       });
+  }
+
+  handleRecipes(selectedIngredient) {
+    console.log('I CHOOSE YOU:', selectedIngredient);
+    axios
+      .post(`${baseUrl}/api/recipes`, selectedIngredient)
+      .then(response => {
+        console.log('Recipes response', response.data.recipes);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    props.history.push('/recipe-list');
   }
 
   setAuthentication(isLoggedIn) {
@@ -142,7 +155,7 @@ class App extends Component {
     if (loading) {
       return <div>Loading...</div>;
     }
-    console.log("=======state", this.state);
+    // console.log("=======state", this.state);
     return (
       <div className="App container-fluid m-0 p-0">
         {/* <IngredientList ingredients={this.state.ingredients} /> */}
@@ -173,14 +186,6 @@ class App extends Component {
           />
           {/* pass down the following props to PrivateRoutes*/}
           <PrivateRoute
-            path="/landing"
-            isAuthenticated={isAuthenticated}
-            user={user}
-            component={Landing}
-            setAuth={this.setAuthentication}
-            sessionZipcode={sessionZipcode}
-          />
-          <PrivateRoute
             path="/ingredient-list"
             ingredients={ingredients}
             userLocation={userLocation}
@@ -188,6 +193,7 @@ class App extends Component {
             sessionZipcode={sessionZipcode}
             user={user}
             component={IngredientList}
+            handleRecipe={this.handleRecipes}
             setAuth={this.setAuthentication}
           />
           <PrivateRoute
@@ -225,6 +231,7 @@ class App extends Component {
             isAuthenticated={isAuthenticated}
             user={user}
             component={RecipeList}
+            handleRecipe={this.handleRecipes}
             setAuth={this.setAuthentication}
           />
         </Switch>
