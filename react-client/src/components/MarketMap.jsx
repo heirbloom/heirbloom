@@ -11,7 +11,6 @@ const Wrapper = styled.div`
 
 class MarketMap extends Component {
   componentDidMount() {
-    console.log(this.props.location);
     this.map = L.map("map", {
       center: this.props.location,
       zoom: 15,
@@ -19,7 +18,6 @@ class MarketMap extends Component {
     });
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      detectRetina: true,
       maxZoom: 19,
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -27,7 +25,7 @@ class MarketMap extends Component {
   }
 
   render() {
-    return <Wrapper width="100%" height="400px" id="map" />;
+    return <Wrapper width="100%" height="400px" id="map" className="mb-3" />;
   }
 }
 
