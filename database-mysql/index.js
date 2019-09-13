@@ -245,6 +245,10 @@ const Ingredients = sequelize.define('ingredients', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  SearchTerm: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   Region: {
     type: Sequelize.INTEGER,
     allowNull: false,
