@@ -20,7 +20,7 @@ class App extends Component {
     this.state = {
       recipes: [],
       ingredients: [],
-      userCoordinates: [],
+      userLocation: [],
       localMarkets: [],
       marketCoordinates: [],
       loading: true,
@@ -28,6 +28,7 @@ class App extends Component {
       user: null
     };
     this.getUserDetails = this.getUserDetails.bind(this);
+    this.getLocalIngredients = this.getLocalIngredients.bind(this);
     this.setAuthentication = this.setAuthentication.bind(this);
     this.getMarketData = this.getMarketData.bind(this);
     this.getUserLocation = this.getUserLocation.bind(this);
@@ -55,6 +56,7 @@ class App extends Component {
         // add the fetched data from post request to usdaMarket api to the user's state
         this.getMarketData(response.data);
         this.getUserLocation(response.data);
+        this.getLocalIngredients(response.data);
       })
       // if err, re-render the page but keep the user un-Authenticated
       .catch(err => {
@@ -67,6 +69,23 @@ class App extends Component {
     // send a POST request to usdaMarket api and add the market data to the user's state (App.jsx)
     axios
       .post(`${baseUrl}/api/usercoords`, user)
+      .then(res => {
+        this.setState({
+          user,
+          loading: false,
+          isAuthenticated: true,
+          userLocation: res.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  getLocalIngredients(user) {
+    // send a POST request to usdaMarket api and add the market data to the user's state (App.jsx)
+    axios
+      .post(`${baseUrl}/api/localIngredients`, user)
       .then(res => {
         this.setState({
           user,
@@ -113,7 +132,7 @@ class App extends Component {
       ingredients,
       localMarkets,
       marketCoordinates,
-      userCoordinates,
+      userLocation,
       recipes
     } = this.state;
 
@@ -124,7 +143,7 @@ class App extends Component {
     return (
       <div className="App container-fluid m-0 p-0">
         {/* <IngredientList ingredients={this.state.ingredients} /> */}
-        {/* switch between login, signup, and landing views with login component displayed on home page */}
+        {/* switch between login, signup, and private views with login component displayed on home page */}
         <Switch>
           {/* the following two Routes prevent a logged-in user from seeing the login/signup pages */}
           <Route
@@ -160,6 +179,7 @@ class App extends Component {
           <PrivateRoute
             path="/ingredient-list"
             ingredients={ingredients}
+            userLocation={userLocation}
             isAuthenticated={isAuthenticated}
             user={user}
             component={IngredientList}
@@ -168,7 +188,7 @@ class App extends Component {
           <PrivateRoute
             path="/market-list"
             localMarkets={localMarkets}
-            userCoordinates={userCoordinates}
+            userLocation={userLocation}
             marketCoordinates={marketCoordinates}
             isAuthenticated={isAuthenticated}
             user={user}
@@ -177,7 +197,7 @@ class App extends Component {
           />
           <PrivateRoute
             path="/profile"
-            userCoordinates={userCoordinates}
+            userLocation={userLocation}
             localMarkets={localMarkets}
             isAuthenticated={isAuthenticated}
             user={user}
@@ -195,7 +215,7 @@ class App extends Component {
           <PrivateRoute
             path="/recipe-list"
             recipes={recipes}
-            userCoordinates={userCoordinates}
+            userLocation={userLocation}
             isAuthenticated={isAuthenticated}
             user={user}
             component={RecipeList}
