@@ -59,7 +59,7 @@ class Login extends React.Component {
         this.props.history.push("/ingredient-list", { isLoggedIn: true });
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
         alert("Problem logging in, check your credentials and try again.");
       });
   }
