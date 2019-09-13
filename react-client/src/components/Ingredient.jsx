@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import {
   Col,
   Card,
@@ -9,7 +10,6 @@ import {
   CardSubtitle,
   Button
 } from "reactstrap";
-import IngredientList from "./IngredientList.jsx";
 
 const Ingredient = props => {
   return props.ingredients.map(ingredient => {
@@ -28,8 +28,8 @@ const Ingredient = props => {
             <hr></hr>
             <CardText>{ingredient.Description}</CardText>
             <hr></hr>
-            <Button className="card-button col-12">Where to find them</Button>
-            <Button className="card-button col-12">How to prepare them</Button>
+            <Button onClick={() => props.history.push('/market-list')} className="card-button col-12">Where to find them</Button>
+            <Button onClick={() => props.history.push('/recipe-list')} className="card-button col-12">How to prepare them</Button>
             <Button className="card-button col-12">Add to recipe</Button>
           </CardBody>
         </Card>
@@ -37,4 +37,4 @@ const Ingredient = props => {
     );
   });
 };
-export default Ingredient;
+export default withRouter(Ingredient);
