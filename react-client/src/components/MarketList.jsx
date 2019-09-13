@@ -7,7 +7,7 @@ import ZipcodeModal from "./ZipcodeModal.jsx";
 
 const MarketList = props => {
   // console.log('MarketList props', props.localMarkets);
-  const { localMarkets, user } = props;
+  const { localMarkets, user, userLocation } = props;
   const { zipcode } = props.user;
 
   return (
@@ -18,11 +18,17 @@ const MarketList = props => {
           <h1 className="headline ml-3">Find a market.</h1>
         </Row>
         <Row>
-          <MarketMap />
-          <Col>
-            <div className="ml-3 mr-3">Home Zip Code: <b>{`${zipcode}`}</b></div>
-            <div className="ml-3 mr-3">There are <b>{localMarkets.length}</b> markets in your area.</div>
-            <ZipcodeModal zipcode={zipcode} />
+          <Col id="market-map" md={{ size: 6 }}>
+            <MarketMap />
+          </Col>
+          <Col md={{ size: 6 }}>
+            <div className="ml-3 mr-3">
+              Home Zip Code: <b>{`${zipcode}`}</b>
+            </div>
+            <div className="ml-3 mr-3">
+              We found <b>{localMarkets.length}</b> markets in your area.
+            </div>
+            <ZipcodeModal userLocation={userLocation} />
             <hr />
             {localMarkets.map((marketInfo, index) => (
               <MarketListItem marketInfo={marketInfo} key={index} />
