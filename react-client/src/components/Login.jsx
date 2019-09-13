@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import axios from "axios";
 import "../App.css";
 import {
@@ -56,13 +56,13 @@ class Login extends React.Component {
         sessionStorage.setItem("token", response.data.token);
         this.props.getUserDetails();
         // if user successfully logs in, redirect them to the ingredient's page displaying their local produce
-        this.props.history.push("/ingredient-list", { isLoggedIn: true }); 
-        })
-        .catch(err => {
-          console.log(err);
-          alert("Problem logging in, check your credentials and try again.");
-        })
-      }
+        this.props.history.push("/ingredient-list", { isLoggedIn: true });
+      })
+      .catch(err => {
+        console.log(err);
+        alert("Problem logging in, check your credentials and try again.");
+      });
+  }
 
   handleSignupClick() {
     // redirect to signup component when signup button is clicked
@@ -74,40 +74,40 @@ class Login extends React.Component {
     return (
       <Fragment>
         <NavBar />
-          <div className="bg pt-5">
-            <Row className="mt-5">
-              <Col
-                xl={{ size: 4, offset: 7 }}
-                md={{ size: 5, offset: 6 }}
-                xs={{ size: 10, offset: 1 }}
-                className="mt-5"
-              >
-                <div className="login-head">
-                  <h3 className="ml-3">LOGIN</h3>
-                </div>
-                <div className="login-body pt-3">
+        <div className="bg pt-5">
+          <Row className="mt-5">
+            <Col
+              xl={{ size: 4, offset: 7 }}
+              md={{ size: 5, offset: 6 }}
+              xs={{ size: 10, offset: 1 }}
+              className="mt-5"
+            >
+              <div className="login-head">
+                <h3 className="ml-3">LOGIN</h3>
+              </div>
+              <div className="login-body pt-3">
                 <div className="login-form">
-                <Form onSubmit={this.handleSubmit}>
-                  <FormGroup>
-                    <Input
-                      onChange={this.handleChange}
-                      type="email"
-                      name="email"
-                      id="exampleEmail"
-                      placeholder="email"
-                      className="ml-3 col-11"
-                    />
-                  </FormGroup>
-                  <FormGroup>
-                    <Input
-                      onChange={this.handleChange}
-                      type="password"
-                      name="password"
-                      id="examplePassword"
-                      placeholder="password"
-                      className="ml-3 col-11"
-                    />
-                  </FormGroup>
+                  <Form onSubmit={this.handleSubmit}>
+                    <FormGroup>
+                      <Input
+                        onChange={this.handleChange}
+                        type="email"
+                        name="email"
+                        id="exampleEmail"
+                        placeholder="email"
+                        className="ml-3 col-11"
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <Input
+                        onChange={this.handleChange}
+                        type="password"
+                        name="password"
+                        id="examplePassword"
+                        placeholder="password"
+                        className="ml-3 col-11"
+                      />
+                    </FormGroup>
                     <Row>
                       <Col className="col-12">
                         <Button

@@ -22,6 +22,7 @@ class App extends Component {
       ingredients: [],
       userLocation: [],
       localMarkets: [],
+      sessionZipcode: null,
       marketCoordinates: [],
       loading: true,
       isAuthenticated: false,
@@ -74,7 +75,8 @@ class App extends Component {
           user,
           loading: false,
           isAuthenticated: true,
-          userLocation: res.data
+          userLocation: res.data,
+          sessionZipcode: user.zipcode
         });
       })
       .catch(err => {
@@ -133,7 +135,8 @@ class App extends Component {
       localMarkets,
       marketCoordinates,
       userLocation,
-      recipes
+      recipes,
+      sessionZipcode
     } = this.state;
 
     if (loading) {
@@ -175,12 +178,14 @@ class App extends Component {
             user={user}
             component={Landing}
             setAuth={this.setAuthentication}
+            sessionZipcode={sessionZipcode}
           />
           <PrivateRoute
             path="/ingredient-list"
             ingredients={ingredients}
             userLocation={userLocation}
             isAuthenticated={isAuthenticated}
+            sessionZipcode={sessionZipcode}
             user={user}
             component={IngredientList}
             setAuth={this.setAuthentication}
@@ -190,6 +195,7 @@ class App extends Component {
             localMarkets={localMarkets}
             userLocation={userLocation}
             marketCoordinates={marketCoordinates}
+            sessionZipcode={sessionZipcode}
             isAuthenticated={isAuthenticated}
             user={user}
             component={MarketList}
