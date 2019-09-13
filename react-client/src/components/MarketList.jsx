@@ -20,7 +20,8 @@ const MarketList = props => {
         <Row>
           <MarketMap />
           <Col>
-            <div className="ml-3 mr-3">Home Zip Code: {`${zipcode}`}</div>
+            <div className="ml-3 mr-3">Home Zip Code: <b>{`${zipcode}`}</b></div>
+            <div className="ml-3 mr-3">There are <b>{localMarkets.length}</b> markets in your area.</div>
             <ZipcodeModal zipcode={zipcode} />
             <hr />
             {localMarkets.map((marketInfo, index) => (
