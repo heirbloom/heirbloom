@@ -9,6 +9,7 @@ const MarketList = props => {
   // console.log('MarketList props', props.localMarkets);
   const { localMarkets, user, userLocation } = props;
   const { zipcode } = props.user;
+  const { geopoint } = props.userLocation;
 
   return (
     <Fragment>
@@ -18,8 +19,8 @@ const MarketList = props => {
           <h1 className="headline ml-3">Find a market.</h1>
         </Row>
         <Row>
-          <Col id="market-map" md={{ size: 6 }}>
-            <MarketMap />
+          <Col>
+            <MarketMap location={geopoint} />
           </Col>
           <Col md={{ size: 6 }}>
             <div className="ml-3 mr-3">
