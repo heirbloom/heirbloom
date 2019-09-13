@@ -82,9 +82,6 @@ app.post('/api/usercoords', (req, res) => {
             .then((ingredients) => {
               console.log(ingredients);
               res.send(ingredients);
-
-
-
             });
           // res.send(userLocation);
         })
