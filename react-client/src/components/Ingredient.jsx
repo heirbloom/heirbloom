@@ -1,4 +1,5 @@
 import React from "react";
+import { handleRecipe } from '../App.jsx';
 import { withRouter } from "react-router-dom";
 import {
   Col,
@@ -12,7 +13,10 @@ import {
 } from "reactstrap";
 
 const Ingredient = props => {
+console.log('Ingredient Props', props);
+
   return props.ingredients.map(ingredient => {
+    // console.log('psekogkjsefklkldgsldjlhfdljlfh',ingredient);
     return (
       <Col
         xl={{ size: 3, offset: 0 }}
@@ -29,7 +33,7 @@ const Ingredient = props => {
             <CardText>{ingredient.Description}</CardText>
             <hr></hr>
             <Button onClick={() => props.history.push('/market-list')} className="card-button col-12">Where to find them</Button>
-            <Button onClick={() => props.history.push('/recipe-list')} className="card-button col-12">How to prepare them</Button>
+            <Button onClick={() => this.handleRecipe(ingredient.SearchTerm)} className="card-button col-12">How to prepare them</Button>
             <Button className="card-button col-12">Add to recipe</Button>
           </CardBody>
         </Card>
