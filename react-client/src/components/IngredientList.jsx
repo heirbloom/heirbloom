@@ -17,7 +17,7 @@ const IngredientList = props => {
             <h1 className="headline">
               Here&rsquo;s what&rsquo;s fresh in {city}.
             </h1>
-            <ZipcodeModal userLocation={userLocation} />
+            {/* <ZipcodeModal userLocation={userLocation} /> */}
           </Col>
         </Row>
         <Row className="ml-1">
