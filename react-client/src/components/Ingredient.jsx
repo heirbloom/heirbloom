@@ -1,6 +1,6 @@
 import React from "react";
-import { handleRecipe } from '../App.jsx';
 import { withRouter } from "react-router-dom";
+import Context from '../contexts/Context.jsx';
 import {
   Col,
   Card,
@@ -12,8 +12,15 @@ import {
   Button
 } from "reactstrap";
 
+
 const Ingredient = props => {
-console.log('Ingredient Props', props);
+// console.log('Ingredient Props', props);
+
+const handleRecipesAndRedirect = (SearchTerm) => {
+  const { context, history } = props;
+  context.handleRecipes(SearchTerm)
+    .then(() => history.push('/recipe-list'));
+}
 
   return props.ingredients.map(ingredient => {
     // console.log('psekogkjsefklkldgsldjlhfdljlfh',ingredient);
@@ -33,7 +40,7 @@ console.log('Ingredient Props', props);
             <CardText>{ingredient.Description}</CardText>
             <hr></hr>
             <Button onClick={() => props.history.push('/market-list')} className="card-button col-12">Where to find them</Button>
-            <Button onClick={() => this.handleRecipe(ingredient.SearchTerm)} className="card-button col-12">How to prepare them</Button>
+            <Button onClick={() => handleRecipesAndRedirect(ingredient.SearchTerm)} className="card-button col-12">How to prepare them</Button>
             <Button className="card-button col-12">Add to recipe</Button>
           </CardBody>
         </Card>
@@ -41,4 +48,12 @@ console.log('Ingredient Props', props);
     );
   });
 };
-export default withRouter(Ingredient);
+
+const IngredientWithContext = (props) => (
+<Context.Consumer>
+  {(value) => {
+      return <Ingredient context={value} {...props} />;
+    }}
+</Context.Consumer>)
+
+export default withRouter(IngredientWithContext);
