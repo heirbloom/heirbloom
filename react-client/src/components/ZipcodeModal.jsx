@@ -30,7 +30,7 @@ class ZipcodeModal extends React.Component {
     return (
       <FormGroup>
         <Button className="card-button btn-sm mt-2 ml-3" onClick={this.toggle}>
-          Not in {`${this.props.userLocation.city}`}? Click here.
+          {/* Not in {`${this.props.userLocation.city}`}? Click here. */}
         </Button>
         <Modal
           isOpen={this.state.modal}
