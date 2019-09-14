@@ -42,10 +42,6 @@ const Users = sequelize.define('users', {
     type: Sequelize.INTEGER(11),
     allowNull: false,
   },
-  regionId: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
 }, {
   freezeTableName: true,
   timeStamps: false,
@@ -66,9 +62,6 @@ const favRecipes = sequelize.define('fav_recipes', {
   },
   recipe_image: {
     type: Sequelize.STRING,
-  },
-  ingredient_id: {
-    type: Sequelize.INTEGER(11),
   },
 }, {
   freezeTableName: true,
