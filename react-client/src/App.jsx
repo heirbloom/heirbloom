@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import "./App.css";
@@ -12,6 +12,7 @@ import FavRecipes from "./components/FavRecipes.jsx";
 import Profile from "./components/Profile.jsx";
 import RecipeList from "./components/RecipeList.jsx";
 import { baseUrl } from "./constants.js";
+import Context from './contexts/Context.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -117,15 +118,19 @@ class App extends Component {
 
   handleRecipes(selectedIngredient) {
     console.log('I CHOOSE YOU:', selectedIngredient);
-    axios
+    return axios
       .post(`${baseUrl}/api/recipes`, selectedIngredient)
       .then(response => {
         console.log('Recipes response', response.data.recipes);
+        this.setState({
+          recipes: response.data.recipes
+        });
+
+        return response;
       })
       .catch(err => {
         console.error(err);
       });
-    props.history.push('/recipe-list');
   }
 
   setAuthentication(isLoggedIn) {
@@ -156,7 +161,14 @@ class App extends Component {
       return <div>Loading...</div>;
     }
     // console.log("=======state", this.state);
+
+    // this object will be passed to any Context.Consumer component
+    const contextValues = {
+      handleRecipes: this.handleRecipes
+    }
+
     return (
+      <Context.Provider value={contextValues}>
       <div className="App container-fluid m-0 p-0">
         {/* <IngredientList ingredients={this.state.ingredients} /> */}
         {/* switch between login, signup, and private views with login component displayed on home page */}
@@ -193,19 +205,15 @@ class App extends Component {
             sessionZipcode={sessionZipcode}
             user={user}
             component={IngredientList}
-            handleRecipe={this.handleRecipes}
-            setAuth={this.setAuthentication}
           />
           <PrivateRoute
             path="/market-list"
             localMarkets={localMarkets}
             userLocation={userLocation}
-            marketCoordinates={marketCoordinates}
             sessionZipcode={sessionZipcode}
             isAuthenticated={isAuthenticated}
             user={user}
             component={MarketList}
-            setAuth={this.setAuthentication}
           />
           <PrivateRoute
             path="/profile"
@@ -214,7 +222,6 @@ class App extends Component {
             isAuthenticated={isAuthenticated}
             user={user}
             component={Profile}
-            setAuth={this.setAuthentication}
           />
           <PrivateRoute
             path="/fav-recipes"
@@ -222,7 +229,6 @@ class App extends Component {
             isAuthenticated={isAuthenticated}
             user={user}
             component={FavRecipes}
-            setAuth={this.setAuthentication}
           />
           <PrivateRoute
             path="/recipe-list"
@@ -231,11 +237,10 @@ class App extends Component {
             isAuthenticated={isAuthenticated}
             user={user}
             component={RecipeList}
-            handleRecipe={this.handleRecipes}
-            setAuth={this.setAuthentication}
           />
         </Switch>
       </div>
+      </Context.Provider>
     );
   }
 }
