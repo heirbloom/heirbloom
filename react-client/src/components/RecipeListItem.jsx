@@ -1,13 +1,15 @@
 import React from "react";
-import { Card, CardBody, CardTitle, CardSubtitle, Button } from "reactstrap";
+import { Card, CardBody, CardTitle, CardSubtitle, Button, CardImg } from "reactstrap";
 
-const RecipeListItem = () => {
+const RecipeListItem = (props) => {
+  const { title, image_url, publisher } = props.recipe || {};
   return (
     <Card id="recipe-card" className="mb-2 bg-light">
       <CardBody>
-        <CardTitle className="card-title">Strawberry Shortcake</CardTitle>
+        <CardTitle className="card-title">{title}</CardTitle>
+        <CardImg top width="25%" src={image_url} alt="Card image cap" />
         <CardSubtitle className="card-subtitle">
-          Makes 4-6 servings
+          {publisher}
         </CardSubtitle>
         <hr></hr>
         <Button className="card-button col-12">Show me how to make it</Button>
