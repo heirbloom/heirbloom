@@ -19,6 +19,7 @@ class App extends Component {
     super(props);
     this.state = {
       recipes: [],
+      favRecipes: [],
       ingredients: [],
       userLocation: [],
       localMarkets: [],
@@ -34,6 +35,7 @@ class App extends Component {
     this.getMarketData = this.getMarketData.bind(this);
     this.getUserLocation = this.getUserLocation.bind(this);
     this.handleRecipes = this.handleRecipes.bind(this);
+    this.addToFavorites = this.addToFavorites.bind(this);
   }
 
   componentDidMount() {
@@ -117,7 +119,7 @@ class App extends Component {
   }
 
   handleRecipes(selectedIngredient) {
-    console.log('I CHOOSE YOU:', selectedIngredient);
+    // console.log('I CHOOSE YOU:', selectedIngredient);
     return axios
       .post(`${baseUrl}/api/recipes`, selectedIngredient)
       .then(response => {
@@ -125,7 +127,22 @@ class App extends Component {
         this.setState({
           recipes: response.data.recipes
         });
+        return response;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
 
+  addToFavorites(selectedRecipe) {
+    console.log('FAVORITE RECIPE:', selectedRecipe);
+    return axios
+      .post(`${baseUrl}/api/favRecipes`, selectedRecipe)
+      .then(response => {
+        console.log('Favorites response', response.data);
+        this.setState({
+          favRecipes: response.data
+        });
         return response;
       })
       .catch(err => {
@@ -153,6 +170,7 @@ class App extends Component {
       localMarkets,
       marketCoordinates,
       userLocation,
+      favRecipes,
       recipes,
       sessionZipcode
     } = this.state;
@@ -164,7 +182,8 @@ class App extends Component {
 
     // this object will be passed to any Context.Consumer component
     const contextValues = {
-      handleRecipes: this.handleRecipes
+      handleRecipes: this.handleRecipes,
+      addToFavorites: this.addToFavorites
     }
 
     return (
@@ -228,6 +247,7 @@ class App extends Component {
           />
           <PrivateRoute
             path="/fav-recipes"
+            favRecipes={favRecipes}
             localMarkets={localMarkets}
             isAuthenticated={isAuthenticated}
             user={user}
