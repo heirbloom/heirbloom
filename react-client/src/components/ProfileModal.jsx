@@ -38,6 +38,11 @@ class ProfileModal extends React.Component {
     this.setState({ newUserInfo });
   }
 
+  updateChange(){
+    
+
+  }
+
   render() {
     return (
       <FormGroup>

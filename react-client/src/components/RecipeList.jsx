@@ -9,31 +9,19 @@ class RecipeList extends Component {
     this.state = {};
   }
   render() {
-    console.log('recipes!!!!!!!!!!!', this.props);
+    // console.log("recipes!!!!!!!!!!!", this.props);
     const { user, recipes } = this.props;
     return (
       <Fragment>
         <NavBar user={user} />
-        <Container>
-          <Row>
-            <Col>
-              <h1 className="headline mt-10 mb-2">
-                Buy it fresh. Make it fresh.
-              </h1>
+        <Container fluid>
+          <Row className="mt-10 ml-1">
+            <Col xs={{ size: 9 }}>
+              <h1 className="headline">Buy it fresh. Make it fresh.</h1>
             </Col>
           </Row>
-          <Row>
-            <Col md={{ size: 8 }}>
-              {recipes.map((recipe, index) => <RecipeListItem recipe={recipe} user={user} key={index} />)}
-              <RecipeListItem />
-              <RecipeListItem />
-            </Col>
-            <Col md={{ size: 3, offset: 1 }}>
-              test text Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Architecto quo itaque eveniet dolorum nisi repellendus, quia sit
-              nostrum, distinctio delectus dolorem nulla, deleniti labore illum
-              doloremque numquam harum magni tempore?
-            </Col>
+          <Row className="ml-1">
+            <RecipeListItem recipes={recipes} user={user} />
           </Row>
         </Container>
       </Fragment>

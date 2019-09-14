@@ -18,7 +18,7 @@ router.post('/signup', (req, res) => {
   } = req.body;
   // if any field is blank, return a 400 error
   if (!username || !email || !password || !zipcode) {
-    return res.status(400).json('All fields are required (username, email, passwprd, zipcode)');
+    return res.status(400).json('All fields are required (username, email, password, zipcode)');
   }
   /*  if all fields are input, check the database to see if input username or email already exists;
       destructure Operators (Op) from Sequelize to use 'or' when checking for duplicates */
