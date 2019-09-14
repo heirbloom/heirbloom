@@ -15,9 +15,9 @@ import {
 const Ingredient = props => {
 // console.log('Ingredient Props', props);
 
-const handleRecipesAndRedirect = (SearchTerm) => {
+const handleRecipesAndRedirect = (selectedIngredient) => {
   const { context, history } = props;
-  context.handleRecipes(SearchTerm)
+  context.handleRecipes(selectedIngredient)
     .then(() => history.push('/recipe-list'));
 }
 
