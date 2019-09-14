@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import Context from '../contexts/Context.jsx';
+import Context from "../contexts/Context.jsx";
 import {
   Col,
   Card,
@@ -11,7 +11,6 @@ import {
   CardSubtitle,
   Button
 } from "reactstrap";
-
 
 const Ingredient = props => {
 // console.log('Ingredient Props', props);

@@ -1,6 +1,5 @@
-// not much here for the time being... just a header... need it to set up routes
-
 import React, { Fragment } from "react";
+import { withRouter } from "react-router-dom";
 import NavBar from "./NavBar.jsx";
 import "../App.css";
 import {
@@ -16,6 +15,13 @@ import {
 
 const Profile = props => {
   const { username, email, zipcode } = props.user;
+
+const handleLogout = () => {
+    // remove the user's token
+    sessionStorage.removeItem("token");
+    // Redirect them to the home page
+    props.history.push('/');
+  }
 
   return (
     <Fragment>
@@ -47,10 +53,10 @@ const Profile = props => {
                 Edit your profile
               </Button>
 
-              <Button className="card-button btn-block">
+              <Button onClick={() => props.history.push('/fav-recipes')} className="card-button btn-block">
                 Show favorite recipes
               </Button>
-              <Button className="card-button btn-block">Log Out</Button>
+              <Button onClick={() => handleLogout()} className="card-button btn-block">Log Out</Button>
             </div>
             <hr />
           </Col>
@@ -60,4 +66,4 @@ const Profile = props => {
   );
 };
 
-export default Profile;
+export default withRouter(Profile);

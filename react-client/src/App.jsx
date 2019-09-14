@@ -205,6 +205,7 @@ class App extends Component {
             sessionZipcode={sessionZipcode}
             user={user}
             component={IngredientList}
+            setAuth={this.setAuthentication}
           />
           <PrivateRoute
             path="/market-list"
@@ -214,6 +215,7 @@ class App extends Component {
             isAuthenticated={isAuthenticated}
             user={user}
             component={MarketList}
+            setAuth={this.setAuthentication}
           />
           <PrivateRoute
             path="/profile"
@@ -222,6 +224,7 @@ class App extends Component {
             isAuthenticated={isAuthenticated}
             user={user}
             component={Profile}
+            setAuth={this.setAuthentication}
           />
           <PrivateRoute
             path="/fav-recipes"
@@ -229,6 +232,7 @@ class App extends Component {
             isAuthenticated={isAuthenticated}
             user={user}
             component={FavRecipes}
+            setAuth={this.setAuthentication}
           />
           <PrivateRoute
             path="/recipe-list"
@@ -237,6 +241,7 @@ class App extends Component {
             isAuthenticated={isAuthenticated}
             user={user}
             component={RecipeList}
+            setAuth={this.setAuthentication}
           />
         </Switch>
       </div>

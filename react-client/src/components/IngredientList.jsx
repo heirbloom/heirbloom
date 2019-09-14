@@ -6,7 +6,7 @@ import ZipcodeModal from "./ZipcodeModal.jsx";
 
 const IngredientList = props => {
   // console.log('IngredientList', props);
-  const { user, ingredients, userLocation, sessionZipcode, handleRecipe } = props;
+  const { user, ingredients, userLocation, sessionZipcode } = props;
   const { city } = userLocation;
   return (
     <Fragment>
