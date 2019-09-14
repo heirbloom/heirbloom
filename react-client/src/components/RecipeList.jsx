@@ -10,7 +10,7 @@ class RecipeList extends Component {
   }
   render() {
     console.log('recipes!!!!!!!!!!!', this.props);
-    const { user } = this.props;
+    const { user, recipes } = this.props;
     return (
       <Fragment>
         <NavBar user={user} />
@@ -24,7 +24,7 @@ class RecipeList extends Component {
           </Row>
           <Row>
             <Col md={{ size: 8 }}>
-              <RecipeListItem />
+              {recipes.map((recipe, index) => <RecipeListItem recipe={recipe} user={user} key={index} />)}
               <RecipeListItem />
               <RecipeListItem />
             </Col>

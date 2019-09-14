@@ -157,78 +157,6 @@ const Regions = sequelize.define('regions', {
   timestamps: false,
 });
 
-// // make a Regions table
-// const Regions = sequelize.define('regions', {
-//   id: {
-//     type: Sequelize.INTEGER(11),
-//     autoIncrement: true,
-//     primaryKey: true,
-//   },
-//   name: {
-//     type: Sequelize.STRING,
-//     allowNull: false,
-//   },
-// }, {
-//   freezeTableName: true,
-//   timeStamps: false,
-// });
-
-// // make a Seasons table
-// const Seasons = sequelize.define('seasons', {
-//   id: {
-//     type: Sequelize.INTEGER(11),
-//     autoIncrement: true,
-//     primaryKey: true,
-//   },
-//   name: {
-//     type: Sequelize.STRING,
-//     allowNull: false,
-//   },
-// }, {
-//   freezeTableName: true,
-//   timeStamps: false,
-// });
-
-// // make a join Regions/Seasons table
-// const RegionsSeasons = sequelize.define('reasons_seasons', {
-//   id: {
-//     type: Sequelize.INTEGER(11),
-//     autoIncrement: true,
-//     primaryKey: true,
-//   },
-//   regionId: {
-//     type: Sequelize.INTEGER(11),
-//     allowNull: false,
-//     foreignKey: true,
-//     references: {
-//       model: Regions,
-//       key: 'id',
-//     },
-//   },
-//   seasonId: {
-//     type: Sequelize.INTEGER(11),
-//     allowNull: false,
-//     foreignKey: true,
-//     references: {
-//       model: Seasons,
-//       key: 'id',
-//     },
-//   },
-// }, {
-//   freezeTableName: true,
-//   timeStamps: false,
-// });
-
-// // RegionsSeasons' regionId column references Regions primary key
-// RegionsSeasons.belongsTo(Regions, {
-//   foreignKey: 'regionId',
-// });
-
-// // RegionsSeasons' seasonId column references Seasons primary key
-// RegionsSeasons.belongsTo(Seasons, {
-//   foreignKey: 'seasonId',
-// });
-
 
 // make an Ingredients table
 const Ingredients = sequelize.define('ingredients', {
@@ -314,69 +242,17 @@ const Ingredients = sequelize.define('ingredients', {
   timeStamps: false,
 });
 
-// // make a joint regions_seasons/ingredients table
-// const AvailableIngredients = sequelize.define('available_ingredients', {
-//   id: {
-//     type: Sequelize.INTEGER(11),
-//     autoIncrement: true,
-//     primaryKey: true,
-//   },
-//   regionSeasonId: {
-//     type: Sequelize.INTEGER(11),
-//     allowNull: false,
-//     foreignKey: true,
-//     references: {
-//       model: RegionsSeasons,
-//       key: 'id',
-//     },
-//   },
-//   ingredientId: {
-//     type: Sequelize.INTEGER(11),
-//     allowNull: false,
-//     foreignKey: true,
-//     references: {
-//       model: Ingredients,
-//       key: 'id',
-//     },
-//   },
-// }, {
-//   freezeTableName: true,
-//   timeStamps: false,
-// });
 
-// // AvailableIngredients regionSeasonId column references the joined RegionsSeason's primary key
-// AvailableIngredients.belongsTo(RegionsSeasons, {
-//   foreignKey: 'regionSeasonId',
-// });
-
-// // AvailableIngredients seasonId column references Ingredients primary key
-// AvailableIngredients.belongsTo(Ingredients, {
-//   foreignKey: 'ingredientId',
-// });
-
-// A recipe can have many users
 favRecipes.hasMany(UsersRecipes);
-// A user can have many recipes
 Users.hasMany(UsersRecipes);
-// A region can have many seasons
-// Regions.hasMany(RegionsSeasons);
-// // A season can have mnay regions
-// Seasons.hasMany(RegionsSeasons);
-// // An ingredient can be in many regions and be available during many seasons
-// Ingredients.hasMany(AvailableIngredients);
-// // A region during any season can have many available ingredients
-// RegionsSeasons.hasMany(AvailableIngredients);
-
 
 // sync all of the models
 Users.sync();
 favRecipes.sync();
 UsersRecipes.sync();
-// Regions.sync();
-// Seasons.sync();
-// RegionsSeasons.sync();
+Regions.sync();
+States.sync();
 Ingredients.sync();
-// AvailableIngredients.sync();
 
 
 // export all of the models
@@ -385,6 +261,4 @@ module.exports.favRecipes = favRecipes;
 module.exports.UsersRecipes = UsersRecipes;
 module.exports.Regions = Regions;
 module.exports.States = States;
-// module.exports.RegionsSeasons = RegionsSeasons;
 module.exports.Ingredients = Ingredients;
-// module.exports.AvailableIngredients = AvailableIngredients;

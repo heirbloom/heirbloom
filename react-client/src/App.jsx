@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import "./App.css";
@@ -12,12 +12,14 @@ import FavRecipes from "./components/FavRecipes.jsx";
 import Profile from "./components/Profile.jsx";
 import RecipeList from "./components/RecipeList.jsx";
 import { baseUrl } from "./constants.js";
+import Context from './contexts/Context.jsx';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       recipes: [],
+      favRecipes: [],
       ingredients: [],
       userLocation: [],
       localMarkets: [],
@@ -33,6 +35,7 @@ class App extends Component {
     this.getMarketData = this.getMarketData.bind(this);
     this.getUserLocation = this.getUserLocation.bind(this);
     this.handleRecipes = this.handleRecipes.bind(this);
+    this.addToFavorites = this.addToFavorites.bind(this);
   }
 
   componentDidMount() {
@@ -116,16 +119,35 @@ class App extends Component {
   }
 
   handleRecipes(selectedIngredient) {
-    console.log('I CHOOSE YOU:', selectedIngredient);
-    axios
+    // console.log('I CHOOSE YOU:', selectedIngredient);
+    return axios
       .post(`${baseUrl}/api/recipes`, selectedIngredient)
       .then(response => {
         console.log('Recipes response', response.data.recipes);
+        this.setState({
+          recipes: response.data.recipes
+        });
+        return response;
       })
       .catch(err => {
         console.error(err);
       });
-    props.history.push('/recipe-list');
+  }
+
+  addToFavorites(selectedRecipe) {
+    console.log('FAVORITE RECIPE:', selectedRecipe);
+    return axios
+      .post(`${baseUrl}/api/favRecipes`, selectedRecipe)
+      .then(response => {
+        console.log('Favorites response', response.data);
+        this.setState({
+          favRecipes: response.data
+        });
+        return response;
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   setAuthentication(isLoggedIn) {
@@ -148,6 +170,7 @@ class App extends Component {
       localMarkets,
       marketCoordinates,
       userLocation,
+      favRecipes,
       recipes,
       sessionZipcode
     } = this.state;
@@ -155,7 +178,16 @@ class App extends Component {
     if (loading) {
       return <div>Loading...</div>;
     }
+    // console.log("=======state", this.state);
+
+    // this object will be passed to any Context.Consumer component
+    const contextValues = {
+      handleRecipes: this.handleRecipes,
+      addToFavorites: this.addToFavorites
+    }
+
     return (
+      <Context.Provider value={contextValues}>
       <div className="App container-fluid m-0 p-0">
         {/* <IngredientList ingredients={this.state.ingredients} /> */}
         {/* switch between login, signup, and private views with login component displayed on home page */}
@@ -192,14 +224,12 @@ class App extends Component {
             sessionZipcode={sessionZipcode}
             user={user}
             component={IngredientList}
-            handleRecipe={this.handleRecipes}
             setAuth={this.setAuthentication}
           />
           <PrivateRoute
             path="/market-list"
             localMarkets={localMarkets}
             userLocation={userLocation}
-            marketCoordinates={marketCoordinates}
             sessionZipcode={sessionZipcode}
             isAuthenticated={isAuthenticated}
             user={user}
@@ -217,6 +247,7 @@ class App extends Component {
           />
           <PrivateRoute
             path="/fav-recipes"
+            favRecipes={favRecipes}
             localMarkets={localMarkets}
             isAuthenticated={isAuthenticated}
             user={user}
@@ -230,11 +261,11 @@ class App extends Component {
             isAuthenticated={isAuthenticated}
             user={user}
             component={RecipeList}
-            handleRecipe={this.handleRecipes}
             setAuth={this.setAuthentication}
           />
         </Switch>
       </div>
+      </Context.Provider>
     );
   }
 }

@@ -2,12 +2,11 @@ import React, { Fragment } from "react";
 import Ingredient from "./Ingredient.jsx";
 import { Container, Row, Col } from "reactstrap";
 import NavBar from "./NavBar.jsx";
-import { handleRecipe } from '../App.jsx';
 import ZipcodeModal from "./ZipcodeModal.jsx";
 
 const IngredientList = props => {
-  console.log('IngredientList', props);
-  const { user, ingredients, userLocation, sessionZipcode, handleRecipe } = props;
+  // console.log('IngredientList', props);
+  const { user, ingredients, userLocation, sessionZipcode } = props;
   const { city } = userLocation;
   return (
     <Fragment>
@@ -24,7 +23,6 @@ const IngredientList = props => {
         <Row className="ml-1">
           <Ingredient
             ingredients={ingredients}
-            handleRecipe={handleRecipe}
             sessionZipcode={sessionZipcode}
           />
         </Row>
