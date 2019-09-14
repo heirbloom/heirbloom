@@ -24,7 +24,7 @@ class RecipeList extends Component {
           </Row>
           <Row>
             <Col md={{ size: 8 }}>
-              {recipes.map((recipe, index) => <RecipeListItem recipe={recipe} key={index} />)}
+              {recipes.map((recipe, index) => <RecipeListItem recipe={recipe} user={user} key={index} />)}
               <RecipeListItem />
               <RecipeListItem />
             </Col>
