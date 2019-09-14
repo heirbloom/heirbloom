@@ -15,7 +15,6 @@ import {
 } from "reactstrap";
 
 const Profile = props => {
-  console.log("Profile PROPS", props);
   const { username, email, zipcode } = props.user;
 
   return (
