@@ -20,7 +20,7 @@ const MarketList = props => {
         </Row>
         <Row>
           <Col>
-            <MarketMap location={geopoint} />
+            <MarketMap location={geopoint} market={localMarkets} />
           </Col>
           <Col md={{ size: 6 }}>
             <div className="ml-3 mr-3">
