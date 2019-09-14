@@ -69,7 +69,7 @@ app.post('/api/localIngredients', (req, res) => {
   return getUserCoordinates(zipcode)
     .then((userLocation) => {
       // userLocation in an object with the user's city, abbrv state and coordinates (an array)
-      const { city, state, geopoint } = userLocation;
+      const { state } = userLocation;
       return models.States.findAll({ where: { ABBREVIATION: state } })
         .then((stateObj) => {
           if (!stateObj) {
@@ -113,9 +113,60 @@ app.post('/api/recipes', (req, res) => {
   // getRecipes(['broccoli', 'onion', 'garlic']);
 });
 
-// app.post('/', () => {
-
-// })
+app.post('/api/favRecipes', (req, res) => {
+  // console.log('favRecipes endpoint!!!!', req);
+  // req.body is an array ([selectedRecipe's title, image_url, publisher, user's email])
+  const [recipeName, imageUrl, publisher, email] = req.body;
+  console.log(recipeName);
+  console.log(imageUrl);
+  console.log(publisher);
+  console.log(email);
+  // find the model with the favorite recipe name or put the info in the table if it isn't there
+  models.favRecipes.findOrCreate({
+    where: { recipe_name: recipeName },
+    defaults:
+    {
+      recipe_name: recipeName,
+      recipe_image: imageUrl,
+      recipe_url: publisher,
+    },
+    // successfully putting recipe data in the favRecipes table
+  }).then((newRecipe) => {
+    // find the user with the email in req.body
+    models.Users.findOne({
+      where: {
+        email,
+      },
+    })
+      // user is the associated user's info from the db
+      .then((user) => {
+        // create a new entry in he join UserRecipes table
+        models.UsersRecipes.create({ userId: user.id, recipeId: newRecipe.id })
+          .then(() => {
+            models.UsersRecipes.findAll({
+              where: {
+                userId: user.id,
+              },
+              // include: [newRecipe.recipe_name, newRecipe.recipe_url, newRecipe.recipe_image],
+              // exclude: [newRecipe.ingredient_id],
+            }).then((userRecipeIds) => {
+              console.log('RECIPES!!!!!!!!!!!!!!!!!!!', userRecipeIds.dataValues);
+              models.favRecipes.findAll({
+                where: {
+                  id: userRecipeIds.dataValues.recipeId,
+                },
+              })
+                .then(([recipes]) => {
+                  console.log(recipes);
+                  res.send(recipes);
+                });
+            });
+          });
+      });
+  }).catch((err) => {
+    console.error(err);
+  });
+});
 
 app.use(express.static(path.join(__dirname, '/../react-client/public')));
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));
