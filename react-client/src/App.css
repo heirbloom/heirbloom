@@ -3,6 +3,10 @@ html {
   height: 100%;
 }
 
+a {
+  color: #6B7A8F
+}
+
 .login-head {
   height: 45px;
   background: #F7882F 0% 0% no-repeat padding-box;

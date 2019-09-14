@@ -23,7 +23,7 @@ const RecipeListItem = props => {
 
   return props.recipes.map(recipe => {
     console.log(recipe);
-    const { title, image_url, publisher } = recipe || {};
+    const { title, image_url, publisher, source_url } = recipe || {};
 
     return (
       <Col
@@ -35,27 +35,25 @@ const RecipeListItem = props => {
         <Card id="recipe-card" className="mb-2 bg-light">
           <CardBody>
             <CardTitle className="card-title">
-              {title}
+              <a href={source_url} target="_blank">
+                {title}
+              </a>
+
               <Button
                 color="white"
                 className="fas fa-heart float-right text-danger"
+                onClick={() =>
+                  handleFavoritesAndRedirect([
+                    title,
+                    image_url,
+                    publisher,
+                    email
+                  ])
+                }
               ></Button>
             </CardTitle>
             <CardImg top width="25%" src={image_url} alt="Card image cap" />
             <CardSubtitle className="card-subtitle">{publisher}</CardSubtitle>
-            <hr></hr>
-            <Button className="card-button col-12">
-              Show me how to make it
-            </Button>
-            <hr></hr>
-            <Button
-              onClick={() =>
-                handleFavoritesAndRedirect([title, image_url, publisher, email])
-              }
-              className="card-button col-12"
-            >
-              Add to Favorites
-            </Button>
           </CardBody>
         </Card>
       </Col>
