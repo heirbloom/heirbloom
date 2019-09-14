@@ -131,7 +131,7 @@ app.post('/api/favRecipes', (req, res) => {
       recipe_url: publisher,
     },
     // successfully putting recipe data in the favRecipes table
-  }).then((newRecipe) => {
+  }).then(([newRecipe]) => {
     // find the user with the email in req.body
     models.Users.findOne({
       where: {
@@ -140,33 +140,36 @@ app.post('/api/favRecipes', (req, res) => {
     })
       // user is the associated user's info from the db
       .then((user) => {
+        console.log(user);
         // create a new entry in he join UserRecipes table
-        models.UsersRecipes.create({ userId: user.id, recipeId: newRecipe.id })
+        const { dataValues } = newRecipe;
+        models.UsersRecipes.create({ userId: user.id, recipeId: dataValues.id })
           .then(() => {
             models.UsersRecipes.findAll({
               where: {
                 userId: user.id,
               },
-              // include: [newRecipe.recipe_name, newRecipe.recipe_url, newRecipe.recipe_image],
-              // exclude: [newRecipe.ingredient_id],
-            }).then((userRecipeIds) => {
-              console.log('RECIPES!!!!!!!!!!!!!!!!!!!', userRecipeIds.dataValues);
-              models.favRecipes.findAll({
-                where: {
-                  id: userRecipeIds.dataValues.recipeId,
-                },
-              })
-                .then(([recipes]) => {
-                  console.log(recipes);
-                  res.send(recipes);
-                });
-            });
+              include: [newRecipe],
+            })
+            // .then((userRecipeIds) => {
+            //   console.log('RECIPES!!!!!!!!!!!!!!!!!!!', userRecipeIds.dataValues);
+            //   models.favRecipes.findAll({
+            //     where: {
+            //       id: userRecipeIds.dataValues.recipeId,
+            //     },
+            //   })
+              .then(([recipes]) => {
+                console.log(recipes);
+                res.send(recipes);
+              });
           });
       });
-  }).catch((err) => {
-    console.error(err);
-  });
+  })
+    .catch((err) => {
+      console.error(err);
+    });
 });
+// });
 
 app.use(express.static(path.join(__dirname, '/../react-client/public')));
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));
