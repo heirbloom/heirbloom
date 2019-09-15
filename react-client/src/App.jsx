@@ -7,7 +7,7 @@ import Login from "./components/Login.jsx";
 import Signup from "./components/Signup.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import IngredientList from "./components/IngredientList.jsx";
-import MarketList from "./components/MarketList.jsx";
+import MarketList from "./components/MarketList2.jsx";
 import FavRecipes from "./components/FavRecipes.jsx";
 import Profile from "./components/Profile.jsx";
 import RecipeList from "./components/RecipeList.jsx";
@@ -217,7 +217,7 @@ class App extends Component {
     if (loading) {
       return <div>Loading...</div>;
     }
-    
+
     return (
       <div className="App container-fluid m-0 p-0">
         {/* switch between login, signup, and private views with login component displayed on home page */}
