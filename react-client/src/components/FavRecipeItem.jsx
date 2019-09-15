@@ -13,8 +13,8 @@ import {
   Container
 } from "reactstrap";
 
+// This structures the FavRecipeItem component. props should be one recipe object. 
 const FavRecipeItem = props => {
-  console.log("FavRecipeItem Props", props);
   const { user } = props;
   const { recipe_name, recipe_url } = props.favRecipe;
 

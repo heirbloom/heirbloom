@@ -10,6 +10,7 @@ import {
   Button
 } from "reactstrap";
 
+// renders an individual market card
 const MarketListItem = props => {
   const {
     Address,
