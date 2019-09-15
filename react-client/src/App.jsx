@@ -178,13 +178,20 @@ class App extends Component {
       });
   }
 
-  // request to server to add a recipe to the database
+  // request to server to delete a favorited recipe to the database
   removeFromFavorites(selectedRecipe) {
-    console.log("FAVORITE RECIPE:", selectedRecipe);
-    const recipeName = selectedRecipe[0];
+    // console.log("FAVORITE RECIPE:", selectedRecipe);
+    // selectedRecipe is an array ([recipe hyperlink , recipe name, recipe image, recipe id in the db])
+    const recipeName = selectedRecipe[1];
+    const deletedRecipeId = selectedRecipe[3];
     return axios
-      .delete(`${baseUrl}/api/removeFavRecipe`, selectedRecipe)
+      .post(`${baseUrl}/api/removeFavRecipe`, selectedRecipe)
       .then(response => {
+        this.setState({
+          favRecipes: this.state.favRecipes.filter(
+            recipe => recipe.id !== deletedRecipeId
+          )
+        });
         Swal.fire(`${recipeName} was removed from your favorites.`);
         return response;
       })

@@ -17,7 +17,7 @@ import {
 
 const FavRecipes = props => {
   // This will be the container for all of our FavRecipes.
-  const { user, favRecipes, getFavRecipes } = props;
+  const { user, favRecipes, getFavRecipes, removeFromFavorites } = props;
   const { username } = props.user;
   // useEffect is kinda like componentDidMount; once this component renders, useEffect calls the first parameter passed to it and then updates the DOM
   //
@@ -41,7 +41,11 @@ const FavRecipes = props => {
             <Col>
               <Table hover>
                 {favRecipes.map((favRecipe, index) => (
-                  <FavRecipeItem favRecipe={favRecipe} key={index} />
+                  <FavRecipeItem
+                    favRecipe={favRecipe}
+                    removeFromFavorites={removeFromFavorites}
+                    key={index}
+                  />
                 ))}
               </Table>
             </Col>

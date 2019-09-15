@@ -11,7 +11,11 @@ FOOD2FORKKEY=*************************
 */
 
 const {
-  DATABASE, USER_NAME, USER_PASSWORD, HOST, DB_PORT,
+  DATABASE,
+  USER_NAME,
+  USER_PASSWORD,
+  HOST,
+  DB_PORT,
 } = process.env;
 const sequelize = new Sequelize(DATABASE, USER_NAME, USER_PASSWORD, {
   host: HOST,
@@ -111,11 +115,15 @@ const UsersRecipes = sequelize.define('users_recipes', {
 favRecipes.belongsToMany(Users, {
   through: 'users_recipes',
   foreignKey: 'recipeId',
+  onDelete: 'cascade',
+  hooks: true,
 });
 
 Users.belongsToMany(favRecipes, {
   through: 'users_recipes',
   foreignKey: 'userId',
+  onDelete: 'cascade',
+  hooks: true,
 });
 
 // make a states table
