@@ -12,7 +12,6 @@ import FavRecipes from "./components/FavRecipes.jsx";
 import Profile from "./components/Profile.jsx";
 import RecipeList from "./components/RecipeList.jsx";
 import { baseUrl } from "./constants.js";
-import ProfileModal from "./components/ProfileModal.jsx";
 
 class App extends Component {
   constructor(props) {
@@ -47,19 +46,13 @@ class App extends Component {
   }
 
   handleUserUpdate(updatedUser) {
-    //
     axios
       .put(`${baseUrl}/api/updateUser`, updatedUser)
       .then(response => {
-        console.log(response);
-        const { username, email, zipcode } = user;
         this.setState({
-          username: updatedUser.username,
-          email: updatedUser.email,
-          zipcode: updatedUser.zipcode,
+          user: {...this.state.user, ...updatedUser}
         })
       })
-      // .then(this.toggle())
       .catch(err => {
         console.error(err);
       });
@@ -181,7 +174,7 @@ class App extends Component {
       });
   }
 
-  // this should persist the user's authentication until they log-out
+  // this should persist the user's authentication until they log-out (Pass this down to any PrivateRoute component)
   setAuthentication(isLoggedIn) {
     if (
       isLoggedIn &&
@@ -208,8 +201,6 @@ class App extends Component {
     if (loading) {
       return <div>Loading...</div>;
     }
-    
-
     return (
       <div className="App container-fluid m-0 p-0">
         {/* switch between login, signup, and private views with login component displayed on home page */}

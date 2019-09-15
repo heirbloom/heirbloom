@@ -15,6 +15,8 @@ import {
 } from "reactstrap";
 
 const Profile = props => {
+  console.log("=====rendering", props)
+
   const { user, handleUserUpdate } = props;
   const { username, email, zipcode } = user;
 
