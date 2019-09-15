@@ -1,6 +1,5 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import Context from "../contexts/Context.jsx";
 import {
   Col,
   Card,
@@ -16,13 +15,14 @@ const Ingredient = props => {
 // console.log('Ingredient Props', props);
 
 const handleRecipesAndRedirect = (selectedIngredient) => {
-  const { context, history } = props;
-  context.handleRecipes(selectedIngredient)
-    .then(() => history.push('/recipe-list'));
+  const { handleRecipes } = props;
+  // use App.Jsx's handleRecipes function which sends an api request to get the recipes with the selectedIngredient
+  handleRecipes(selectedIngredient)
+    .then(() => props.history.push('/recipe-list'))
+    .catch(err => console.error(err));
 }
 
   return props.ingredients.map(ingredient => {
-    // console.log('psekogkjsefklkldgsldjlhfdljlfh',ingredient);
     return (
       <Col
         xl={{ size: 3, offset: 0 }}
@@ -48,11 +48,4 @@ const handleRecipesAndRedirect = (selectedIngredient) => {
   });
 };
 
-const IngredientWithContext = (props) => (
-<Context.Consumer>
-  {(value) => {
-      return <Ingredient context={value} {...props} />;
-    }}
-</Context.Consumer>)
-
-export default withRouter(IngredientWithContext);
+export default withRouter(Ingredient);

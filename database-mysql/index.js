@@ -19,6 +19,8 @@ sequelize.authenticate()
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
   });
+
+
 // make a Users table
 const Users = sequelize.define('users', {
   id: {
@@ -98,15 +100,16 @@ const UsersRecipes = sequelize.define('users_recipes', {
   timeStamps: false,
 });
 
-// UserRecipes' userId column references Users primary key
-UsersRecipes.belongsTo(Users, {
+favRecipes.belongsToMany(Users, {
+  through: 'users_recipes',
+  foreignKey: 'recipeId',
+});
+
+Users.belongsToMany(favRecipes, {
+  through: 'users_recipes',
   foreignKey: 'userId',
 });
 
-// UserRecipes' recipeId column references favRecipes primary key
-UsersRecipes.belongsTo(favRecipes, {
-  foreignKey: 'recipeId',
-});
 
 const States = sequelize.define('states', {
   id: {
@@ -130,6 +133,7 @@ const States = sequelize.define('states', {
   freezeTableName: true,
   timeStamps: false,
 });
+
 
 const Regions = sequelize.define('regions', {
   id: {
@@ -235,9 +239,6 @@ const Ingredients = sequelize.define('ingredients', {
   timeStamps: false,
 });
 
-
-favRecipes.hasMany(UsersRecipes);
-Users.hasMany(UsersRecipes);
 
 // sync all of the models
 Users.sync();

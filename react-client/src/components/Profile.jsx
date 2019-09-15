@@ -15,7 +15,8 @@ import {
 } from "reactstrap";
 
 const Profile = props => {
-  const { username, email, zipcode } = props.user;
+  const { user, handleUserUpdate } = props;
+  const { username, email, zipcode } = user;
 
 const handleLogout = () => {
     // remove the user's token
@@ -53,7 +54,7 @@ const handleLogout = () => {
               {/* <Button className="card-button btn-block">
                 Edit your profile
               </Button> */}
-              <ProfileModal />
+              <ProfileModal user={user} handleUserUpdate={handleUserUpdate} />
 
               <Button onClick={() => props.history.push('/fav-recipes')} className="card-button btn-block">
                 Show favorite recipes

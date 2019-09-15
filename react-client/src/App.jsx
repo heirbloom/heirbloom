@@ -13,8 +13,7 @@ import Profile from "./components/Profile.jsx";
 import RecipeList from "./components/RecipeList.jsx";
 import { baseUrl } from "./constants.js";
 import Context from './contexts/Context.jsx';
-// import { toggle } from './components/ProfileModal';
-
+import ProfileModal from "./components/ProfileModal.jsx";
 
 class App extends Component {
   constructor(props) {
@@ -26,9 +25,11 @@ class App extends Component {
       userLocation: [],
       localMarkets: [],
       sessionZipcode: null,
-      marketCoordinates: [],
       loading: true,
       isAuthenticated: false,
+      // when a user logs in, a user object is attached to their session (the user object is needed to access any PrivateRoutes)
+      // the user object has the user's username, email, zipcode and database id
+      // user is currently available in all components but make sure to pass it down to any new component you make
       user: null
     };
     this.getUserDetails = this.getUserDetails.bind(this);
@@ -38,6 +39,7 @@ class App extends Component {
     this.getUserLocation = this.getUserLocation.bind(this);
     this.handleRecipes = this.handleRecipes.bind(this);
     this.addToFavorites = this.addToFavorites.bind(this);
+    this.getFavRecipes = this.getFavRecipes.bind(this);
     this.handleUserUpdate = this.handleUserUpdate.bind(this);
   }
 
@@ -48,7 +50,7 @@ class App extends Component {
   handleUserUpdate(updatedUser) {
     //
     axios
-      .put(`${ baseUrl }/api/updateUser`, updatedUser)
+      .put(`${baseUrl}/api/updateUser`, updatedUser)
       .then(response => {
         console.log(response);
       })
@@ -69,16 +71,17 @@ class App extends Component {
       this.setState({ loading: false, isAuthenticated: false });
       return;
     }
-    /*  if the user has a token, send the token to the server (see line 96 in routes/Users.js).
-    Response should have req.body which contains the user's credentials, allowing them
+    /*  if the user has a token, send the token to the server to authorize the user 
+    Response should have the user object which contains the user's credentials, allowing them
     access to their user-specific private routes */
     axios
       .get(`${baseUrl}/api/user`, { headers: { "X-TOKEN": token } })
       .then(response => {
-        // add the fetched data from post request to usdaMarket api to the user's state
+        // after the user is authenticated, send the following requests passing in the user's user object
         this.getMarketData(response.data);
         this.getUserLocation(response.data);
         this.getLocalIngredients(response.data);
+        // this.getFavRecipes(response.data);
       })
       // if err, re-render the page but keep the user un-Authenticated
       .catch(err => {
@@ -87,8 +90,8 @@ class App extends Component {
       });
   }
 
+  // request to server to send an api call to get the user's location and populate the userLocation array in App's state
   getUserLocation(user) {
-    // send a POST request to usdaMarket api and add the market data to the user's state (App.jsx)
     axios
       .post(`${baseUrl}/api/usercoords`, user)
       .then(res => {
@@ -105,15 +108,12 @@ class App extends Component {
       });
   }
 
+  // request to server to query the database for local veggies and populate the ingredients array in App's state
   getLocalIngredients(user) {
-    // send a POST request to server to query the database for local veggies
     axios
       .post(`${baseUrl}/api/localIngredients`, user)
       .then(res => {
         this.setState({
-          user,
-          loading: false,
-          isAuthenticated: true,
           ingredients: res.data
         });
       })
@@ -122,8 +122,8 @@ class App extends Component {
       });
   }
 
+  // request to server to send an Api call to usdaMarket api and add the market data to the localMarkets array in App's state
   getMarketData(user) {
-    // send a POST request to usdaMarket api and add the market data to the user's state (App.jsx)
     axios
       .post(`${baseUrl}/api/usdaResponse`, user)
       .then(res => {
@@ -136,12 +136,26 @@ class App extends Component {
       });
   }
 
+  // request to server to query the database for a user's favorite recipes and then populate favRecipes array in App's state
+  getFavRecipes(user) {
+    console.log("===================callled")
+    axios
+      .post(`${baseUrl}/api/getFavRecipes`, user)
+      .then(response => {
+        // console.log('FAV RECIPES!!!', response.data);
+        this.setState({
+          favRecipes: response.data.fav_recipes,
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  // request to server to get recipes using a selectedIngredient and then populate the recipes array in App's state
   handleRecipes(selectedIngredient) {
     // console.log('I CHOOSE YOU:', selectedIngredient);
     return axios
       .post(`${baseUrl}/api/recipes`, selectedIngredient)
       .then(response => {
-        console.log('Recipes response', response.data.recipes);
         this.setState({
           recipes: response.data.recipes
         });
@@ -152,15 +166,14 @@ class App extends Component {
       });
   }
 
+  // request to server to add a recipe to the database
   addToFavorites(selectedRecipe) {
-    console.log('FAVORITE RECIPE:', selectedRecipe);
+    // console.log('FAVORITE RECIPE:', selectedRecipe);
+    const recipeName = selectedRecipe[0];
     return axios
-      .post(`${baseUrl}/api/favRecipes`, selectedRecipe)
+      .post(`${baseUrl}/api/saveFavRecipe`, selectedRecipe)
       .then(response => {
-        console.log('Favorites response', response.data);
-        this.setState({
-          favRecipes: response.data
-        });
+        alert(`${recipeName} was added to your favorites.`);
         return response;
       })
       .catch(err => {
@@ -168,8 +181,8 @@ class App extends Component {
       });
   }
 
+  // this should persist the user's authentication until they log-out
   setAuthentication(isLoggedIn) {
-    // this should persist the user's authentication until they log-out
     if (
       isLoggedIn &&
       !!sessionStorage.getItem("token") &&
@@ -186,7 +199,6 @@ class App extends Component {
       user,
       ingredients,
       localMarkets,
-      marketCoordinates,
       userLocation,
       favRecipes,
       recipes,
@@ -198,16 +210,8 @@ class App extends Component {
     }
     // console.log("=======state", this.state);
 
-    // this object will be passed to any Context.Consumer component
-    const contextValues = {
-      handleRecipes: this.handleRecipes,
-      addToFavorites: this.addToFavorites
-    }
-
     return (
-      <Context.Provider value={contextValues}>
       <div className="App container-fluid m-0 p-0">
-        {/* <IngredientList ingredients={this.state.ingredients} /> */}
         {/* switch between login, signup, and private views with login component displayed on home page */}
         <Switch>
           {/* the following two Routes prevent a logged-in user from seeing the login/signup pages */}
@@ -233,7 +237,9 @@ class App extends Component {
               );
             }}
           />
-          {/* pass down the following props to PrivateRoutes*/}
+          {/* pass the following components to PrivateRoute to make them 'private'*/}
+          {/* NOTE: if you need to pass props down to any of these components, pass it to the PrivateRoute
+          component first (see line 34 in PrivateRoute.jsx). */}
           <PrivateRoute
             path="/ingredient-list"
             ingredients={ingredients}
@@ -243,6 +249,7 @@ class App extends Component {
             user={user}
             component={IngredientList}
             setAuth={this.setAuthentication}
+            handleRecipes={this.handleRecipes}
           />
           <PrivateRoute
             path="/market-list"
@@ -262,6 +269,7 @@ class App extends Component {
             user={user}
             component={Profile}
             setAuth={this.setAuthentication}
+            handleUserUpdate={this.handleUserUpdate}
           />
           <PrivateRoute
             path="/fav-recipes"
@@ -271,6 +279,7 @@ class App extends Component {
             user={user}
             component={FavRecipes}
             setAuth={this.setAuthentication}
+            getFavRecipes={this.getFavRecipes}
           />
           <PrivateRoute
             path="/recipe-list"
@@ -280,10 +289,10 @@ class App extends Component {
             user={user}
             component={RecipeList}
             setAuth={this.setAuthentication}
+            addToFavorites={this.addToFavorites}
           />
         </Switch>
       </div>
-      </Context.Provider>
     );
   }
 }

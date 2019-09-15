@@ -98,8 +98,22 @@ app.post('/api/localIngredients', (req, res) => {
     });
 });
 
+app.post('/api/getFavRecipes', (req, res) => {
+  console.log('FAVERECIPES req.body', req.body);
+  models.Users.findOne({
+    where: {
+      id: req.body.id,
+    },
+    include: [
+      models.favRecipes,
+    ],
+  })
+    .then((usersRecipes) => {
+      res.send(usersRecipes);
+    })
+    .catch((err) => console.error(err));
+});
 
-// these are not actual endpoints - use them with postman to see how the helper functions work
 app.post('/api/recipes', (req, res) => {
   console.log('Recipe endpoint req', (req.body));
   const recipeIngredient = Object.keys(req.body);
@@ -113,14 +127,11 @@ app.post('/api/recipes', (req, res) => {
   // getRecipes(['broccoli', 'onion', 'garlic']);
 });
 
-app.post('/api/favRecipes', (req, res) => {
+app.post('/api/saveFavRecipe', (req, res) => {
   // console.log('favRecipes endpoint!!!!', req);
   // req.body is an array ([selectedRecipe's title, image_url, publisher, user's email])
-  const [recipeName, imageUrl, publisher, email] = req.body;
-  console.log(recipeName);
-  console.log(imageUrl);
-  console.log(publisher);
-  console.log(email);
+  const [recipeName, imageUrl, publisher, id] = req.body;
+  console.log(id);
   // find the model with the favorite recipe name or put the info in the table if it isn't there
   models.favRecipes.findOrCreate({
     where: { recipe_name: recipeName },
@@ -130,43 +141,22 @@ app.post('/api/favRecipes', (req, res) => {
       recipe_image: imageUrl,
       recipe_url: publisher,
     },
-    // successfully putting recipe data in the favRecipes table
-  }).then((newRecipe) => {
-    // find the user with the email in req.body
-    models.Users.findOne({
-      where: {
-        email,
-      },
+  })
+    .then((user) => {
+      console.log(user);
+      // create a new entry in the join UserRecipes table
+      const { dataValues } = user[0];
+      models.UsersRecipes.create({ userId: id, recipeId: dataValues.id })
+        .then((recipes) => {
+          console.log(recipes);
+          res.send(201);
+        });
     })
-      // user is the associated user's info from the db
-      .then((user) => {
-        // create a new entry in he join UserRecipes table
-        models.UsersRecipes.create({ userId: user.id, recipeId: newRecipe.id })
-          .then(() => {
-            models.UsersRecipes.findAll({
-              where: {
-                userId: user.id,
-              },
-              // include: [newRecipe.recipe_name, newRecipe.recipe_url, newRecipe.recipe_image],
-              // exclude: [newRecipe.ingredient_id],
-            }).then((userRecipeIds) => {
-              console.log('RECIPES!!!!!!!!!!!!!!!!!!!', userRecipeIds.dataValues);
-              models.favRecipes.findAll({
-                where: {
-                  id: userRecipeIds.dataValues.recipeId,
-                },
-              })
-                .then(([recipes]) => {
-                  console.log(recipes);
-                  res.send(recipes);
-                });
-            });
-          });
-      });
-  }).catch((err) => {
-    console.error(err);
-  });
+    .catch((err) => {
+      console.error(err);
+    });
 });
+
 
 app.use(express.static(path.join(__dirname, '/../react-client/public')));
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));

@@ -53,8 +53,6 @@ class NavBar extends Component {
 
   render() {
     const { history, user } = this.props;
-    // user is an object with the logged-in user's email and zipcode
-    // console.log('User', user);
     return (
       <div className="fixed-top container" color="#F7882F">
         <Navbar light expand="md">

@@ -9,20 +9,18 @@ import {
   Col
 } from "reactstrap";
 import { withRouter } from "react-router-dom";
-import Context from "../contexts/Context.jsx";
 
 const RecipeListItem = props => {
   const handleFavoritesAndRedirect = selectedRecipe => {
-    const { context, history } = props;
-    context
-      .addToFavorites(selectedRecipe)
-      .then(() => history.push("/fav-recipes"));
+    const { addToFavorites } = props;
+    addToFavorites(selectedRecipe)
+      .then(() => console.log('The recipe was saved to the database'))
+      .catch(err => console.error(err));
   };
-
-  const { email } = props.user || {};
-
+  
   return props.recipes.map(recipe => {
     console.log(recipe);
+    const { id } = props.user || {};
     const { title, image_url, publisher, source_url } = recipe || {};
 
     return (
@@ -46,8 +44,8 @@ const RecipeListItem = props => {
                   handleFavoritesAndRedirect([
                     title,
                     image_url,
-                    publisher,
-                    email
+                    source_url,
+                    id
                   ])
                 }
               ></Button>
@@ -60,13 +58,5 @@ const RecipeListItem = props => {
     );
   });
 };
-
-const RecipeListItemWithContext = props => (
-  <Context.Consumer>
-    {value => {
-      return <RecipeListItem context={value} {...props} />;
-    }}
-  </Context.Consumer>
-);
 
 export default withRouter(RecipeListItem);
