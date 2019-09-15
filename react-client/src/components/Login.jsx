@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import Swal from "sweetalert2";
 import axios from "axios";
 import "../App.css";
 import {
@@ -44,7 +45,7 @@ class Login extends React.Component {
     const { email, password } = this.state.userCredentials;
     // if either email or password fields are blank, alert the user
     if (!email || !password) {
-      return alert("Email and Password are required.");
+      return Swal.fire("Email and Password are required.");
     }
     // else, send a post request to the server with the input credentials to handle authentication
     axios
@@ -60,7 +61,7 @@ class Login extends React.Component {
       })
       .catch(err => {
         console.error(err);
-        alert("Problem logging in, check your credentials and try again.");
+        Swal.fire("Problem logging in, check your credentials and try again.");
       });
   }
 

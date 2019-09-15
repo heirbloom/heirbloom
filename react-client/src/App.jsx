@@ -14,6 +14,7 @@ import RecipeList from "./components/RecipeList.jsx";
 import { baseUrl } from "./constants.js";
 import Context from "./contexts/Context.jsx";
 import ProfileModal from "./components/ProfileModal.jsx";
+import Swal from "sweetalert2";
 
 class App extends Component {
   constructor(props) {
@@ -169,7 +170,7 @@ class App extends Component {
     return axios
       .post(`${baseUrl}/api/saveFavRecipe`, selectedRecipe)
       .then(response => {
-        alert(`${recipeName} was added to your favorites.`);
+        Swal.fire(`${recipeName} was added to your favorites.`);
         return response;
       })
       .catch(err => {
@@ -184,7 +185,7 @@ class App extends Component {
     return axios
       .delete(`${baseUrl}/api/removeFavRecipe`, selectedRecipe)
       .then(response => {
-        alert(`${recipeName} was removed from your favorites.`);
+        Swal.fire(`${recipeName} was removed from your favorites.`);
         return response;
       })
       .catch(err => {
