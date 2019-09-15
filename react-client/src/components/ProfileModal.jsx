@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Button,
   Modal,
@@ -21,9 +21,9 @@ class ProfileModal extends React.Component {
         zipcode: '',
       }
     };
+    console.log('MOOOOOOOOOOOOOODLE', this.props);
     this.toggle = this.toggle.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    
   }
 
   toggle() {
@@ -39,7 +39,6 @@ class ProfileModal extends React.Component {
     this.setState({ newUserInfo });
   }
 
-  
 
   render() {
     return (
