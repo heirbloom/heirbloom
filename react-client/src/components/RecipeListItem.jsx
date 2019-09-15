@@ -10,6 +10,7 @@ import {
 } from "reactstrap";
 import { withRouter } from "react-router-dom";
 
+// renders an individual recipe item
 const RecipeListItem = props => {
   const handleFavoritesAndRedirect = selectedRecipe => {
     const { addToFavorites } = props;
@@ -19,7 +20,6 @@ const RecipeListItem = props => {
   };
 
   return props.recipes.map(recipe => {
-    console.log(recipe);
     const { id } = props.user || {};
     const { title, image_url, publisher, source_url } = recipe || {};
 

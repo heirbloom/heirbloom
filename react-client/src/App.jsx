@@ -164,7 +164,6 @@ class App extends Component {
 
   // request to server to add a recipe to the database
   addToFavorites(selectedRecipe) {
-    // console.log('FAVORITE RECIPE:', selectedRecipe);
     const recipeName = selectedRecipe[0];
     return axios
       .post(`${baseUrl}/api/saveFavRecipe`, selectedRecipe)
@@ -204,7 +203,7 @@ class App extends Component {
     if (loading) {
       return <div>Loading...</div>;
     }
-    // console.log("=======state", this.state);
+    
 
     return (
       <div className="App container-fluid m-0 p-0">

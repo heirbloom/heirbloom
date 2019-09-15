@@ -11,8 +11,9 @@ import {
   Button
 } from "reactstrap";
 
+// This renders an individual ingredient card
 const Ingredient = props => {
-  // console.log('Ingredient Props', props);
+  
 
   const handleRecipesAndRedirect = selectedIngredient => {
     const { handleRecipes } = props;

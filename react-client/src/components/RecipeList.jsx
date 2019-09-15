@@ -3,13 +3,13 @@ import RecipeListItem from "./RecipeListItem.jsx";
 import { Col, Row, Container } from "reactstrap";
 import NavBar from "./NavBar.jsx";
 
+// renders all of our recipes from the Food2Fork API
 class RecipeList extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
   render() {
-    console.log("recipes!!!!!!!!!!!", this.props);
     const { user, recipes, addToFavorites } = this.props;
     return (
       <Fragment>
