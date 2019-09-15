@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import "../App.css";
 import {
   Container,
@@ -40,33 +40,31 @@ class NavBar extends Component {
     // remove the user's token
     sessionStorage.removeItem("token");
     // Redirect them to the home page
-    this.props.history.push('/');
+    this.props.history.push("/");
   }
 
   handleProfile() {
-    this.props.history.push('/profile');
+    this.props.history.push("/profile");
   }
 
   handleFavRecipes() {
-    this.props.history.push('/fav-recipes');
+    this.props.history.push("/fav-recipes");
   }
 
   render() {
     const { history, user } = this.props;
     return (
       <div className="fixed-top container" color="#F7882F">
-        <Navbar light expand="md">
-          <NavbarBrand href="/" id="logo" className="pl-5">
+        <Navbar light expand="xs">
+          <NavbarBrand href="/" id="logo" className="pl-2">
             Heir<span id="bloom">bloom</span>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              {/* if user props is passed down (meaning a user is logged-in), show this component) */}
-              {user && <NavItem>
-                <NavLink 
-                  onClick={() => history.push('/market-list')}
-                >
+          <Nav className="ml-auto" navbar>
+            {/* if user props is passed down (meaning a user is logged-in), show this component) */}
+            {user && (
+              <NavItem>
+                <NavLink onClick={() => history.push("/market-list")}>
                   <i
                     className="fas fa-map-marker-alt fa-2x"
                     id="map-icon"
@@ -76,11 +74,10 @@ class NavBar extends Component {
                   ></i>
                 </NavLink>
               </NavItem>
-            }
-              {user && <NavItem>
-                <NavLink
-                  onClick={() => history.push('/fav-recipes')}
-                >
+            )}
+            {user && (
+              <NavItem>
+                <NavLink onClick={() => history.push("/fav-recipes")}>
                   <i
                     className="far fa-heart fa-2x"
                     id="fav-icon"
@@ -89,25 +86,28 @@ class NavBar extends Component {
                     title="Favorites"
                   ></i>
                 </NavLink>
-              </NavItem>}
-              { user && <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle className="pr-5" nav caret>
+              </NavItem>
+            )}
+            {user && (
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle className="pr-2" nav caret>
                   <i className="fas fa-user fa-2x"></i>
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem onClick={this.handleProfile}>
-                    Edit Profile</DropdownItem>
+                    Edit Profile
+                  </DropdownItem>
                   <DropdownItem onClick={this.handleFavRecipes}>
-                    View Favorites</DropdownItem>
+                    View Favorites
+                  </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem onClick={this.handleLogout}>
                     Logout
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-            }
-            </Nav>
-          </Collapse>
+            )}
+          </Nav>
         </Navbar>
       </div>
     );

@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import NavBar from "./NavBar.jsx";
-import FavRecipeItem from "./FavRecipeItem.jsx"
+import FavRecipeItem from "./FavRecipeItem.jsx";
 import "../App.css";
 import {
   Button,
@@ -20,7 +20,7 @@ const FavRecipes = props => {
   const { user, favRecipes, getFavRecipes } = props;
   const { username } = props.user;
   // useEffect is kinda like componentDidMount; once this component renders, useEffect calls the first parameter passed to it and then updates the DOM
-  // 
+  //
   useEffect(() => {
     getFavRecipes(user);
     // pass an empty array to useEffect otherwise the component will keep on updating
@@ -38,62 +38,19 @@ const FavRecipes = props => {
             </Col>
           </Row>
           <Row className="bg-white recipe-table">
-            {favRecipes.map((favRecipe, index) => <FavRecipeItem favRecipe={favRecipe} key={index} />)}
-            {/* <Col>
+            <Col>
               <Table hover>
-                <tbody>
-                  <tr>
-                    <td>{favRecipe.recipe_name}</td>
-                    <td>
-                      <Button className="float-right" size="sm" color="warning">
-                        Click to view
-                      </Button>
-                    </td>
-                    <td>
-                      <Button
-                        color="white"
-                        className="fas fa-heart float-right text-danger"
-                      ></Button>
-                    </td>
-                  </tr>
-                </tbody>
-                  {/* <tr>
-                    <td>Strawberry Shortcake</td>
-                    <td>
-                      <Button className="float-right" size="sm" color="warning">
-                        Click to view
-                      </Button>
-                    </td>
-                    <td>
-                      <Button
-                        color="white"
-                        className="fas fa-heart float-right text-danger"
-                      ></Button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Strawberry Shortcake</td>
-                    <td>
-                      <Button className="float-right" size="sm" color="warning">
-                        Click to view
-                      </Button>
-                    </td>
-                    <td>
-                      <Button
-                        color="white"
-                        className="fas fa-heart float-right text-danger"
-                      ></Button>
-                    </td>
-                  </tr>
-                </tbody> */}
-              {/* </Table>
-            </Col> */}
+                {favRecipes.map((favRecipe, index) => (
+                  <FavRecipeItem favRecipe={favRecipe} key={index} />
+                ))}
+              </Table>
+            </Col>
           </Row>
         </Container>
       </div>
     </Fragment>
   );
-//   });
+  //   });
 };
 
 export default FavRecipes;

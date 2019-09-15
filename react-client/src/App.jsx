@@ -12,7 +12,7 @@ import FavRecipes from "./components/FavRecipes.jsx";
 import Profile from "./components/Profile.jsx";
 import RecipeList from "./components/RecipeList.jsx";
 import { baseUrl } from "./constants.js";
-import Context from './contexts/Context.jsx';
+import Context from "./contexts/Context.jsx";
 import ProfileModal from "./components/ProfileModal.jsx";
 
 class App extends Component {
@@ -54,12 +54,10 @@ class App extends Component {
       .then(response => {
         console.log(response);
       })
-      .then(
-        this.toggle()
-      )
+      .then(this.toggle())
       .catch(err => {
         console.error(err);
-      })
+      });
   }
 
   getUserDetails() {
@@ -138,13 +136,12 @@ class App extends Component {
 
   // request to server to query the database for a user's favorite recipes and then populate favRecipes array in App's state
   getFavRecipes(user) {
-    console.log("===================callled")
     axios
       .post(`${baseUrl}/api/getFavRecipes`, user)
       .then(response => {
         // console.log('FAV RECIPES!!!', response.data);
         this.setState({
-          favRecipes: response.data.fav_recipes,
+          favRecipes: response.data.fav_recipes
         });
       })
       .catch(err => console.log(err));
@@ -152,7 +149,6 @@ class App extends Component {
 
   // request to server to get recipes using a selectedIngredient and then populate the recipes array in App's state
   handleRecipes(selectedIngredient) {
-    // console.log('I CHOOSE YOU:', selectedIngredient);
     return axios
       .post(`${baseUrl}/api/recipes`, selectedIngredient)
       .then(response => {
