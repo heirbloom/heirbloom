@@ -13,6 +13,7 @@ import Profile from "./components/Profile.jsx";
 import RecipeList from "./components/RecipeList.jsx";
 import { baseUrl } from "./constants.js";
 import Context from './contexts/Context.jsx';
+import ProfileModal from "./components/ProfileModal.jsx";
 
 class App extends Component {
   constructor(props) {
@@ -268,6 +269,7 @@ class App extends Component {
             user={user}
             component={Profile}
             setAuth={this.setAuthentication}
+            handleUserUpdate={this.handleUserUpdate}
           />
           <PrivateRoute
             path="/fav-recipes"
