@@ -13,8 +13,6 @@ import Profile from "./components/Profile.jsx";
 import RecipeList from "./components/RecipeList.jsx";
 import { baseUrl } from "./constants.js";
 import Context from './contexts/Context.jsx';
-// import { toggle } from './components/ProfileModal';
-
 
 class App extends Component {
   constructor(props) {
@@ -51,7 +49,7 @@ class App extends Component {
   handleUserUpdate(updatedUser) {
     //
     axios
-      .put(`${ baseUrl }/api/updateUser`, updatedUser)
+      .put(`${baseUrl}/api/updateUser`, updatedUser)
       .then(response => {
         console.log(response);
       })
@@ -98,6 +96,8 @@ class App extends Component {
       .then(res => {
         this.setState({
           user,
+          loading: false,
+          isAuthenticated: true,
           userLocation: res.data,
           sessionZipcode: user.zipcode
         });

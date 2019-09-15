@@ -10,7 +10,6 @@ import {
   CardSubtitle,
   Button
 } from "reactstrap";
-import App from "../App";
 
 const Ingredient = props => {
 // console.log('Ingredient Props', props);
