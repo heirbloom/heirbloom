@@ -95,5 +95,25 @@ router.post('/login', (req, res) => {
     will be available to the next callback */
 router.get('/user', authenticate, (req, res) => res.status(200).json(req.user));
 
+// Update Route: update a profile with new user information
+router.put('/updateUser', (req, res) => {
+  // find a user by their id number
+  models.Users.findOne({
+    where: {
+      id: req.body.id,
+    },
+  })
+    .then((user) => {
+      // update that user to new values
+      user.update({
+        username: req.body.username,
+        email: req.body.email,
+        zipcode: req.body.zipcode,
+      });
+      res.status(201).json('updated!');
+    })
+    .catch((err) => res.status(500).json(err));
+});
+
 
 module.exports = router;

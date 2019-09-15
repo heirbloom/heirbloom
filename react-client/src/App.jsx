@@ -13,6 +13,8 @@ import Profile from "./components/Profile.jsx";
 import RecipeList from "./components/RecipeList.jsx";
 import { baseUrl } from "./constants.js";
 import Context from './contexts/Context.jsx';
+// import { toggle } from './components/ProfileModal';
+
 
 class App extends Component {
   constructor(props) {
@@ -36,10 +38,26 @@ class App extends Component {
     this.getUserLocation = this.getUserLocation.bind(this);
     this.handleRecipes = this.handleRecipes.bind(this);
     this.addToFavorites = this.addToFavorites.bind(this);
+    this.handleUserUpdate = this.handleUserUpdate.bind(this);
   }
 
   componentDidMount() {
     this.getUserDetails();
+  }
+
+  handleUserUpdate(updatedUser) {
+    //
+    axios
+      .put(`${ baseUrl }/api/updateUser`, updatedUser)
+      .then(response => {
+        console.log(response);
+      })
+      .then(
+        this.toggle()
+      )
+      .catch(err => {
+        console.error(err);
+      })
   }
 
   getUserDetails() {
