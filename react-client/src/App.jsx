@@ -7,7 +7,7 @@ import Login from "./components/Login.jsx";
 import Signup from "./components/Signup.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import IngredientList from "./components/IngredientList.jsx";
-import MarketList from "./components/MarketList2.jsx";
+import MarketList from "./components/MarketList.jsx";
 import FavRecipes from "./components/FavRecipes.jsx";
 import Profile from "./components/Profile.jsx";
 import RecipeList from "./components/RecipeList.jsx";
@@ -175,13 +175,18 @@ class App extends Component {
       });
   }
 
-  // request to server to add a recipe to the database
+  // request to server to delete a favorited recipe to the database
   removeFromFavorites(selectedRecipe) {
-    console.log("FAVORITE RECIPE:", selectedRecipe);
-    const recipeName = selectedRecipe[0];
+    // console.log("FAVORITE RECIPE:", selectedRecipe);
+    // selectedRecipe is an array ([recipe hyperlink , recipe name, recipe image, recipe id in the db])
+    const recipeName = selectedRecipe[1];
+    const deletedRecipeId = selectedRecipe[3];
     return axios
-      .delete(`${baseUrl}/api/removeFavRecipe`, selectedRecipe)
+      .post(`${baseUrl}/api/removeFavRecipe`, selectedRecipe)
       .then(response => {
+        this.setState({
+          favRecipes: this.state.favRecipes.filter((recipe) => recipe.id !== deletedRecipeId),
+        })
         alert(`${recipeName} was removed from your favorites.`);
         return response;
       })

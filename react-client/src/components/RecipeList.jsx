@@ -9,23 +9,52 @@ class RecipeList extends Component {
     super(props);
     this.state = {};
   }
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     const { user, recipes, addToFavorites } = this.props;
-    return (
-      <Fragment>
-        <NavBar user={user} />
-        <Container fluid>
-          <Row className="mt-10 ml-1">
-            <Col xs={{ size: 9 }}>
-              <h1 className="headline">Buy it fresh. Make it fresh.</h1>
-            </Col>
-          </Row>
-          <Row className="ml-1">
-            <RecipeListItem recipes={recipes} addToFavorites={addToFavorites} user={user} />
-          </Row>
-        </Container>
-      </Fragment>
-    );
+    if (recipes.length === 0) {
+      return (
+        <Fragment>
+          <NavBar user={user} />
+          <Container fluid>
+            <Row className="mt-10 ml-1">
+              <Col xs={{ size: 9 }}>
+                <h1 className="headline">Maybe buy something else.</h1>
+              </Col>
+            </Row>
+            <Row className="ml-1">
+              <Col>
+                Looks like you're out of luck. We couldn't find any recipes.
+              </Col>
+            </Row>
+          </Container>
+        </Fragment>
+      );
+    } else {
+      return (
+        <Fragment>
+          <NavBar user={user} />
+          <Container fluid>
+            <Row className="mt-10 ml-1">
+              <Col xs={{ size: 9 }}>
+                <h1 className="headline">Buy it fresh. Make it fresh.</h1>
+              </Col>
+            </Row>
+            <Row className="ml-1">
+              <RecipeListItem
+                recipes={recipes}
+                addToFavorites={addToFavorites}
+                user={user}
+              />
+            </Row>
+          </Container>
+        </Fragment>
+      );
+    }
   }
 }
 

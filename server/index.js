@@ -163,38 +163,32 @@ app.post('/api/saveFavRecipe', (req, res) => {
     });
 });
 
-app.delete('/api/removeFavRecipe', (req, res) => {
-  // console.log('favRecipes endpoint!!!!', req);
-  // req.body is an array ([selectedRecipe's title, image_url, publisher, user's email])
-  const [recipeName, imageUrl, publisher, id] = req.body;
-  console.log(id);
+app.post('/api/removeFavRecipe', (req, res) => {
+  console.log('favRecipes endpoint!!!!', req.body);
+  // req.body is an array ([recipe hyperlink , recipe name, recipe image, recipe id in the db])
+  const [recipeUrl, recipeName, imageUrl, id] = req.body;
   // find the model with the favorite recipe name or put the info in the table if it isn't there
-  models.favRecipes.destroy({
+  models.UsersRecipes.destroy({
     where: {
-      recipe_name: recipeName,
+      recipeId: id,
     },
-    defaults: {
-      recipe_name: recipeName,
-      recipe_image: imageUrl,
-      recipe_url: publisher,
-    },
-  })
-    .then((user) => {
-      // create a new entry in the join UserRecipes table
-      const {
-        dataValues,
-      } = user[0];
-      models.UsersRecipes.create({
-        userId: id,
-        recipeId: dataValues.id,
-      })
-        .then((recipes) => {
-          res.send(201);
-        });
+  }).then(()=> {
+    models.favRecipes.destroy({
+      where: {
+        recipe_name: recipeName,
+      },
+      defaults: {
+        recipe_name: recipeName,
+        recipe_image: imageUrl,
+        recipe_url: recipeUrl,
+      },
     })
-    .catch((err) => {
-      console.error(err);
-    });
+      .then(() => {
+        res.send(201);
+      });
+  }).catch((err) => {
+    console.error(err);
+  });
 });
 
 

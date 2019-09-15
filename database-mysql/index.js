@@ -111,11 +111,15 @@ const UsersRecipes = sequelize.define('users_recipes', {
 favRecipes.belongsToMany(Users, {
   through: 'users_recipes',
   foreignKey: 'recipeId',
+  onDelete: 'cascade',
+  hooks: true,
 });
 
 Users.belongsToMany(favRecipes, {
   through: 'users_recipes',
   foreignKey: 'userId',
+  onDelete: 'cascade',
+  hooks: true,
 });
 
 // make a states table

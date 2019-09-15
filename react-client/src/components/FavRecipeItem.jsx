@@ -21,7 +21,7 @@ const FavRecipeItem = props => {
     recipe_name,
     recipe_url,
     title,
-    image_url,
+    recipe_image,
     source_url,
     id
   } = props.favRecipe;
@@ -29,7 +29,7 @@ const FavRecipeItem = props => {
   const removeFavoritesAndRedirect = selectedRecipe => {
     const { removeFromFavorites } = props;
     removeFromFavorites(selectedRecipe)
-      .then(() => console.log("The recipe was removed from the database"))
+      .then(() => console.log("Recipe is on it's way to the void."))
       .catch(err => console.error(err));
   };
 
@@ -52,8 +52,10 @@ const FavRecipeItem = props => {
           <Button
             color="white"
             className="fas fa-heart float-right text-danger"
-            onClick={() =>
-              removeFavoritesAndRedirect([title, image_url, source_url, id])
+            onClick={() => {
+              console.log('cliccccccccccccccccccked', props);
+              removeFavoritesAndRedirect([ recipe_url, recipe_name, recipe_image, id ]);
+            }
             }
           ></Button>
         </td>

@@ -7,7 +7,7 @@ import ZipcodeModal from "./ZipcodeModal.jsx";
 
 // MarketList renders a list of all local farmers markets
 const MarketList = props => {
-  
+
   const { localMarkets, user, userLocation } = props;
   const { zipcode } = props.user;
   const { geopoint } = props.userLocation;
