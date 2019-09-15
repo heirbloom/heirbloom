@@ -9,6 +9,11 @@ class RecipeList extends Component {
     super(props);
     this.state = {};
   }
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     const { user, recipes, addToFavorites } = this.props;
     return (
@@ -21,7 +26,11 @@ class RecipeList extends Component {
             </Col>
           </Row>
           <Row className="ml-1">
-            <RecipeListItem recipes={recipes} addToFavorites={addToFavorites} user={user} />
+            <RecipeListItem
+              recipes={recipes}
+              addToFavorites={addToFavorites}
+              user={user}
+            />
           </Row>
         </Container>
       </Fragment>
