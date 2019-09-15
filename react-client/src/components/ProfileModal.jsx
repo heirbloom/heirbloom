@@ -23,6 +23,7 @@ class ProfileModal extends React.Component {
     };
     this.toggle = this.toggle.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    
   }
 
   toggle() {
@@ -38,10 +39,7 @@ class ProfileModal extends React.Component {
     this.setState({ newUserInfo });
   }
 
-  updateChange(){
-    
-
-  }
+  
 
   render() {
     return (
@@ -57,7 +55,7 @@ class ProfileModal extends React.Component {
           <ModalHeader toggle={this.toggle}>Change your Profile Info</ModalHeader>
           <ModalBody>
             <FormGroup>
-              <Input onChange={this.handleChange} name="username" type="text" placeholder="username" />
+              <Input onChange={this.handleChange} name="username" type="text" placeholder="username"/>
             </FormGroup>
             <FormGroup>
               <Input onChange={this.handleChange} name="email" type="text" placeholder="email" />
