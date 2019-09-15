@@ -36,9 +36,15 @@ class ProfileModal extends React.Component {
     const { value, name } = event.target;
     const newUserInfo = this.state.newUserInfo;
     newUserInfo[name] = value;
+    console.log(this.state);
     this.setState({ newUserInfo });
   }
 
+  handleSubmit(newInfo) {
+    // console.log(this.state.newUserInfo);
+    // this.toggle();
+    this.props.handleUserUpdate(newInfo);
+  }
 
   render() {
     return (
@@ -64,7 +70,7 @@ class ProfileModal extends React.Component {
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
+            <Button color="primary" onClick={this.handleSubmit(this.state.newUserInfo)}>
               Update
             </Button>{" "}
           </ModalFooter>

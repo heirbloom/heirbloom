@@ -52,10 +52,13 @@ class App extends Component {
       .put(`${baseUrl}/api/updateUser`, updatedUser)
       .then(response => {
         console.log(response);
+        const { username, email, zipcode } = user;
+        this.setState({
+          username: updatedUser.username,
+          email: updatedUser.email,
+          zipcode: updatedUser.zipcode,
+        })
       })
-      .then(
-        this.toggle()
-      )
       .catch(err => {
         console.error(err);
       })
