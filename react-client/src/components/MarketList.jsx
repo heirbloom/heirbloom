@@ -30,7 +30,6 @@ const MarketList = props => {
             <div className="ml-3 mr-3">
               We found <b>{localMarkets.length}</b> markets in your area.
             </div>
-            <ZipcodeModal userLocation={userLocation} />
             <hr />
             {localMarkets.map((marketInfo, index) => (
               <MarketListItem marketInfo={marketInfo} key={index} />

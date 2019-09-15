@@ -39,6 +39,7 @@ class App extends Component {
     this.addToFavorites = this.addToFavorites.bind(this);
     this.getFavRecipes = this.getFavRecipes.bind(this);
     this.handleUserUpdate = this.handleUserUpdate.bind(this);
+    this.removeFromFavorites = this.removeFromFavorites.bind(this);
   }
 
   componentDidMount() {
@@ -174,7 +175,22 @@ class App extends Component {
       });
   }
 
-  // this should persist the user's authentication until they log-out (Pass this down to any PrivateRoute component)
+  // request to server to add a recipe to the database
+  removeFromFavorites(selectedRecipe) {
+    console.log("FAVORITE RECIPE:", selectedRecipe);
+    const recipeName = selectedRecipe[0];
+    return axios
+      .delete(`${baseUrl}/api/removeFavRecipe`, selectedRecipe)
+      .then(response => {
+        alert(`${recipeName} was removed from your favorites.`);
+        return response;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  // this should persist the user's authentication until they log-out
   setAuthentication(isLoggedIn) {
     if (
       isLoggedIn &&
@@ -201,6 +217,7 @@ class App extends Component {
     if (loading) {
       return <div>Loading...</div>;
     }
+    
     return (
       <div className="App container-fluid m-0 p-0">
         {/* switch between login, signup, and private views with login component displayed on home page */}
@@ -271,6 +288,7 @@ class App extends Component {
             component={FavRecipes}
             setAuth={this.setAuthentication}
             getFavRecipes={this.getFavRecipes}
+            removeFromFavorites={this.removeFromFavorites}
           />
           <PrivateRoute
             path="/recipe-list"

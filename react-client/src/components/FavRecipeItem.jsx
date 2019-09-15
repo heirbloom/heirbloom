@@ -13,10 +13,25 @@ import {
   Container
 } from "reactstrap";
 
-// This structures the FavRecipeItem component. props should be one recipe object. 
+// This structures the FavRecipeItem component. props should be one recipe object.
 const FavRecipeItem = props => {
-  const { user } = props;
-  const { recipe_name, recipe_url } = props.favRecipe;
+  console.log("FavRecipeItem Props", props);
+  const { user, removeFromFavorites } = props;
+  const {
+    recipe_name,
+    recipe_url,
+    title,
+    image_url,
+    source_url,
+    id
+  } = props.favRecipe;
+
+  const removeFavoritesAndRedirect = selectedRecipe => {
+    const { removeFromFavorites } = props;
+    removeFromFavorites(selectedRecipe)
+      .then(() => console.log("The recipe was removed from the database"))
+      .catch(err => console.error(err));
+  };
 
   return (
     <tbody>
@@ -37,6 +52,9 @@ const FavRecipeItem = props => {
           <Button
             color="white"
             className="fas fa-heart float-right text-danger"
+            onClick={() =>
+              removeFavoritesAndRedirect([title, image_url, source_url, id])
+            }
           ></Button>
         </td>
       </tr>
