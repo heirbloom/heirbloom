@@ -8,7 +8,7 @@ const PrivateRoute = props => {
     // these are needed for auth; setAuth is the setAuthentication function
     path, isAuthenticated, component: Component, setAuth,
     // these are the non-auth functions being passed down
-    getFavRecipes, handleRecipes, addToFavorites,
+    getFavRecipes, handleRecipes, addToFavorites, handleUserUpdate,
     // state props being passed down
     user, recipes, ingredients, userLocation, localMarkets, favRecipes, sessionZipcode
   } = props;
@@ -36,6 +36,7 @@ const PrivateRoute = props => {
         return isAuthenticated ? (
           <Component
             user={user}
+            handleUserUpdate={handleUserUpdate}
             handleRecipes={handleRecipes}
             getFavRecipes={getFavRecipes}
             addToFavorites={addToFavorites}
