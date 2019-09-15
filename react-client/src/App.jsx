@@ -41,6 +41,7 @@ class App extends Component {
     this.addToFavorites = this.addToFavorites.bind(this);
     this.getFavRecipes = this.getFavRecipes.bind(this);
     this.handleUserUpdate = this.handleUserUpdate.bind(this);
+    this.removeFromFavorites = this.removeFromFavorites.bind(this);
   }
 
   componentDidMount() {
@@ -164,12 +165,27 @@ class App extends Component {
 
   // request to server to add a recipe to the database
   addToFavorites(selectedRecipe) {
-    // console.log('FAVORITE RECIPE:', selectedRecipe);
+    // console.log("FAVORITE RECIPE:", selectedRecipe);
     const recipeName = selectedRecipe[0];
     return axios
       .post(`${baseUrl}/api/saveFavRecipe`, selectedRecipe)
       .then(response => {
         alert(`${recipeName} was added to your favorites.`);
+        return response;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  // request to server to add a recipe to the database
+  removeFromFavorites(selectedRecipe) {
+    console.log("FAVORITE RECIPE:", selectedRecipe);
+    const recipeName = selectedRecipe[0];
+    return axios
+      .delete(`${baseUrl}/api/removeFavRecipe`, selectedRecipe)
+      .then(response => {
+        alert(`${recipeName} was removed from your favorites.`);
         return response;
       })
       .catch(err => {
@@ -276,6 +292,7 @@ class App extends Component {
             component={FavRecipes}
             setAuth={this.setAuthentication}
             getFavRecipes={this.getFavRecipes}
+            removeFromFavorites={this.removeFromFavorites}
           />
           <PrivateRoute
             path="/recipe-list"
