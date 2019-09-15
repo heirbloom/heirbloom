@@ -9,8 +9,8 @@ class RecipeList extends Component {
     this.state = {};
   }
   render() {
-    // console.log("recipes!!!!!!!!!!!", this.props);
-    const { user, recipes } = this.props;
+    console.log("recipes!!!!!!!!!!!", this.props);
+    const { user, recipes, addToFavorites } = this.props;
     return (
       <Fragment>
         <NavBar user={user} />
@@ -21,7 +21,7 @@ class RecipeList extends Component {
             </Col>
           </Row>
           <Row className="ml-1">
-            <RecipeListItem recipes={recipes} user={user} />
+            <RecipeListItem recipes={recipes} addToFavorites={addToFavorites} user={user} />
           </Row>
         </Container>
       </Fragment>
