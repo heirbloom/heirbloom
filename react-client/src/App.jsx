@@ -49,13 +49,13 @@ class App extends Component {
   }
 
   handleUserUpdate(updatedUser) {
-    //
     axios
       .put(`${baseUrl}/api/updateUser`, updatedUser)
       .then(response => {
-        console.log(response);
+        this.setState({
+          user: { ...this.state.user, ...updatedUser }
+        });
       })
-      .then(this.toggle())
       .catch(err => {
         console.error(err);
       });

@@ -13,8 +13,6 @@ import {
 
 // This renders an individual ingredient card
 const Ingredient = props => {
-  
-
   const handleRecipesAndRedirect = selectedIngredient => {
     const { handleRecipes } = props;
     // use App.Jsx's handleRecipes function which sends an api request to get the recipes with the selectedIngredient
@@ -28,7 +26,7 @@ const Ingredient = props => {
       <Col
         xl={{ size: 3, offset: 0 }}
         md={{ size: 4, offset: 0 }}
-        xs={{ size: 10, offset: 1 }}
+        xs={{ size: 10 }}
         className="mb-3"
       >
         <Card id="ingredient-card">
