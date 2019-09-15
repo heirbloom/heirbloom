@@ -2,10 +2,10 @@ import React, { Fragment } from "react";
 import Ingredient from "./Ingredient.jsx";
 import { Container, Row, Col } from "reactstrap";
 import NavBar from "./NavBar.jsx";
-// import ZipcodeModal from "./ZipcodeModal.jsx";
 
+// this is the main page, which will display all of the regional/seasonal ingredients for the user. 
 const IngredientList = props => {
-  // console.log('IngredientList', props);
+  
   const { user, ingredients, userLocation, sessionZipcode, handleRecipes } = props;
   const { city } = userLocation;
   return (

@@ -16,8 +16,8 @@ import {
 } from "reactstrap";
 
 const FavRecipes = props => {
-  // console.log('PROPSSSSSSSSSS', props.getFavRecipes);
-  const { user, favRecipes, getFavRecipes, removeFromFavorites } = props;
+  // This will be the container for all of our FavRecipes.
+  const { user, favRecipes, getFavRecipes } = props;
   const { username } = props.user;
   // useEffect is kinda like componentDidMount; once this component renders, useEffect calls the first parameter passed to it and then updates the DOM
   //

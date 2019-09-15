@@ -5,8 +5,9 @@ import MarketMap from "./MarketMap.jsx";
 import NavBar from "./NavBar.jsx";
 import ZipcodeModal from "./ZipcodeModal.jsx";
 
+// MarketList renders a list of all local farmers markets
 const MarketList = props => {
-  // console.log('MarketList props', props.localMarkets);
+  
   const { localMarkets, user, userLocation } = props;
   const { zipcode } = props.user;
   const { geopoint } = props.userLocation;

@@ -39,7 +39,6 @@ app.post('/api/usdaResponse', (req, res) => {
       if (!foundUser) {
         return res.status(404).json('User not found');
       }
-      // console.log(foundUser);
       // if the user exists:
       // foundUser is an object with the user info from the db; pass the zipcode to getMarketsInfo
       return getMarketsInfo(foundUser.zipcode)
@@ -50,7 +49,6 @@ app.post('/api/usdaResponse', (req, res) => {
 
 
 app.post('/api/usercoords', (req, res) => {
-  // console.log(req.body);
   const {
     zipcode
   } = req.body;
@@ -61,12 +59,7 @@ app.post('/api/usercoords', (req, res) => {
     .catch((err) => console.error(err));
 });
 
-// app.get('/', () => {
-
-// })
-
 app.post('/api/localIngredients', (req, res) => {
-  // console.log(req.body);
   const {
     zipcode
   } = req.body;
@@ -112,7 +105,6 @@ app.post('/api/localIngredients', (req, res) => {
 });
 
 app.post('/api/getFavRecipes', (req, res) => {
-  console.log('FAVERECIPES req.body', req.body);
   models.Users.findOne({
       where: {
         id: req.body.id,
@@ -128,20 +120,15 @@ app.post('/api/getFavRecipes', (req, res) => {
 });
 
 app.post('/api/recipes', (req, res) => {
-  console.log('Recipe endpoint req', (req.body));
   const recipeIngredient = Object.keys(req.body);
-  console.log(recipeIngredient);
   return getRecipes(recipeIngredient)
     .then((recipesArr) => {
-      console.log(recipesArr.data);
       res.send(recipesArr.data);
     })
     .catch((err) => console.error(err));
-  // getRecipes(['broccoli', 'onion', 'garlic']);
 });
 
 app.post('/api/saveFavRecipe', (req, res) => {
-  // console.log('favRecipes endpoint!!!!', req);
   // req.body is an array ([selectedRecipe's title, image_url, publisher, user's email])
   const [recipeName, imageUrl, publisher, id] = req.body;
   console.log(id);
@@ -193,7 +180,6 @@ app.delete('/api/removeFavRecipe', (req, res) => {
       },
     })
     .then((user) => {
-      console.log(user);
       // create a new entry in the join UserRecipes table
       const {
         dataValues
@@ -203,7 +189,6 @@ app.delete('/api/removeFavRecipe', (req, res) => {
           recipeId: dataValues.id
         })
         .then((recipes) => {
-          console.log(recipes);
           res.send(201);
         });
     })

@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   width: ${props => props.width};
   height: ${props => props.height};
 `;
-
+// this renders our MarketMap from the leaflet API
 class MarketMap extends Component {
   componentDidMount() {
     this.map = L.map("map", {
@@ -35,7 +35,6 @@ class MarketMap extends Component {
         let long = newLink[2].split("20");
         let coords = [];
         coords.push(newLink[0], long[1]);
-        console.log(coords);
         L.circle(coords).addTo(this.map).bindPopup(obj.marketname.substring(4));
       })
     }

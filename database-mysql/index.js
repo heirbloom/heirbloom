@@ -1,6 +1,14 @@
 const Sequelize = require('sequelize');
 
 // set up the database connection
+/* you will need a .env file with the appropriate values. The format for ours was:
+HOST=heirbloom.****************.com
+DB_PORT=3306
+USER_NAME=******
+USER_PASSWORD=********
+DATABASE=heirbloom
+FOOD2FORKKEY=*************************
+*/
 
 const {
   DATABASE, USER_NAME, USER_PASSWORD, HOST, DB_PORT,
@@ -110,7 +118,7 @@ Users.belongsToMany(favRecipes, {
   foreignKey: 'userId',
 });
 
-
+// make a states table
 const States = sequelize.define('states', {
   id: {
     type: Sequelize.INTEGER(11),
@@ -134,7 +142,7 @@ const States = sequelize.define('states', {
   timeStamps: false,
 });
 
-
+// make a regions table
 const Regions = sequelize.define('regions', {
   id: {
     type: Sequelize.INTEGER(11),
