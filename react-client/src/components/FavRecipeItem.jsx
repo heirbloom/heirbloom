@@ -14,31 +14,34 @@ import {
 } from "reactstrap";
 
 const FavRecipeItem = props => {
-  console.log('FavRecipeItem Props', props);
+  console.log("FavRecipeItem Props", props);
   const { user } = props;
   const { recipe_name, recipe_url } = props.favRecipe;
 
   return (
-    <Col>
-      <Table hover>
-        <tbody>
-          <tr>
-            <td>{recipe_name}</td>
-            <td>
-              {/* open the recipe link (recipe_url) when this button is clicked */}
-              <a href={recipe_url} className="float-right" size="sm" color="warning" target="_blank"> Click to view</a>
-            </td>
-            <td>
-              <Button
-                color="white"
-                className="fas fa-heart float-right text-danger"
-              ></Button>
-            </td>
-          </tr>
-        </tbody>
-      </Table>
-    </Col>
-  )
-}
+    <tbody>
+      <tr>
+        <td>
+          <a
+            href={recipe_url}
+            className="float-left recipe-name"
+            size="sm"
+            color="warning"
+            target="_blank"
+          >
+            {recipe_name}
+          </a>
+        </td>
+
+        <td>
+          <Button
+            color="white"
+            className="fas fa-heart float-right text-danger"
+          ></Button>
+        </td>
+      </tr>
+    </tbody>
+  );
+};
 
 export default FavRecipeItem;
