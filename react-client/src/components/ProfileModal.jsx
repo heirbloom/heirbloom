@@ -10,6 +10,7 @@ import {
   Input
 } from "reactstrap";
 
+// renders a modal that allows the user to update their user info
 class ProfileModal extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +22,6 @@ class ProfileModal extends React.Component {
         zipcode: '',
       }
     };
-    console.log('MOOOOOOOOOOOOOODLE', this.props);
     this.toggle = this.toggle.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }

@@ -1,12 +1,12 @@
 # Project Name
 
-> Pithy project description
+HeirBloom celebrates the blossoming Locavore/Slow Food movements by highlighting fresh, local ingredients, with a focus on their preparation, as well as their availability through local independent farmers markets. Hopefully our app can be utilized to provide value to both users who prioritize cooking with fresh, sustainably sourced ingredients, as well as the farmers who grow such organic bounties. 
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Sam De La Fuente
+  - __Scrum Master__: Geoffrey Ian Ward
+  - __Development Team Members__: Daniel Murphy, Raphael Khan
 
 ## Table of Contents
 
@@ -36,10 +36,12 @@
 
 From within the root directory:
 
-```sh
-sudo npm install -g bower
-npm install
-bower install
+```npm install
+npm build:client-dev
+```
+
+From within the react-client directory:
+```npm install
 ```
 
 ### Roadmap

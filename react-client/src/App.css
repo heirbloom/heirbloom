@@ -187,3 +187,10 @@ a {
   color: white;
   font-weight: 600
 }
+
+.recipe-name {
+  color: #6B7A8F;
+  font: Poppins;
+  font-size: 18px;
+  font-weight: 900
+}

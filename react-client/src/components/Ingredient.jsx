@@ -11,16 +11,17 @@ import {
   Button
 } from "reactstrap";
 
+// This renders an individual ingredient card
 const Ingredient = props => {
-// console.log('Ingredient Props', props);
+  
 
-const handleRecipesAndRedirect = (selectedIngredient) => {
-  const { handleRecipes } = props;
-  // use App.Jsx's handleRecipes function which sends an api request to get the recipes with the selectedIngredient
-  handleRecipes(selectedIngredient)
-    .then(() => props.history.push('/recipe-list'))
-    .catch(err => console.error(err));
-}
+  const handleRecipesAndRedirect = selectedIngredient => {
+    const { handleRecipes } = props;
+    // use App.Jsx's handleRecipes function which sends an api request to get the recipes with the selectedIngredient
+    handleRecipes(selectedIngredient)
+      .then(() => props.history.push("/recipe-list"))
+      .catch(err => console.error(err));
+  };
 
   return props.ingredients.map(ingredient => {
     return (
@@ -38,9 +39,18 @@ const handleRecipesAndRedirect = (selectedIngredient) => {
             <hr></hr>
             <CardText>{ingredient.Description}</CardText>
             <hr></hr>
-            <Button onClick={() => props.history.push('/market-list')} className="card-button col-12">Where to find them</Button>
-            <Button onClick={() => handleRecipesAndRedirect(ingredient.SearchTerm)} className="card-button col-12">How to prepare them</Button>
-            <Button className="card-button col-12">Add to recipe</Button>
+            <Button
+              onClick={() => props.history.push("/market-list")}
+              className="card-button col-12"
+            >
+              Where to find them
+            </Button>
+            <Button
+              onClick={() => handleRecipesAndRedirect(ingredient.SearchTerm)}
+              className="card-button col-12"
+            >
+              How to prepare them
+            </Button>
           </CardBody>
         </Card>
       </Col>

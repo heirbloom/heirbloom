@@ -59,9 +59,10 @@ class App extends Component {
           zipcode: updatedUser.zipcode,
         })
       })
+      // .then(this.toggle())
       .catch(err => {
         console.error(err);
-      })
+      });
   }
 
   getUserDetails() {
@@ -140,13 +141,12 @@ class App extends Component {
 
   // request to server to query the database for a user's favorite recipes and then populate favRecipes array in App's state
   getFavRecipes(user) {
-    console.log("===================callled")
     axios
       .post(`${baseUrl}/api/getFavRecipes`, user)
       .then(response => {
         // console.log('FAV RECIPES!!!', response.data);
         this.setState({
-          favRecipes: response.data.fav_recipes,
+          favRecipes: response.data.fav_recipes
         });
       })
       .catch(err => console.log(err));
@@ -154,7 +154,6 @@ class App extends Component {
 
   // request to server to get recipes using a selectedIngredient and then populate the recipes array in App's state
   handleRecipes(selectedIngredient) {
-    // console.log('I CHOOSE YOU:', selectedIngredient);
     return axios
       .post(`${baseUrl}/api/recipes`, selectedIngredient)
       .then(response => {
@@ -170,7 +169,6 @@ class App extends Component {
 
   // request to server to add a recipe to the database
   addToFavorites(selectedRecipe) {
-    // console.log('FAVORITE RECIPE:', selectedRecipe);
     const recipeName = selectedRecipe[0];
     return axios
       .post(`${baseUrl}/api/saveFavRecipe`, selectedRecipe)
@@ -210,7 +208,7 @@ class App extends Component {
     if (loading) {
       return <div>Loading...</div>;
     }
-    // console.log("=======state", this.state);
+    
 
     return (
       <div className="App container-fluid m-0 p-0">

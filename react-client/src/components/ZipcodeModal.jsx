@@ -9,7 +9,7 @@ import {
   Label,
   Input
 } from "reactstrap";
-
+// this functionality got redirected, but we've left it here in case legacy wants a go at it. This component will allow the user to change their location from other pages than the profile page
 class ZipcodeModal extends React.Component {
   constructor(props) {
     super(props);

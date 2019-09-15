@@ -10,16 +10,16 @@ import {
 } from "reactstrap";
 import { withRouter } from "react-router-dom";
 
+// renders an individual recipe item
 const RecipeListItem = props => {
   const handleFavoritesAndRedirect = selectedRecipe => {
     const { addToFavorites } = props;
     addToFavorites(selectedRecipe)
-      .then(() => console.log('The recipe was saved to the database'))
+      .then(() => console.log("The recipe was saved to the database"))
       .catch(err => console.error(err));
   };
-  
+
   return props.recipes.map(recipe => {
-    console.log(recipe);
     const { id } = props.user || {};
     const { title, image_url, publisher, source_url } = recipe || {};
 
@@ -39,14 +39,9 @@ const RecipeListItem = props => {
 
               <Button
                 color="white"
-                className="fas fa-heart float-right text-danger"
+                className="far fa-heart float-right text-danger"
                 onClick={() =>
-                  handleFavoritesAndRedirect([
-                    title,
-                    image_url,
-                    source_url,
-                    id
-                  ])
+                  handleFavoritesAndRedirect([title, image_url, source_url, id])
                 }
               ></Button>
             </CardTitle>
