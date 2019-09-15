@@ -1,7 +1,6 @@
-// not much here for the time being... just a header... need it to set up routes
-
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import NavBar from "./NavBar.jsx";
+import FavRecipeItem from "./FavRecipeItem.jsx"
 import "../App.css";
 import {
   Button,
@@ -17,12 +16,21 @@ import {
 } from "reactstrap";
 
 const FavRecipes = props => {
+  // console.log('PROPSSSSSSSSSS', props.getFavRecipes);
+  const { user, favRecipes, getFavRecipes } = props;
   const { username } = props.user;
+  // useEffect is kinda like componentDidMount; once this component renders, useEffect calls the first parameter passed to it and then updates the DOM
+  // 
+  useEffect(() => {
+    getFavRecipes(user);
+    // pass an empty array to useEffect otherwise the component will keep on updating
+    // useEffect
+  }, []);
 
   return (
     <Fragment>
       <div className="bg-recipe pt-5">
-        <NavBar user={props.user} className="mb-3" />
+        <NavBar user={user} className="mb-3" />
         <Container md={{ size: 6, offset: 3 }}>
           <Row className="mt-5 position-relative bg-white recipe-table">
             <Col>
@@ -30,39 +38,12 @@ const FavRecipes = props => {
             </Col>
           </Row>
           <Row className="bg-white recipe-table">
-            <Col>
+            {favRecipes.map((favRecipe, index) => <FavRecipeItem favRecipe={favRecipe} key={index} />)}
+            {/* <Col>
               <Table hover>
                 <tbody>
                   <tr>
-                    <td>Strawberry Shortcake</td>
-                    <td>
-                      <Button className="float-right" size="sm" color="warning">
-                        Click to view
-                      </Button>
-                    </td>
-                    <td>
-                      <Button
-                        color="white"
-                        className="fas fa-heart float-right text-danger"
-                      ></Button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Strawberry Shortcake</td>
-                    <td>
-                      <Button className="float-right" size="sm" color="warning">
-                        Click to view
-                      </Button>
-                    </td>
-                    <td>
-                      <Button
-                        color="white"
-                        className="fas fa-heart float-right text-danger"
-                      ></Button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Strawberry Shortcake</td>
+                    <td>{favRecipe.recipe_name}</td>
                     <td>
                       <Button className="float-right" size="sm" color="warning">
                         Click to view
@@ -76,13 +57,43 @@ const FavRecipes = props => {
                     </td>
                   </tr>
                 </tbody>
-              </Table>
-            </Col>
+                  {/* <tr>
+                    <td>Strawberry Shortcake</td>
+                    <td>
+                      <Button className="float-right" size="sm" color="warning">
+                        Click to view
+                      </Button>
+                    </td>
+                    <td>
+                      <Button
+                        color="white"
+                        className="fas fa-heart float-right text-danger"
+                      ></Button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Strawberry Shortcake</td>
+                    <td>
+                      <Button className="float-right" size="sm" color="warning">
+                        Click to view
+                      </Button>
+                    </td>
+                    <td>
+                      <Button
+                        color="white"
+                        className="fas fa-heart float-right text-danger"
+                      ></Button>
+                    </td>
+                  </tr>
+                </tbody> */}
+              {/* </Table>
+            </Col> */}
           </Row>
         </Container>
       </div>
     </Fragment>
   );
+//   });
 };
 
 export default FavRecipes;
