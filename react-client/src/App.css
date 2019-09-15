@@ -1,3 +1,22 @@
+/* @media (min-width: 576px) {
+  .headline {
+    font-family: 'Abril Fatface',
+      serif;
+    ;
+    font-weight: 900;
+    font-size: 32px
+  }
+} */
+
+@media screen and (max-width: 575px) {
+  h1.headline {
+    font-family: 'Abril Fatface',
+      serif;
+    font-weight: 900;
+    font-size: 32px
+  }
+}
+
 body,
 html {
   height: 100%;
