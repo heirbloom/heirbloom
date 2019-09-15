@@ -12,7 +12,6 @@ import FavRecipes from "./components/FavRecipes.jsx";
 import Profile from "./components/Profile.jsx";
 import RecipeList from "./components/RecipeList.jsx";
 import { baseUrl } from "./constants.js";
-import Context from './contexts/Context.jsx';
 import ProfileModal from "./components/ProfileModal.jsx";
 
 class App extends Component {
