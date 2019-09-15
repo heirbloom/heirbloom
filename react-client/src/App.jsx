@@ -12,6 +12,7 @@ import FavRecipes from "./components/FavRecipes.jsx";
 import Profile from "./components/Profile.jsx";
 import RecipeList from "./components/RecipeList.jsx";
 import { baseUrl } from "./constants.js";
+import Swal from "sweetalert2";
 
 class App extends Component {
   constructor(props) {
@@ -51,8 +52,8 @@ class App extends Component {
       .put(`${baseUrl}/api/updateUser`, updatedUser)
       .then(response => {
         this.setState({
-          user: {...this.state.user, ...updatedUser}
-        })
+          user: { ...this.state.user, ...updatedUser }
+        });
       })
       .catch(err => {
         console.error(err);
@@ -167,7 +168,7 @@ class App extends Component {
     return axios
       .post(`${baseUrl}/api/saveFavRecipe`, selectedRecipe)
       .then(response => {
-        alert(`${recipeName} was added to your favorites.`);
+        Swal.fire(`${recipeName} was added to your favorites.`);
         return response;
       })
       .catch(err => {
@@ -187,7 +188,7 @@ class App extends Component {
         this.setState({
           favRecipes: this.state.favRecipes.filter((recipe) => recipe.id !== deletedRecipeId),
         })
-        alert(`${recipeName} was removed from your favorites.`);
+        Swal.fire(`${recipeName} was removed from your favorites.`);
         return response;
       })
       .catch(err => {

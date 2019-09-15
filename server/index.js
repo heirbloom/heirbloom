@@ -71,8 +71,8 @@ app.post('/api/localIngredients', (req, res) => {
       } = userLocation;
       return models.States.findAll({
         where: {
-          ABBREVIATION: state,
-        },
+          ABBREVIATION: state
+        }
       })
         .then((stateObj) => {
           if (!stateObj) {
@@ -151,7 +151,7 @@ app.post('/api/saveFavRecipe', (req, res) => {
       } = user[0];
       models.UsersRecipes.create({
         userId: id,
-        recipeId: dataValues.id,
+        recipeId: dataValues.id
       })
         .then((recipes) => {
           console.log(recipes);

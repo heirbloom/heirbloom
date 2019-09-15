@@ -49,11 +49,7 @@ class ProfileModal extends React.Component {
   }
 
   render() {
-    const {
-      username,
-      email,
-      zipcode
-    } = this.state.newUserInfo
+    const { username, email, zipcode } = this.state.newUserInfo;
     return (
       <FormGroup>
         <Button className="card-button btn-block" onClick={this.toggle}>
@@ -64,20 +60,43 @@ class ProfileModal extends React.Component {
           toggle={this.toggle}
           className={this.props.className}
         >
-          <ModalHeader toggle={this.toggle}>Change your Profile Info</ModalHeader>
+          <ModalHeader toggle={this.toggle}>
+            Change your Profile Info
+          </ModalHeader>
           <ModalBody>
             <FormGroup>
-              <Input onChange={this.handleChange} name="username" value={username} type="text" placeholder="username"/>
+              <Input
+                onChange={this.handleChange}
+                name="username"
+                value={username}
+                type="text"
+                placeholder="username"
+              />
             </FormGroup>
             <FormGroup>
-              <Input onChange={this.handleChange} name="email" type="text" value={email} placeholder="email" />
+              <Input
+                onChange={this.handleChange}
+                name="email"
+                type="text"
+                value={email}
+                placeholder="email"
+              />
             </FormGroup>
             <FormGroup>
-              <Input onChange={this.handleChange} name="zipcode" type="text" value={zipcode} placeholder="zipcode" />
+              <Input
+                onChange={this.handleChange}
+                name="zipcode"
+                type="text"
+                value={zipcode}
+                placeholder="zipcode"
+              />
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={() => this.handleSubmit(this.state.newUserInfo)}>
+            <Button
+              color="primary"
+              onClick={() => this.handleSubmit(this.state.newUserInfo)}
+            >
               Update
             </Button>{" "}
           </ModalFooter>

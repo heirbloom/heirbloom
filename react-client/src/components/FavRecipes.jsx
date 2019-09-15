@@ -41,11 +41,7 @@ const FavRecipes = props => {
             <Col>
               <Table hover>
                 {favRecipes.map((favRecipe, index) => (
-                  <FavRecipeItem
-                    favRecipe={favRecipe}
-                    removeFromFavorites={removeFromFavorites}
-                    key={index}
-                  />
+                  <FavRecipeItem favRecipe={favRecipe} removeFromFavorites={removeFromFavorites} key={index} />
                 ))}
               </Table>
             </Col>
