@@ -32,4 +32,5 @@ fs.createReadStream('./Ingredients.csv')
     }
   });
 
+// run this in mysql shell to populate states table -> load data local infile '/Users/Wesley/Documents/OpSpark/sr-immersion/heirbloom-legacy/states.csv' into table states fields terminated by ',' lines terminated by '\n' ignore 1 rows (state, abbreviation, region);
 // to run this file (convert .csv to populated data in mySQL table): node seeder.js
