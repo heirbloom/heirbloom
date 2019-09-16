@@ -11,7 +11,6 @@ import MarketList from "./components/MarketList.jsx";
 import FavRecipes from "./components/FavRecipes.jsx";
 import Profile from "./components/Profile.jsx";
 import RecipeList from "./components/RecipeList.jsx";
-import { baseUrl } from "./constants.js";
 import Swal from "sweetalert2";
 
 class App extends Component {
@@ -49,7 +48,7 @@ class App extends Component {
 
   handleUserUpdate(updatedUser) {
     axios
-      .put(`${baseUrl}/api/updateUser`, updatedUser)
+      .put(`/api/updateUser`, updatedUser)
       .then(response => {
         this.setState({
           user: { ...this.state.user, ...updatedUser }
@@ -73,7 +72,7 @@ class App extends Component {
     Response should have the user object which contains the user's credentials, allowing them
     access to their user-specific private routes */
     axios
-      .get(`${baseUrl}/api/user`, { headers: { "X-TOKEN": token } })
+      .get(`/api/user`, { headers: { "X-TOKEN": token } })
       .then(response => {
         // after the user is authenticated, send the following requests passing in the user's user object
         this.getMarketData(response.data);
@@ -91,7 +90,7 @@ class App extends Component {
   // request to server to send an api call to get the user's location and populate the userLocation array in App's state
   getUserLocation(user) {
     axios
-      .post(`${baseUrl}/api/usercoords`, user)
+      .post(`/api/usercoords`, user)
       .then(res => {
         this.setState({
           user,
@@ -109,7 +108,7 @@ class App extends Component {
   // request to server to query the database for local veggies and populate the ingredients array in App's state
   getLocalIngredients(user) {
     axios
-      .post(`${baseUrl}/api/localIngredients`, user)
+      .post(`/api/localIngredients`, user)
       .then(res => {
         this.setState({
           ingredients: res.data
@@ -123,7 +122,7 @@ class App extends Component {
   // request to server to send an Api call to usdaMarket api and add the market data to the localMarkets array in App's state
   getMarketData(user) {
     axios
-      .post(`${baseUrl}/api/usdaResponse`, user)
+      .post(`/api/usdaResponse`, user)
       .then(res => {
         this.setState({
           localMarkets: res.data
@@ -137,7 +136,7 @@ class App extends Component {
   // request to server to query the database for a user's favorite recipes and then populate favRecipes array in App's state
   getFavRecipes(user) {
     axios
-      .post(`${baseUrl}/api/getFavRecipes`, user)
+      .post(`/api/getFavRecipes`, user)
       .then(response => {
         // console.log('FAV RECIPES!!!', response.data);
         this.setState({
@@ -150,7 +149,7 @@ class App extends Component {
   // request to server to get recipes using a selectedIngredient and then populate the recipes array in App's state
   handleRecipes(selectedIngredient) {
     return axios
-      .post(`${baseUrl}/api/recipes`, selectedIngredient)
+      .post(`/api/recipes`, selectedIngredient)
       .then(response => {
         this.setState({
           recipes: response.data.recipes
@@ -166,7 +165,7 @@ class App extends Component {
   addToFavorites(selectedRecipe) {
     const recipeName = selectedRecipe[0];
     return axios
-      .post(`${baseUrl}/api/saveFavRecipe`, selectedRecipe)
+      .post(`/api/saveFavRecipe`, selectedRecipe)
       .then(response => {
         Swal.fire(`${recipeName} was added to your favorites.`);
         return response;
@@ -183,7 +182,7 @@ class App extends Component {
     const recipeName = selectedRecipe[1];
     const deletedRecipeId = selectedRecipe[3];
     return axios
-      .post(`${baseUrl}/api/removeFavRecipe`, selectedRecipe)
+      .post(`/api/removeFavRecipe`, selectedRecipe)
       .then(response => {
         this.setState({
           favRecipes: this.state.favRecipes.filter(
