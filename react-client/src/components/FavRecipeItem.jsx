@@ -17,17 +17,9 @@ import {
 const FavRecipeItem = props => {
   console.log("FavRecipeItem Props", props);
   const { user, removeFromFavorites } = props;
-  const {
-    recipe_name,
-    recipe_url,
-    title,
-    recipe_image,
-    source_url,
-    id
-  } = props.favRecipe;
+  const { recipe_name, recipe_url, title, recipe_image, id } = props.favRecipe;
 
   const removeFavoritesAndRedirect = selectedRecipe => {
-    const { removeFromFavorites } = props;
     removeFromFavorites(selectedRecipe)
       .then(() => console.log("Recipe is on it's way to the void."))
       .catch(err => console.error(err));
@@ -52,10 +44,13 @@ const FavRecipeItem = props => {
           <Button
             color="white"
             className="fas fa-heart float-right text-danger"
-            onClick={() => {
-              console.log('cliccccccccccccccccccked', props);
-              removeFavoritesAndRedirect([ recipe_url, recipe_name, recipe_image, id ]);
-            }
+            onClick={() =>
+              removeFavoritesAndRedirect([
+                recipe_url,
+                recipe_name,
+                recipe_image,
+                id
+              ])
             }
           ></Button>
         </td>

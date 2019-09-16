@@ -11,7 +11,11 @@ FOOD2FORKKEY=*************************
 */
 
 const {
-  DATABASE, USER_NAME, USER_PASSWORD, HOST, DB_PORT,
+  DATABASE,
+  USER_NAME,
+  USER_PASSWORD,
+  HOST,
+  DB_PORT,
 } = process.env;
 const sequelize = new Sequelize(DATABASE, USER_NAME, USER_PASSWORD, {
   host: HOST,

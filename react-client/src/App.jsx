@@ -186,8 +186,10 @@ class App extends Component {
       .post(`${baseUrl}/api/removeFavRecipe`, selectedRecipe)
       .then(response => {
         this.setState({
-          favRecipes: this.state.favRecipes.filter((recipe) => recipe.id !== deletedRecipeId),
-        })
+          favRecipes: this.state.favRecipes.filter(
+            recipe => recipe.id !== deletedRecipeId
+          )
+        });
         Swal.fire(`${recipeName} was removed from your favorites.`);
         return response;
       })

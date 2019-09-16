@@ -26,7 +26,8 @@ const Ingredient = props => {
       <Col
         xl={{ size: 3, offset: 0 }}
         md={{ size: 4, offset: 0 }}
-        xs={{ size: 10 }}
+        sm={{ size: 6 }}
+        xs={{ size: 12 }}
         className="mb-3"
       >
         <Card id="ingredient-card">

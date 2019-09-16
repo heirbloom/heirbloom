@@ -49,6 +49,7 @@ class RecipeList extends Component {
                 recipes={recipes}
                 addToFavorites={addToFavorites}
                 user={user}
+                recipe_url={recipes.source_url}
               />
             </Row>
           </Container>

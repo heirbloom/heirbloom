@@ -20,11 +20,9 @@ const FavRecipes = props => {
   const { user, favRecipes, getFavRecipes, removeFromFavorites } = props;
   const { username } = props.user;
   // useEffect is kinda like componentDidMount; once this component renders, useEffect calls the first parameter passed to it and then updates the DOM
-  //
   useEffect(() => {
     getFavRecipes(user);
     // pass an empty array to useEffect otherwise the component will keep on updating
-    // useEffect
   }, []);
 
   return (
@@ -41,7 +39,11 @@ const FavRecipes = props => {
             <Col>
               <Table hover>
                 {favRecipes.map((favRecipe, index) => (
-                  <FavRecipeItem favRecipe={favRecipe} removeFromFavorites={removeFromFavorites} key={index} />
+                  <FavRecipeItem
+                    favRecipe={favRecipe}
+                    removeFromFavorites={removeFromFavorites}
+                    key={index}
+                  />
                 ))}
               </Table>
             </Col>
@@ -50,7 +52,6 @@ const FavRecipes = props => {
       </div>
     </Fragment>
   );
-  //   });
 };
 
 export default FavRecipes;
