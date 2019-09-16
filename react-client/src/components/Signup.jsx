@@ -14,8 +14,6 @@ import {
   Row,
   Col
 } from "reactstrap";
-// import { baseUrl } from "../constants";
-
 class Signup extends React.Component {
   constructor(props) {
     super(props);

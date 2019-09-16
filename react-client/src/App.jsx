@@ -11,7 +11,6 @@ import MarketList from "./components/MarketList.jsx";
 import FavRecipes from "./components/FavRecipes.jsx";
 import Profile from "./components/Profile.jsx";
 import RecipeList from "./components/RecipeList.jsx";
-import { baseUrl } from "./constants.js";
 import Swal from "sweetalert2";
 
 class App extends Component {
