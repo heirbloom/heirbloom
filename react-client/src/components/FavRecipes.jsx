@@ -20,11 +20,9 @@ const FavRecipes = props => {
   const { user, favRecipes, getFavRecipes, removeFromFavorites } = props;
   const { username } = props.user;
   // useEffect is kinda like componentDidMount; once this component renders, useEffect calls the first parameter passed to it and then updates the DOM
-  //
   useEffect(() => {
     getFavRecipes(user);
     // pass an empty array to useEffect otherwise the component will keep on updating
-    // useEffect
   }, []);
 
   return (
@@ -54,7 +52,6 @@ const FavRecipes = props => {
       </div>
     </Fragment>
   );
-  //   });
 };
 
 export default FavRecipes;

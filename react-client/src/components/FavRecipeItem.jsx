@@ -21,7 +21,7 @@ const FavRecipeItem = props => {
 
   const removeFavoritesAndRedirect = selectedRecipe => {
     removeFromFavorites(selectedRecipe)
-      .then(() => console.log("The recipe was removed from the database"))
+      .then(() => console.log("Recipe is on it's way to the void."))
       .catch(err => console.error(err));
   };
 

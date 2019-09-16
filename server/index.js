@@ -31,10 +31,10 @@ app.post('/api/usdaResponse', (req, res) => {
   } = req.body;
   // query the database for the user with the input email
   return models.Users.findOne({
-      where: {
-        email,
-      },
-    })
+    where: {
+      email,
+    },
+  })
     .then((foundUser) => {
       if (!foundUser) {
         return res.status(404).json('User not found');
@@ -70,10 +70,10 @@ app.post('/api/localIngredients', (req, res) => {
         state,
       } = userLocation;
       return models.States.findAll({
-          where: {
-            ABBREVIATION: state,
-          },
-        })
+        where: {
+          ABBREVIATION: state,
+        },
+      })
         .then((stateObj) => {
           if (!stateObj) {
             return res.status(404).json('State not found');
@@ -90,11 +90,11 @@ app.post('/api/localIngredients', (req, res) => {
           }
           const month = getMonthWord();
           return models.Ingredients.findAll({
-              where: {
-                [month]: 1,
-                region,
-              },
-            })
+            where: {
+              [month]: 1,
+              region,
+            },
+          })
             .then((ingredients) => {
               // console.log(ingredients);
               res.send(ingredients);
@@ -106,13 +106,13 @@ app.post('/api/localIngredients', (req, res) => {
 
 app.post('/api/getFavRecipes', (req, res) => {
   models.Users.findOne({
-      where: {
-        id: req.body.id,
-      },
-      include: [
-        models.favRecipes,
-      ],
-    })
+    where: {
+      id: req.body.id,
+    },
+    include: [
+      models.favRecipes,
+    ],
+  })
     .then((usersRecipes) => {
       res.send(usersRecipes);
     })
@@ -134,15 +134,15 @@ app.post('/api/saveFavRecipe', (req, res) => {
   console.log(id);
   // find the model with the favorite recipe name or put the info in the table if it isn't there
   models.favRecipes.findOrCreate({
-      where: {
-        recipe_name: recipeName,
-      },
-      defaults: {
-        recipe_name: recipeName,
-        recipe_image: imageUrl,
-        recipe_url: publisher,
-      },
-    })
+    where: {
+      recipe_name: recipeName,
+    },
+    defaults: {
+      recipe_name: recipeName,
+      recipe_image: imageUrl,
+      recipe_url: publisher,
+    },
+  })
     .then((user) => {
       console.log(user);
       // create a new entry in the join UserRecipes table
@@ -150,9 +150,9 @@ app.post('/api/saveFavRecipe', (req, res) => {
         dataValues,
       } = user[0];
       models.UsersRecipes.create({
-          userId: id,
-          recipeId: dataValues.id,
-        })
+        userId: id,
+        recipeId: dataValues.id,
+      })
         .then((recipes) => {
           console.log(recipes);
           res.send(201);
@@ -174,15 +174,15 @@ app.post('/api/removeFavRecipe', (req, res) => {
     },
   }).then(() => {
     models.favRecipes.destroy({
-        where: {
-          recipe_name: recipeName,
-        },
-        defaults: {
-          recipe_name: recipeName,
-          recipe_image: imageUrl,
-          recipe_url: recipeUrl,
-        },
-      })
+      where: {
+        recipe_name: recipeName,
+      },
+      defaults: {
+        recipe_name: recipeName,
+        recipe_image: imageUrl,
+        recipe_url: recipeUrl,
+      },
+    })
       .then(() => {
         res.send(201);
       });
