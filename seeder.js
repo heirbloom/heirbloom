@@ -4,7 +4,7 @@ const models = require('./database-mysql');
 
 const csvData = [];
 // read Ingredients.csv file
-fs.createReadStream('./Ingredients.csv')
+fs.createReadStream('Ingredient Master List - Ingredients.csv')
   // feed the contents of the file to the parser and seperating each field by comma
   .pipe(parse({ delimiter: ',' }))
   .on('data', (csvrow) => {
