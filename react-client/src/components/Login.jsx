@@ -49,7 +49,7 @@ class Login extends React.Component {
     }
     // else, send a post request to the server with the input credentials to handle authentication
     axios
-      .post(`${baseUrl}/api/login`, this.state.userCredentials)
+      .post(`/api/login`, this.state.userCredentials)
       .then(response => {
         // console.log('LOGIN RESPONSE===========================', response);
         // on successful login, response is an object with data property containing the user's token
