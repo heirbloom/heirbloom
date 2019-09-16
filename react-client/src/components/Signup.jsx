@@ -14,7 +14,7 @@ import {
   Row,
   Col
 } from "reactstrap";
-import { baseUrl } from "../constants";
+// import { baseUrl } from "../constants";
 
 class Signup extends React.Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class Signup extends React.Component {
     }
     // else, send a post request to the server to save login info in the database
     axios
-      .post(`${baseUrl}/api/signup`, this.state.userCredentials)
+      .post(`/api/signup`, this.state.userCredentials)
       .then(response => {
         // console.log('RESPONSE', response.data)
         // reposnse is an object with a data property which is an object containing the signup info

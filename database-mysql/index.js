@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+require('dotenv').config();
 
 // set up the database connection
 /* you will need a .env file with the appropriate values. The format for ours was:
@@ -188,7 +189,7 @@ const Ingredients = sequelize.define('ingredients', {
   },
   SearchTerm: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   Region: {
     type: Sequelize.INTEGER,
