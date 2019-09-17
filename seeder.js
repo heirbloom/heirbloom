@@ -32,7 +32,8 @@ fs.createReadStream('Ingredient Master List - Ingredients.csv')
     }
   });
 
-// to run this file (convert .csv to populated data in mySQL table): node seeder.js
+// load data local infile '/home/tlaxin/Documents/code/senior/heirbloom/Ingredient Master List - Ingredients.csv' into table ingredients fields terminated by ',' lines terminated by '\n' ignore 1 rows (NameRegion,Name,Region,Description,URL,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,`Dec`,createdAt,updatedAt,SearchTerm);
+// for populating the database with the ingredients.csv file
 
 // (to populate states into table) in mysql shell
 // eslint-disable-next-line max-len
