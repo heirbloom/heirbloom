@@ -206,6 +206,14 @@ app.get('/hotList', (req, res) => {
     });
 });
 
+app.post('/api/notes', (req, res) => {
+  models.Users.findOne({
+    where: {
+
+    },
+  });
+});
+
 app.use(express.static(path.join(__dirname, '/../react-client/public')));
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));
 

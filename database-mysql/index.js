@@ -109,6 +109,10 @@ const UsersRecipes = sequelize.define('users_recipes', {
       model: favRecipes,
       key: 'id',
     },
+    notes: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
   },
 }, {
   freezeTableName: true,
@@ -265,7 +269,8 @@ const Ingredients = sequelize.define('ingredients', {
   freezeTableName: true,
   timeStamps: false,
 });
-
+// this query will select the top 5 most favorited recipes among users(it will only select 
+// recipes favorited by MORE than one user)
 const hotQuery = `SELECT 
 f.*, c.count
 FROM
