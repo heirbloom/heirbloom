@@ -196,6 +196,15 @@ app.post('/api/removeFavRecipe', (req, res) => {
 // req.body
 // });
 
+app.get('/hotList', (req, res) => {
+  models.hotList
+    .then((hottestList) => {
+      res.status(201).send(hottestList);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
 
 app.use(express.static(path.join(__dirname, '/../react-client/public')));
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));
