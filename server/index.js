@@ -191,6 +191,11 @@ app.post('/api/removeFavRecipe', (req, res) => {
   });
 });
 
+//connection for recipe notes
+// app.post('/Notes', (req, res) => {
+// req.body
+// });
+
 
 app.use(express.static(path.join(__dirname, '/../react-client/public')));
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));

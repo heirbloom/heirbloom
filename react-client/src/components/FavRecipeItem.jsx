@@ -25,9 +25,11 @@ class FavRecipeItem extends Component {
     this.state ={ 
       collapse: false,
       notes: ['fack sata', 'sckpada', 'trashPandas'],
+      newNote: '',
      };
     this.toggleNotes = this.toggleNotes.bind(this);
     this.removeFavoritesAndRedirect = this.removeFavoritesAndRedirect.bind(this);
+    this.saveRecipeNotes = this.saveRecipeNotes.bind(this);
   }
   // const { user, removeFromFavorites } = this.props;
   
@@ -42,15 +44,15 @@ class FavRecipeItem extends Component {
   }
 
   saveRecipeNotes() {
-    axios.post('/Notes')
-      .then(() =>{
-
+    axios.post('/Notes', {note: this.state.newNote})
+      .then((response) =>{
+        console.log(response);
       })
   }
 
   render(){
     const { recipe_name, recipe_url, title, recipe_image, id } = this.props.favRecipe;
-    const {state, notes} = this.state;
+    const {state, notes, newNote} = this.state;
   return (
     <tbody>
       <tr>
@@ -90,10 +92,10 @@ class FavRecipeItem extends Component {
       <tr>
       <Collapse isOpen={this.state.collapse}>
               <td>
-              <Input type='textarea' placeholder="Type your notes for your fav recipe" value={notes} onChange={e => this.setState({notes: e.target.value})}></Input>
+              <Input type='textarea' placeholder="Type your notes for your fav recipe" value={newNote} onChange={e => this.setState({newNote: e.target.value})}></Input>
               </td>
               <td>
-                <Button className='fas fa-utensils icon-food float-right' onClick={console.log('yo')}></Button> 
+                <Button className='fas fa-utensils icon-food float-right' onClick={this.saveRecipeNotes()}></Button> 
               </td>
                 
       </Collapse>
