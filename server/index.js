@@ -191,6 +191,11 @@ app.post('/api/removeFavRecipe', (req, res) => {
   });
 });
 
+//connection for recipe notes
+// app.post('/Notes', (req, res) => {
+// req.body
+// });
+
 app.get('/hotList', (req, res) => {
   models.hotList
     .then((hottestList) => {
