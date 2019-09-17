@@ -16,6 +16,7 @@ import {
   Collapse,
 } from "reactstrap";
 import Axios from "axios";
+import RecipeNotes from './RecipeNotes.jsx';
 
 // This structures the FavRecipeItem component. props should be one recipe object.
 class FavRecipeItem extends Component {
@@ -23,7 +24,7 @@ class FavRecipeItem extends Component {
     super(props);
     this.state ={ 
       collapse: false,
-      notes: '',
+      notes: ['fack sata', 'sckpada', 'trashPandas'],
      };
     this.toggleNotes = this.toggleNotes.bind(this);
     this.removeFavoritesAndRedirect = this.removeFavoritesAndRedirect.bind(this);
@@ -41,7 +42,10 @@ class FavRecipeItem extends Component {
   }
 
   saveRecipeNotes() {
-    Axios.post('/Notes')
+    axios.post('/Notes')
+      .then(() =>{
+
+      })
   }
 
   render(){
@@ -89,10 +93,13 @@ class FavRecipeItem extends Component {
               <Input type='textarea' placeholder="Type your notes for your fav recipe" value={notes} onChange={e => this.setState({notes: e.target.value})}></Input>
               </td>
               <td>
-                <Button className=' icon-food float-right' onClick={}>Save</Button>  //make cool button
+                <Button className=' icon-food float-right' onClick={console.log('yo')}>Save</Button>  //make cool button
               </td>
                 
-        </Collapse>
+      </Collapse>
+      </tr>
+      <tr>
+        <RecipeNotes notes={notes}/>
       </tr>
     </tbody>
   );
