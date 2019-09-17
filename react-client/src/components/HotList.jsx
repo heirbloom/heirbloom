@@ -2,41 +2,53 @@ import React from "react";
 import "../App.css";
 import {
     Button,
-    Form,
-    FormGroup,
-    Label,
+    Collapse,
     Input,
-    FormText,
-    Row,
-    Col,
-    Table,
-    Container
 } from "reactstrap";
+import Axios from "axios";
 
 // This structures the FavRecipeItem component. props should be one recipe object.
 class HotList extends React.Component {
     constructor(props) {
         super(props)
-        const { user, removeFromFavorites } = this.props;
-        const { recipe_name, recipe_url, title, recipe_image, id } = this.props.favRecipe;
         this.state = {
-            
+            collapse: false,
+            recipes: [],
         }
+        this.toggleHot= this.toggleHot.bind(this);
+        this.getSomeHotStuff= this.getSomeHotStuff.bind(this);
     }
-    console.log("FavRecipeItem Props", props);
 
-    removeFavoritesAndRedirect = (selectedRecipe) => {
-        removeFromFavorites(selectedRecipe)
-            .then(() => console.log("Recipe is on it's way to the void."))
-            .catch(err => console.error(err));
-    };
+    getSomeHotStuff() {
+        
+    }
+
+    toggleHot() {
+        return Axios.get('/hotList')
+        .then(response => {
+            this.setState({
+                recipes: response.data,
+                collapse: !collapse
+            })
+        })
+    }
 
     render() {
-        const { state } = this.state;
+        const { recipes } = this.state;
+        const hotFive = recipes.map(recipe => (
+            <li>{recipe}</li>
+        ));
         return (
-    
-  );
+            <div>
+            <Button className="float-right" onClick={this.toggleHot}>Check it</Button>
+            <Collapse isOpen={this.state.collapse}>
+                <ul>
+                    {hotFive}
+                </ul>
+            </Collapse>
+            </div>
+        );
     }
 };
 
-export default FavRecipeItem;
+export default HotList;
