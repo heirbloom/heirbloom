@@ -77,9 +77,9 @@ const favRecipes = sequelize.define('fav_recipes', {
   recipe_image: {
     type: Sequelize.STRING,
   },
-  notes: {
-    type: Sequelize.ARRAY,
-  },
+  // notes: {
+  //   type: Sequelize.ARRAY,
+  // },
 }, {
   freezeTableName: true,
   timeStamps: false,
@@ -266,7 +266,7 @@ const Ingredients = sequelize.define('ingredients', {
   timeStamps: false,
 });
 
-const hotQuery = 'select * from fav_recipes where fav_recipes.id in (select recipeId from (select recipeId, count(*) count from users_recipes group by recipeId having count > 1 limit 5) c)';
+const hotQuery = 'select * from fav_recipes where fav_recipes.id in (select recipeId from (select recipeId, count(*) count from users_recipes group by recipeId having count > 1 limit 2) c)';
 
 // sync all of the models
 Users.sync();
