@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import "./App.css";
+import HotList from "./components/HotList.jsx";
 import Login from "./components/Login.jsx";
 import Signup from "./components/Signup.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";

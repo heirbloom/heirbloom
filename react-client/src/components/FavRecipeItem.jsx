@@ -26,7 +26,7 @@ class FavRecipeItem extends Component {
       collapse: false,
       notes: ['fack sata', 'sckpada', 'trashPandas'],
       newNote: '',
-     };
+    };
     this.toggleNotes = this.toggleNotes.bind(this);
     this.removeFavoritesAndRedirect = this.removeFavoritesAndRedirect.bind(this);
     this.saveRecipeNotes = this.saveRecipeNotes.bind(this);
@@ -69,7 +69,6 @@ class FavRecipeItem extends Component {
         </td>
 
         <td>
-     
           <Button
             color="white"
             className="fas fa-heart float-right text-danger"
@@ -82,7 +81,7 @@ class FavRecipeItem extends Component {
               ])
             }
           ></Button>
-             <Button
+            <Button
             color="white"
             className="fas fa-scroll float-right text-f70f"
             onClick={() =>{this.toggleNotes()}}
@@ -95,7 +94,7 @@ class FavRecipeItem extends Component {
               <Input type='textarea' placeholder="Type your notes for your fav recipe" value={newNote} onChange={e => this.setState({newNote: e.target.value})}></Input>
               </td>
               <td>
-                <Button className='fas fa-utensils icon-food float-right' onClick={this.saveRecipeNotes()}></Button> 
+                <Button className='fas fa-utensils icon-food float-right' onClick={this.saveRecipeNotes}></Button> 
               </td>
                 
       </Collapse>
