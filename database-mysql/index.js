@@ -266,7 +266,20 @@ const Ingredients = sequelize.define('ingredients', {
   timeStamps: false,
 });
 
-const hotQuery = 'select * from fav_recipes where fav_recipes.id in (select recipeId from (select recipeId, count(*) count from users_recipes group by recipeId having count > 1 limit 2) c)';
+const hotQuery = `SELECT 
+f.*, c.count
+FROM
+fav_recipes f
+    JOIN
+(SELECT 
+    recipeId, COUNT(*) count
+FROM
+    users_recipes
+GROUP BY recipeId
+HAVING count > 1
+LIMIT 5) AS c 
+ON f.id = c.recipeId;
+`;
 
 // sync all of the models
 Users.sync();
