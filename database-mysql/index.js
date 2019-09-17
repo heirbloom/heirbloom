@@ -77,6 +77,9 @@ const favRecipes = sequelize.define('fav_recipes', {
   recipe_image: {
     type: Sequelize.STRING,
   },
+  notes: {
+    type: Sequelize.ARRAY,
+  },
 }, {
   freezeTableName: true,
   timeStamps: false,

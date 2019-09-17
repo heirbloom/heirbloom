@@ -1,7 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import "../App.css";
 import {
   Button,
+  Card,
+  CardBody,
   Form,
   FormGroup,
   Label,
@@ -10,21 +12,47 @@ import {
   Row,
   Col,
   Table,
-  Container
+  Container,
+  Collapse,
 } from "reactstrap";
+import Axios from "axios";
+import RecipeNotes from './RecipeNotes.jsx';
 
 // This structures the FavRecipeItem component. props should be one recipe object.
-const FavRecipeItem = props => {
-  console.log("FavRecipeItem Props", props);
-  const { user, removeFromFavorites } = props;
-  const { recipe_name, recipe_url, title, recipe_image, id } = props.favRecipe;
-
-  const removeFavoritesAndRedirect = selectedRecipe => {
-    removeFromFavorites(selectedRecipe)
-      .then(() => console.log("Recipe is on it's way to the void."))
-      .catch(err => console.error(err));
+class FavRecipeItem extends Component {
+  constructor(props){
+    super(props);
+    this.state ={ 
+      collapse: false,
+      notes: ['fack sata', 'sckpada', 'trashPandas'],
+      newNote: '',
+     };
+    this.toggleNotes = this.toggleNotes.bind(this);
+    this.removeFavoritesAndRedirect = this.removeFavoritesAndRedirect.bind(this);
+    this.saveRecipeNotes = this.saveRecipeNotes.bind(this);
+  }
+  // const { user, removeFromFavorites } = this.props;
+  
+  removeFavoritesAndRedirect (selectedRecipe) {
+    this.props.removeFromFavorites(selectedRecipe)
+    .then(() => console.log("Recipe is on it's way to the void."))
+    .catch(err => console.error(err));
   };
+  
+  toggleNotes() {
+    this.setState(state => ({ collapse : !state.collapse}));
+  }
 
+  saveRecipeNotes() {
+    axios.post('/Notes', {note: this.state.newNote})
+      .then((response) =>{
+        console.log(response);
+      })
+  }
+
+  render(){
+    const { recipe_name, recipe_url, title, recipe_image, id } = this.props.favRecipe;
+    const {state, notes, newNote} = this.state;
   return (
     <tbody>
       <tr>
@@ -41,11 +69,12 @@ const FavRecipeItem = props => {
         </td>
 
         <td>
+     
           <Button
             color="white"
             className="fas fa-heart float-right text-danger"
             onClick={() =>
-              removeFavoritesAndRedirect([
+              this.removeFavoritesAndRedirect([
                 recipe_url,
                 recipe_name,
                 recipe_image,
@@ -53,10 +82,31 @@ const FavRecipeItem = props => {
               ])
             }
           ></Button>
+             <Button
+            color="white"
+            className="fas fa-scroll float-right text-f70f"
+            onClick={() =>{this.toggleNotes()}}
+          ></Button>
         </td>
+      </tr>
+      <tr>
+      <Collapse isOpen={this.state.collapse}>
+              <td>
+              <Input type='textarea' placeholder="Type your notes for your fav recipe" value={newNote} onChange={e => this.setState({newNote: e.target.value})}></Input>
+              </td>
+              <td>
+                <Button className='fas fa-utensils icon-food float-right' onClick={this.saveRecipeNotes()}></Button> 
+              </td>
+                
+      </Collapse>
+      </tr>
+      <tr>
+        <h7>Personal Notes</h7>
+        <RecipeNotes notes={notes}/>
       </tr>
     </tbody>
   );
+  };
 };
 
 export default FavRecipeItem;
