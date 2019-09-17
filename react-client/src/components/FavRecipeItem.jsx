@@ -26,7 +26,7 @@ class FavRecipeItem extends Component {
       collapse: false,
       notes: ['fack sata', 'sckpada', 'trashPandas'],
       newNote: '',
-     };
+    };
     this.toggleNotes = this.toggleNotes.bind(this);
     this.removeFavoritesAndRedirect = this.removeFavoritesAndRedirect.bind(this);
     this.saveRecipeNotes = this.saveRecipeNotes.bind(this);
@@ -44,9 +44,10 @@ class FavRecipeItem extends Component {
   }
 
   saveRecipeNotes() {
-    axios.post('/Notes', {note: this.state.newNote})
+    // console.log('yobro')
+    return Axios.post('api/notes', {note: this.state.newNote})
       .then((response) =>{
-        console.log(response);
+        console.log(response, 'the save RecipieNotes response');
       })
   }
 
@@ -69,7 +70,6 @@ class FavRecipeItem extends Component {
         </td>
 
         <td>
-     
           <Button
             color="white"
             className="fas fa-heart float-right text-danger"
@@ -82,7 +82,7 @@ class FavRecipeItem extends Component {
               ])
             }
           ></Button>
-             <Button
+            <Button
             color="white"
             className="fas fa-scroll float-right text-f70f"
             onClick={() =>{this.toggleNotes()}}
@@ -92,12 +92,11 @@ class FavRecipeItem extends Component {
       <tr>
       <Collapse isOpen={this.state.collapse}>
               <td>
-              <Input type='textarea' placeholder="Type your notes for your fav recipe" value={newNote} onChange={e => this.setState({newNote: e.target.value})}></Input>
+                <Input type='textarea' placeholder="Type your notes for your fav recipe" value={newNote} onChange={e => this.setState({newNote: e.target.value})}></Input>
               </td>
               <td>
-                <Button className='fas fa-utensils icon-food float-right' onClick={this.saveRecipeNotes()}></Button> 
+                <Button className='fas fa-utensils icon-food float-right' onClick={this.saveRecipeNotes}></Button> 
               </td>
-                
       </Collapse>
       </tr>
       <tr>

@@ -191,10 +191,15 @@ app.post('/api/removeFavRecipe', (req, res) => {
   });
 });
 
-app.get('/api/hotList', (req, res) => {
+// connection for recipe notes
+app.post('api/notes', (req, res) => {
+  console.log(req.body, 'NOTES AND SHIT');
+});
+
+app.get('/hotList', (req, res) => {
   models.hotList
     .then((hottestList) => {
-      res.status(201).send(hottestList);
+      res.status(201).send(hottestList[0]);
     })
     .catch((err) => {
       console.error(err);

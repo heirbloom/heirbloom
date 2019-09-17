@@ -1,7 +1,9 @@
 import React, { Fragment } from "react";
 import Ingredient from "./Ingredient.jsx";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 import NavBar from "./NavBar.jsx";
+import HotList from "./HotList.jsx";
+import { toggleHot } from "./HotList.jsx";
 
 // this is the main page, which will display all of the regional/seasonal ingredients for the user.
 const IngredientList = props => {
@@ -21,6 +23,7 @@ const IngredientList = props => {
           <Col>
             <h1 className="headline">
               Here&rsquo;s what&rsquo;s fresh in {city}.
+            <HotList />
             </h1>
             {/* <ZipcodeModal userLocation={userLocation} /> */}
           </Col>
