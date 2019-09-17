@@ -191,12 +191,7 @@ app.post('/api/removeFavRecipe', (req, res) => {
   });
 });
 
-//connection for recipe notes
-// app.post('/Notes', (req, res) => {
-// req.body
-// });
-
-app.get('/hotList', (req, res) => {
+app.get('/api/hotList', (req, res) => {
   models.hotList
     .then((hottestList) => {
       res.status(201).send(hottestList);
@@ -204,6 +199,11 @@ app.get('/hotList', (req, res) => {
     .catch((err) => {
       console.error(err);
     });
+});
+
+//connection for recipe notes
+app.post('/api/Notes', (req, res) => {
+  saveNotes(req.body.newNote);
 });
 
 app.use(express.static(path.join(__dirname, '/../react-client/public')));
