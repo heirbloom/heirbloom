@@ -45,7 +45,7 @@ const Ingredient = props => {
               Where to find them
             </Button>
             <Button
-              onClick={() => handleRecipesAndRedirect(ingredient.SearchTerm)}
+              onClick={() => handleRecipesAndRedirect(ingredient.Name)}
               className="card-button col-12"
             >
               How to prepare them
