@@ -32,6 +32,12 @@ sequelize.authenticate()
     console.error('Unable to connect to the database:', err);
   });
 
+  const hotQuery = 'select * from fav_recipes where fav_recipes.id in (select recipeId from (select recipeId, count(*) count from users_recipes group by recipeId having count > 1 limit 5) c)';
+
+  const hotList = sequelize.query(hotQuery).then(([results, metadata]) => {
+    return results;
+  });
+
 
 // make a Users table
 const Users = sequelize.define('users', {
@@ -280,3 +286,4 @@ module.exports.UsersRecipes = UsersRecipes;
 module.exports.Regions = Regions;
 module.exports.States = States;
 module.exports.Ingredients = Ingredients;
+module.exports.hotList = hotList;
