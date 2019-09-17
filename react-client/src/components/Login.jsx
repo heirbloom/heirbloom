@@ -13,7 +13,6 @@ import {
   Row,
   Col
 } from "reactstrap";
-import { baseUrl } from "../constants";
 import NavBar from "./NavBar.jsx";
 
 class Login extends React.Component {

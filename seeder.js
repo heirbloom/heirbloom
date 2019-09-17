@@ -4,7 +4,7 @@ const models = require('./database-mysql');
 
 const csvData = [];
 // read Ingredients.csv file
-fs.createReadStream('./Ingredients.csv')
+fs.createReadStream('ingredients.csv')
   // feed the contents of the file to the parser and seperating each field by comma
   .pipe(parse({ delimiter: ',' }))
   .on('data', (csvrow) => {
@@ -35,3 +35,7 @@ fs.createReadStream('./Ingredients.csv')
 // run this in mysql shell to populate states table -> load data local infile '/Users/Wesley/Documents/OpSpark/sr-immersion/heirbloom-legacy/states.csv' into table states fields terminated by ',' lines terminated by '\n' ignore 1 rows (state, abbreviation, region);
 // load data local infile '/Users/Wesley/Documents/OpSpark/sr-immersion/heirbloom-legacy/states.csv' into table ingredients fields terminated by ',' lines terminated by '\n' ignore 1 rows (NameRegion,Name,Region,Description,URL,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,`Dec`,createdAt,updatedAt,SearchTerm);
 // to run this file (convert .csv to populated data in mySQL table): node seeder.js
+
+// (to populate states into table) in mysql shell
+// eslint-disable-next-line max-len
+// load data local infile '/home/tlaxin/Documents/code/senior/heirbloom/Ingredient Master List - States.csv' into table states fields terminated by ',' lines terminated by '\n' ignore 1 rows (state, abbreviation, region);

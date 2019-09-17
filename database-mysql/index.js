@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
-
 // set up the database connection
 /* you will need a .env file with the appropriate values. The format for ours was:
 HOST=heirbloom.****************.com
@@ -187,10 +186,6 @@ const Ingredients = sequelize.define('ingredients', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  SearchTerm: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
   Region: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -249,6 +244,18 @@ const Ingredients = sequelize.define('ingredients', {
   },
   Dec: {
     type: Sequelize.BOOLEAN,
+    allowNull: false,
+  },
+  createdAt: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  updatedAt: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  SearchTerm: {
+    type: Sequelize.STRING,
     allowNull: false,
   },
 }, {
