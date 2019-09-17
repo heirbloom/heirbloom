@@ -15,19 +15,23 @@ import {
   Container,
   Collapse,
 } from "reactstrap";
+import Axios from "axios";
 
 // This structures the FavRecipeItem component. props should be one recipe object.
 class FavRecipeItem extends Component {
   constructor(props){
     super(props);
-    this.state ={ collapse: false };
+    this.state ={ 
+      collapse: false,
+      notes: '',
+     };
     this.toggleNotes = this.toggleNotes.bind(this);
     this.removeFavoritesAndRedirect = this.removeFavoritesAndRedirect.bind(this);
   }
   // const { user, removeFromFavorites } = this.props;
   
   removeFavoritesAndRedirect (selectedRecipe) {
-    removeFromFavorites(selectedRecipe)
+    this.props.removeFromFavorites(selectedRecipe)
     .then(() => console.log("Recipe is on it's way to the void."))
     .catch(err => console.error(err));
   };
@@ -35,8 +39,14 @@ class FavRecipeItem extends Component {
   toggleNotes() {
     this.setState(state => ({ collapse : !state.collapse}));
   }
+
+  saveRecipeNotes() {
+    Axios.post('/Notes')
+  }
+
   render(){
     const { recipe_name, recipe_url, title, recipe_image, id } = this.props.favRecipe;
+    const {state, notes} = this.state;
   return (
     <tbody>
       <tr>
@@ -58,7 +68,7 @@ class FavRecipeItem extends Component {
             color="white"
             className="fas fa-heart float-right text-danger"
             onClick={() =>
-              removeFavoritesAndRedirect([
+              this.removeFavoritesAndRedirect([
                 recipe_url,
                 recipe_name,
                 recipe_image,
@@ -69,21 +79,20 @@ class FavRecipeItem extends Component {
              <Button
             color="white"
             className="fas fa-scroll float-right text-f70f"
-            onClick={() =>{this.toggleNotes}}
-            style={{ marginBottom: '1rem' }}
+            onClick={() =>{this.toggleNotes()}}
           ></Button>
-            <Collapse isOpen={this.state.collapse}>
-              <h1>YO WHAT UP</h1>
-          {/* <Card>
-            <CardBody>
-            Anim pariatur cliche reprehenderit,
-             enim eiusmod high life accusamus terry richardson ad squid. Nihil
-             anim keffiyeh helvetica, craft beer labore wes anderson cred
-             nesciunt sapiente ea proident.
-            </CardBody>
-          </Card> */}
-        </Collapse>
         </td>
+      </tr>
+      <tr>
+      <Collapse isOpen={this.state.collapse}>
+              <td>
+              <Input type='textarea' placeholder="Type your notes for your fav recipe" value={notes} onChange={e => this.setState({notes: e.target.value})}></Input>
+              </td>
+              <td>
+                <Button className=' icon-food float-right' onClick={}>Save</Button>  //make cool button
+              </td>
+                
+        </Collapse>
       </tr>
     </tbody>
   );
