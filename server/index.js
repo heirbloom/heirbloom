@@ -191,33 +191,15 @@ app.post('/api/removeFavRecipe', (req, res) => {
   });
 });
 
-//connection for recipe notes
-// app.post('/Notes', (req, res) => {
-// req.body
-// });
-
 app.get('/hotList', (req, res) => {
   models.hotList
-<<<<<<< HEAD
-<<<<<<< HEAD
-  .then((results) => {
-    console.log(results);
-  })
-})
-=======
-=======
->>>>>>> 0a826e25fd9290586348b1214f59131d716fa246
     .then((hottestList) => {
-      res.status(201).send(hottestList[0]);
+      res.status(201).send(hottestList);
     })
     .catch((err) => {
       console.error(err);
     });
 });
-<<<<<<< HEAD
->>>>>>> abd3a5e7409c113f127ae2d05dc82e2bac3ad314
-=======
->>>>>>> 0a826e25fd9290586348b1214f59131d716fa246
 
 app.use(express.static(path.join(__dirname, '/../react-client/public')));
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));
