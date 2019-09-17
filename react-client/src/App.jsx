@@ -148,7 +148,6 @@ class App extends Component {
 
   // request to server to get recipes using a selectedIngredient and then populate the recipes array in App's state
   handleRecipes(selectedIngredient) {
-    debugger;
     return axios
       .post(`/api/recipes`, selectedIngredient)
       .then(response => {
