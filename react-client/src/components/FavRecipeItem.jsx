@@ -14,17 +14,25 @@ import {
 } from "reactstrap";
 
 // This structures the FavRecipeItem component. props should be one recipe object.
-const FavRecipeItem = props => {
-  console.log("FavRecipeItem Props", props);
-  const { user, removeFromFavorites } = props;
-  const { recipe_name, recipe_url, title, recipe_image, id } = props.favRecipe;
+class FavRecipeItem extends React.Component {
+  constructor(props) {
+    super(props)
+    const { user, removeFromFavorites } = this.props;
+    const { recipe_name, recipe_url, title, recipe_image, id } = this.props.favRecipe;
+    this.state = {
 
-  const removeFavoritesAndRedirect = selectedRecipe => {
+    }
+  }
+  console.log("FavRecipeItem Props", props);
+
+  removeFavoritesAndRedirect = (selectedRecipe) => {
     removeFromFavorites(selectedRecipe)
       .then(() => console.log("Recipe is on it's way to the void."))
       .catch(err => console.error(err));
   };
 
+  render() {
+  const { state } = this.state;
   return (
     <tbody>
       <tr>
@@ -57,6 +65,7 @@ const FavRecipeItem = props => {
       </tr>
     </tbody>
   );
+}
 };
 
 export default FavRecipeItem;
