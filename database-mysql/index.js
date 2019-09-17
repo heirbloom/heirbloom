@@ -110,6 +110,9 @@ const UsersRecipes = sequelize.define('users_recipes', {
       key: 'id',
     },
   },
+  notes: {
+    type: Sequelize.STRING,
+  },
 }, {
   freezeTableName: true,
   timeStamps: false,
