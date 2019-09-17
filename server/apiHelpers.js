@@ -1,4 +1,5 @@
 const axios = require('axios');
+require('dotenv').config();
 
 const { FOOD2FORKKEY } = process.env;
 // does a GET request to the USDA API for local farmers markets

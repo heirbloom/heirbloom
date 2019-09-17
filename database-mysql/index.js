@@ -246,9 +246,17 @@ const Ingredients = sequelize.define('ingredients', {
     type: Sequelize.BOOLEAN,
     allowNull: false,
   },
+  createdAt: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  updatedAt: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   SearchTerm: {
     type: Sequelize.STRING,
-    allowNull: true,
+    allowNull: false,
   },
 }, {
   freezeTableName: true,
