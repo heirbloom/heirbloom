@@ -206,6 +206,11 @@ app.get('/hotList', (req, res) => {
     });
 });
 
+//connection for recipe notes
+app.post('/api/Notes', (req, res) => {
+  saveNotes(req.body.newNote);
+});
+
 app.use(express.static(path.join(__dirname, '/../react-client/public')));
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../App.css";
 
-const RecipieNotes = (props) => {
+const RecipeNotes = (props) => {
 
 const { notes } = props;
 const list = notes.map( note => (
@@ -14,4 +14,4 @@ const list = notes.map( note => (
     )
 }
 
-export default RecipieNotes;
+export default RecipeNotes;
