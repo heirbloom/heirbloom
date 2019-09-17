@@ -93,12 +93,13 @@ class FavRecipeItem extends Component {
               <Input type='textarea' placeholder="Type your notes for your fav recipe" value={notes} onChange={e => this.setState({notes: e.target.value})}></Input>
               </td>
               <td>
-                <Button className=' icon-food float-right' onClick={console.log('yo')}>Save</Button>  //make cool button
+                <Button className='fas fa-utensils icon-food float-right' onClick={console.log('yo')}></Button> 
               </td>
                 
       </Collapse>
       </tr>
       <tr>
+        <h7>Personal Notes</h7>
         <RecipeNotes notes={notes}/>
       </tr>
     </tbody>
