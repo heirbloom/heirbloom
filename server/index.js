@@ -199,7 +199,7 @@ app.post('api/notes', (req, res) => {
 app.get('/hotList', (req, res) => {
   models.hotList
     .then((hottestList) => {
-      res.status(201).send(hottestList);
+      res.status(201).send(hottestList[0]);
     })
     .catch((err) => {
       console.error(err);
