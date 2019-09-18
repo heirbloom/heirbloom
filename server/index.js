@@ -191,10 +191,6 @@ app.post('/api/removeFavRecipe', (req, res) => {
   });
 });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 703ce8951560d72f8a6c191fee3097e7b90d2e07
 app.get('/hotList', (req, res) => {
   models.hotList
     .then((hottestList) => {
@@ -205,16 +201,6 @@ app.get('/hotList', (req, res) => {
     });
 });
 
-<<<<<<< HEAD
-app.post('/api/notes', (req, res) => {
-  models.UsersRecipes.update(
-    { notes: req.body.newNote },
-    { returning: true, where: { userId: req.body.userId, recipeId: req.body.recipeId } },
-  )
-    .then((result) => {
-      console.log([result]);
-      res.json(result);
-=======
 // connection for recipe notes
 app.post('/api/Notes', (req, res) => {
   models.UsersRecipes.update(
@@ -223,17 +209,12 @@ app.post('/api/Notes', (req, res) => {
   )
     .then(() => {
       res.status(201).send('saved your note');
->>>>>>> 703ce8951560d72f8a6c191fee3097e7b90d2e07
     })
     .catch((err) => {
       console.log(err);
     });
 });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 703ce8951560d72f8a6c191fee3097e7b90d2e07
 app.use(express.static(path.join(__dirname, '/../react-client/public')));
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));
 
