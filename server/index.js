@@ -215,6 +215,9 @@ app.post('/api/Notes', (req, res) => {
     });
 });
 
+app.post('/api/groceryList', (req, res) => {
+  
+})
 app.use(express.static(path.join(__dirname, '/../react-client/public')));
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));
 
