@@ -28,11 +28,7 @@ class HotList extends React.Component {
         .then(response => {
             this.setState({
                 recipes: response.data,
-<<<<<<< HEAD
-                collapse: !this.state.collapse,
-=======
                 collapse: !this.state.collapse
->>>>>>> 703ce8951560d72f8a6c191fee3097e7b90d2e07
             })
         })
     }
