@@ -207,8 +207,6 @@ app.post('/api/notes', (req, res) => {
     { notes: req.body.newNote },
     { returning: true, where: { userId: req.body.userId, recipeId: req.body.recipeId } },
   )
-  // const query = 'UPDATE users_recipes SET notes = "notes, bitch" WHERE userId = 1';
-  // models.sequelize.query(query)
     .then((result) => {
       console.log([result]);
       res.json(result);
