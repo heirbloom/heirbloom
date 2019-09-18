@@ -45,7 +45,7 @@ class FavRecipeItem extends Component {
 
   saveRecipeNotes() {
     // console.log('yobro')
-    return Axios.post('api/notes', {note: this.state.newNote})
+    return Axios.post('api/notes', {note: this.state.newNote, recipeId: this.props.favRecipe.id, userId: this.props.user.id })
       .then((response) =>{
         console.log(response, 'the save RecipieNotes response');
       })
