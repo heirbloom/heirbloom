@@ -111,7 +111,6 @@ const UsersRecipes = sequelize.define('users_recipes', {
     },
     notes: {
       type: Sequelize.STRING,
-      allowNull: true,
     },
   },
 }, {
@@ -303,3 +302,4 @@ module.exports.Regions = Regions;
 module.exports.States = States;
 module.exports.Ingredients = Ingredients;
 module.exports.hotList = sequelize.query(hotQuery);
+module.exports.sequelize = sequelize;

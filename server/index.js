@@ -191,10 +191,6 @@ app.post('/api/removeFavRecipe', (req, res) => {
   });
 });
 
-// connection for recipe notes
-app.post('api/notes', (req, res) => {
-  console.log(req.body, 'NOTES AND SHIT');
-});
 
 app.get('/hotList', (req, res) => {
   models.hotList
@@ -207,11 +203,19 @@ app.get('/hotList', (req, res) => {
 });
 
 app.post('/api/notes', (req, res) => {
-  models.Users.findOne({
-    where: {
-
-    },
-  });
+  models.UsersRecipes.update(
+    { notes: req.body.newNote },
+    { returning: true, where: { userId: req.body.userId, recipeId: req.body.recipeId } },
+  )
+  // const query = 'UPDATE users_recipes SET notes = "notes, bitch" WHERE userId = 1';
+  // models.sequelize.query(query)
+    .then((result) => {
+      console.log([result]);
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.use(express.static(path.join(__dirname, '/../react-client/public')));
