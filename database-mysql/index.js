@@ -335,5 +335,6 @@ module.exports.UsersRecipes = UsersRecipes;
 module.exports.Regions = Regions;
 module.exports.States = States;
 module.exports.Ingredients = Ingredients;
+module.exports.groceryList = groceryList;
 module.exports.hotList = sequelize.query(hotQuery);
 module.exports.sequelize = sequelize;
