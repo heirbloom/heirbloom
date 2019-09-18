@@ -43,6 +43,7 @@ const FavRecipes = props => {
                     favRecipe={favRecipe}
                     removeFromFavorites={removeFromFavorites}
                     key={index}
+                    user={user}
                   />
                 ))}
               </Table>

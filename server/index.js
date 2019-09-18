@@ -191,11 +191,6 @@ app.post('/api/removeFavRecipe', (req, res) => {
   });
 });
 
-// connection for recipe notes
-app.post('api/notes', (req, res) => {
-  console.log(req.body, 'NOTES AND SHIT');
-});
-
 app.get('/hotList', (req, res) => {
   models.hotList
     .then((hottestList) => {
@@ -206,10 +201,20 @@ app.get('/hotList', (req, res) => {
     });
 });
 
-//connection for recipe notes
+// connection for recipe notes
 app.post('/api/Notes', (req, res) => {
-  saveNotes(req.body.newNote);
+  models.UsersRecipes.update(
+    { notes: req.body.note },
+    { returning: true, where: { userId: req.body.userId, recipeId: req.body.recipeId } },
+  )
+    .then(() => {
+      res.status(201).send('saved your note');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
+
 
 app.use(express.static(path.join(__dirname, '/../react-client/public')));
 app.use(express.static(path.join(__dirname, '/../react-client/dist')));

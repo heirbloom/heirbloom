@@ -77,9 +77,6 @@ const favRecipes = sequelize.define('fav_recipes', {
   recipe_image: {
     type: Sequelize.STRING,
   },
-  // notes: {
-  //   type: Sequelize.ARRAY,
-  // },
 }, {
   freezeTableName: true,
   timeStamps: false,
@@ -109,6 +106,9 @@ const UsersRecipes = sequelize.define('users_recipes', {
       model: favRecipes,
       key: 'id',
     },
+  },
+  notes: {
+    type: Sequelize.STRING,
   },
 }, {
   freezeTableName: true,
