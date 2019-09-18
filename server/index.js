@@ -204,7 +204,7 @@ app.get('/hotList', (req, res) => {
 // connection for recipe notes
 app.post('/api/Notes', (req, res) => {
   models.UsersRecipes.update(
-    { notes: req.body.newNote },
+    { notes: req.body.note },
     { returning: true, where: { userId: req.body.userId, recipeId: req.body.recipeId } },
   )
     .then(() => {
