@@ -4,7 +4,7 @@ HeirBloom celebrates the blossoming Locavore/Slow Food movements by highlighting
 
 http://www.heirbloom.fun/
 
-<img align="left" title="See what local produce is in-season, find nearby farmer markets and discover recipes using those ingredients." src="https://rkportfolio-stuff.s3.amazonaws.com/Heirbloom/heirbloom+available+produce.JPG" height="320" width="420"><img align="justify" title="Edit your location to see what produce is available anywhere in the US." src="https://rkportfolio-stuff.s3.amazonaws.com/Heirbloom/Heirbloom+profile+page.JPG" height="320" width="420">
+<img align="left" title="See what local produce is in-season, find nearby farmer markets and discover recipes using those ingredients." src="https://rkportfolio-stuff.s3.amazonaws.com/Heirbloom/heirbloom+available+produce.JPG" height="250" width="400"><img align="justify" title="Edit your location to see what produce is available anywhere in the US." src="https://rkportfolio-stuff.s3.amazonaws.com/Heirbloom/Heirbloom+profile+page.JPG" height="250" width="400">
 
 ## Getting Started
 These instructions will allow you to get a copy of this project running on your local machine.
@@ -19,7 +19,7 @@ You have installed MySQL on your local machine. If not, follow the steps found h
 
 Fork this repository and clone it to your local machine.
 
-You'll find four folders in this repository. They are as follows:
+You'll find four folders in this repository:
 + database-mysql -> contains the database connection object as well as Sequelize models to generate the required MySQL tables
 + middleware -> contains an authentication middleware function to authenticate/create new users and keep them authorized while logged in
 + react-client -> client-side repo (contains it's own package.json)
